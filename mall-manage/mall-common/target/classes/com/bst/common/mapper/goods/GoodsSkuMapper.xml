@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.goods.GoodsSkuMapper">
+    <resultMap id="BaseResultMap" type="com.bst.common.entity.goods.GoodsSku">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="sku_no" jdbcType="VARCHAR" property="skuNo"/>
+        <result column="sku_name" jdbcType="VARCHAR" property="skuName"/>
+        <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+        <result column="market_price" jdbcType="DECIMAL" property="marketPrice"/>
+        <result column="pricing" jdbcType="DECIMAL" property="pricing"/>
+        <result column="sell_price" jdbcType="DECIMAL" property="sellPrice"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="spu_id" jdbcType="BIGINT" property="spuId"/>
+        <result column="show_weight" jdbcType="INTEGER" property="showWeight"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate"/>
+        <result column="sku_status" jdbcType="TINYINT" property="skuStatus"/>
+        <result column="is_sell" jdbcType="BIT" property="isSell"/>
+        <result column="soldout_count" jdbcType="INTEGER" property="soldoutCount"/>
+    </resultMap>
+    <resultMap id="GoodsSkuAndImg" type="com.bst.common.modle.goods.GoodsSkuAndImg" extends="BaseResultMap">
+        <result column="image_url" jdbcType="VARCHAR" property="imgPath"></result>
+        <result property="spuNo" jdbcType="VARCHAR" column="spu_no"></result>
+        <association property="goodsSpecValueEntity"
+                     resultMap="com.bst.common.mapper.goods.GoodsSpecValueDao.goodsSpecValueMap"></association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, sku_no, sku_name, cost_price, market_price, pricing, sell_price, stock, spu_id, 
+    show_weight, gmt_create, gmt_update, sku_status, is_sell, soldout_count
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_sku
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods_sku
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.bst.common.entity.goods.GoodsSku">
+    insert into goods_sku (id, sku_no, sku_name, 
+      cost_price, market_price, pricing, 
+      sell_price, stock, spu_id, 
+      show_weight, gmt_create, gmt_update, 
+      sku_status, is_sell, soldout_count
+      )
+    values (#{id,jdbcType=BIGINT}, #{skuNo,jdbcType=VARCHAR}, #{skuName,jdbcType=VARCHAR}, 
+      #{costPrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, #{pricing,jdbcType=DECIMAL}, 
+      #{sellPrice,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER}, #{spuId,jdbcType=BIGINT}, 
+      #{showWeight,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
+      #{skuStatus,jdbcType=TINYINT}, #{isSell,jdbcType=BIT}, #{soldoutCount,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.bst.common.entity.goods.GoodsSku">
+        insert into goods_sku
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="skuNo != null">
+                sku_no,
+            </if>
+            <if test="skuName != null">
+                sku_name,
+            </if>
+            <if test="costPrice != null">
+                cost_price,
+            </if>
+            <if test="marketPrice != null">
+                market_price,
+            </if>
+            <if test="pricing != null">
+                pricing,
+            </if>
+            <if test="sellPrice != null">
+                sell_price,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="spuId != null">
+                spu_id,
+            </if>
+            <if test="showWeight != null">
+                show_weight,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update,
+            </if>
+            <if test="skuStatus != null">
+                sku_status,
+            </if>
+            <if test="isSell != null">
+                is_sell,
+            </if>
+            <if test="soldoutCount != null">
+                soldout_count,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="skuNo != null">
+                #{skuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="skuName != null">
+                #{skuName,jdbcType=VARCHAR},
+            </if>
+            <if test="costPrice != null">
+                #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="marketPrice != null">
+                #{marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="pricing != null">
+                #{pricing,jdbcType=DECIMAL},
+            </if>
+            <if test="sellPrice != null">
+                #{sellPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="spuId != null">
+                #{spuId,jdbcType=BIGINT},
+            </if>
+            <if test="showWeight != null">
+                #{showWeight,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="skuStatus != null">
+                #{skuStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isSell != null">
+                #{isSell,jdbcType=BIT},
+            </if>
+            <if test="soldoutCount != null">
+                #{soldoutCount,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertGoodsSkuByList" parameterType="java.util.List">
+        REPLACE into goods_sku (sku_no, sku_name,
+      cost_price, market_price, pricing,
+      sell_price, stock, spu_id,
+      show_weight, gmt_create, gmt_update,
+      sku_status, is_sell, soldout_count
+      )
+    values
+    <foreach collection="list" item="goodsSku" separator=",">
+        ( #{goodsSku.skuNo,jdbcType=VARCHAR}, #{goodsSku.skuName,jdbcType=VARCHAR},
+        #{goodsSku.costPrice,jdbcType=DECIMAL}, #{goodsSku.marketPrice,jdbcType=DECIMAL}, #{goodsSku.pricing,jdbcType=DECIMAL},
+        #{goodsSku.sellPrice,jdbcType=DECIMAL}, #{goodsSku.stock,jdbcType=INTEGER}, #{goodsSku.spuId,jdbcType=BIGINT},
+        #{goodsSku.showWeight,jdbcType=INTEGER}, #{goodsSku.gmtCreate,jdbcType=TIMESTAMP}, #{goodsSku.gmtUpdate,jdbcType=TIMESTAMP},
+        #{goodsSku.skuStatus,jdbcType=TINYINT}, #{goodsSku.isSell,jdbcType=BIT}, #{goodsSku.soldoutCount,jdbcType=INTEGER}
+        )
+    </foreach>
+
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.goods.GoodsSku">
+        update goods_sku
+        <set>
+            <if test="skuNo != null">
+                sku_no = #{skuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="skuName != null">
+                sku_name = #{skuName,jdbcType=VARCHAR},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="marketPrice != null">
+                market_price = #{marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="pricing != null">
+                pricing = #{pricing,jdbcType=DECIMAL},
+            </if>
+            <if test="sellPrice != null">
+                sell_price = #{sellPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="spuId != null">
+                spu_id = #{spuId,jdbcType=BIGINT},
+            </if>
+            <if test="showWeight != null">
+                show_weight = #{showWeight,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="skuStatus != null">
+                sku_status = #{skuStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isSell != null">
+                is_sell = #{isSell,jdbcType=BIT},
+            </if>
+            <if test="soldoutCount != null">
+                soldout_count = #{soldoutCount,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.goods.GoodsSku">
+    update goods_sku
+    set sku_no = #{skuNo,jdbcType=VARCHAR},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      pricing = #{pricing,jdbcType=DECIMAL},
+      sell_price = #{sellPrice,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      spu_id = #{spuId,jdbcType=BIGINT},
+      show_weight = #{showWeight,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      sku_status = #{skuStatus,jdbcType=TINYINT},
+      is_sell = #{isSell,jdbcType=BIT},
+      soldout_count = #{soldoutCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="countByExample" parameterType="com.bst.common.entity.goods.GoodsSkuExample"
+            resultType="java.lang.Integer">
+        select count(*) from goods_sku
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <delete id="deleteByExample" parameterType="com.bst.common.entity.goods.GoodsSkuExample">
+        delete from goods_sku
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bst.common.entity.goods.GoodsSkuExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from goods_sku
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update goods_sku
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.skuNo != null">
+                sku_no = #{record.skuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.skuName != null">
+                sku_name = #{record.skuName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.costPrice != null">
+                cost_price = #{record.costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.marketPrice != null">
+                market_price = #{record.marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.pricing != null">
+                pricing = #{record.pricing,jdbcType=DECIMAL},
+            </if>
+            <if test="record.sellPrice != null">
+                sell_price = #{record.sellPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.stock != null">
+                stock = #{record.stock,jdbcType=INTEGER},
+            </if>
+            <if test="record.spuId != null">
+                spu_id = #{record.spuId,jdbcType=BIGINT},
+            </if>
+            <if test="record.showWeight != null">
+                show_weight = #{record.showWeight,jdbcType=INTEGER},
+            </if>
+            <if test="record.gmtCreate != null">
+                gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.gmtUpdate != null">
+                gmt_update = #{record.gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.skuStatus != null">
+                sku_status = #{record.skuStatus,jdbcType=TINYINT},
+            </if>
+            <if test="record.isSell != null">
+                is_sell = #{record.isSell,jdbcType=BIT},
+            </if>
+            <if test="record.soldoutCount != null">
+                soldout_count = #{record.soldoutCount,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update goods_sku
+        set id = #{record.id,jdbcType=BIGINT},
+        sku_no = #{record.skuNo,jdbcType=VARCHAR},
+        sku_name = #{record.skuName,jdbcType=VARCHAR},
+        cost_price = #{record.costPrice,jdbcType=DECIMAL},
+        market_price = #{record.marketPrice,jdbcType=DECIMAL},
+        pricing = #{record.pricing,jdbcType=DECIMAL},
+        sell_price = #{record.sellPrice,jdbcType=DECIMAL},
+        stock = #{record.stock,jdbcType=INTEGER},
+        spu_id = #{record.spuId,jdbcType=BIGINT},
+        show_weight = #{record.showWeight,jdbcType=INTEGER},
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+        gmt_update = #{record.gmtUpdate,jdbcType=TIMESTAMP},
+        sku_status = #{record.skuStatus,jdbcType=TINYINT},
+        is_sell = #{record.isSell,jdbcType=BIT},
+        soldout_count = #{record.soldoutCount,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <select id="selectByspuId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_sku
+        where spu_id = #{spuId,jdbcType=BIGINT}
+    </select>
+    <select id="selectGoodsSkuAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_sku
+    </select>
+
+    <select id="selectGoodsSkuAllAndImg" resultMap="GoodsSkuAndImg">
+        SELECT
+        goods_sku.sku_no, sku_name, cost_price, market_price, pricing, sell_price, stock, spu_id,
+        show_weight, sku_status,
+        goods_image.image_url,
+        goods_spu.spu_no,
+        goods_sku.sku_status,
+        goods_sku.soldout_count,
+        spec.spec_value,
+        spec.id as id
+
+        FROM
+        <choose>
+            <when test=" shopId != null or spuNo != null ">
+                (SELECT * from goods_sku
+                 <where>
+                     <if test="shopId !=null">
+                         goods_spu.shop_id =  #{shopId}
+                     </if>
+                     <if test="spuNo !=null">
+                      and   goods_spu.spu_no =  #{spuNo}
+                     </if>
+                 </where>
+                ) as goods_sku
+            </when>
+            <otherwise>
+                goods_sku
+            </otherwise>
+        </choose>
+        LEFT JOIN ( SELECT * FROM goods_image WHERE goods_image.image_type = 4 ) AS goods_image ON goods_sku.sku_no = goods_image.main_no
+        LEFT JOIN goods_spu on goods_sku.spu_id=goods_spu.id
+        LEFT JOIN ( SELECT c.*, goods_sku_spec_value.sku_no FROM goods_spec_value c
+        LEFT JOIN goods_sku_spec_value ON c.id = goods_sku_spec_value.spec_value_id ) spec ON goods_sku.sku_no = spec.sku_no
+
+        order  by  goods_spu.gmt_create DESC
+    </select>
+
+    <select id="getSkuIdsBySpuId" resultType="java.lang.Long">
+        SELECT id FROM goods_sku WHERE spu_id = #{spuId}
+    </select>
+
+
+    <update id="updateBatchBySpuId" parameterType="java.util.List">
+        update goods_sku
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="sku_status =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.skuStatus !=null and item.skuStatus != -1">
+                        when spu_id=#{item.spuId} then #{item.skuStatus}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="is_sell =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.isSell !=null">
+                        when spu_id=#{item.spuId} then #{item.isSell}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="gmt_update =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.gmtUpdate !=null">
+                        when spu_id=#{item.spuId} then #{item.gmtUpdate}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where spu_id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.spuId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateSkuTotalAndPriceByList" parameterType="java.util.List">
+        update goods_sku
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="sku_no =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.skuNo != null and item.skuNo !=''">
+                        when id=#{item.id} then #{item.skuNo}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sku_name =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.skuName != null and item.skuName !=''">
+                        when id=#{item.id} then #{item.skuName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="cost_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.costPrice != null and item.costPrice !=''">
+                        when id=#{item.id} then #{item.costPrice}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="market_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.marketPrice != null and item.marketPrice !=''">
+                        when id=#{item.id} then #{item.marketPrice}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pricing =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.pricing != null and item.pricing !=''">
+                        when id=#{item.id} then #{item.pricing}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sell_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.sellPrice != null and item.sellPrice !=''">
+                        when id=#{item.id} then #{item.sellPrice}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="stock =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.stock != null and item.stock !=''">
+                        when id=#{item.id} then #{item.stock}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="spu_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.spuId != null and item.spuId !=''">
+                        when id=#{item.id} then #{item.spuId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="show_weight =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.showWeight != null and item.showWeight !=''">
+                        when id=#{item.id} then #{item.showWeight}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="gmt_create =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.gmtCreate != null and item.gmtCreate !=''">
+                        when id=#{item.id} then #{item.gmtCreate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="gmt_update =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.gmtUpdate != null and item.gmtUpdate !=''">
+                        when id=#{item.id} then #{item.gmtUpdate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sku_status =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.skuStatus != null and item.skuStatus !=''">
+                        when id=#{item.id} then #{item.skuStatus}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="is_sell =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.isSell != null and item.isSell !=''">
+                        when id=#{item.id} then #{item.isSell}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="soldout_count =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.soldoutCount != null and item.soldoutCount !=''">
+                        when id=#{item.id} then #{item.soldoutCount}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+
+</mapper>

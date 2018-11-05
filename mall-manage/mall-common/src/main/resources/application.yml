@@ -1,0 +1,42 @@
+mybatis:
+  config-location: classpath:config/mybatis/SqlMapConfig.xml
+
+# print sql
+
+logging:
+  level:
+    com:
+      abc:
+        common:
+          mapper: debug
+
+# multi datasource
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://192.168.50.182:3306/mall_data?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: LearnStudy@123
+      driver-class-name: com.mysql.jdbc.Driver
+      #jdbc-url: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+#goodsInfo的redis存
+redisKey:
+  config:
+    mallGoodsSpuBaseInfo : goods_spu_baseInfo_key
+    orderlogistics: ORDERLOGISTICS
+    keyGoodssku: GOODSSKU
+    keyGoodsspu: GOODSSPU
+    pushMysql: PUSHMYSQL
+    courierCompanyCode: COURIER_COMPANY_CODE
+    courierCompanyName: COURIER_COMPANY_NAME
+    postageConfig: POSTAGE_CONFIG

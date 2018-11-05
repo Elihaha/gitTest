@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.order.CourierCompanyMapper">
+    <resultMap id="BaseResultMap" type="com.bst.common.entity.order.CourierCompany">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime"/>
+        <result column="update_datetime" jdbcType="TIMESTAMP" property="updateDatetime"/>
+        <result column="platform" jdbcType="VARCHAR" property="platform"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, code, create_datetime, update_datetime, platform
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from courier_company
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="list" resultType="com.bst.common.entity.order.CourierCompany">
+        select
+        <include refid="Base_Column_List"/>
+        from courier_company
+        <where>
+            <if test="name != null">
+                and LOCATE(#{name},name)>0
+            </if>
+        </where>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from courier_company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bst.common.entity.order.CourierCompany"
+            useGeneratedKeys="true">
+    insert into courier_company (name, code, create_datetime, 
+      update_datetime, platform)
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, 
+      #{updateDatetime,jdbcType=TIMESTAMP}, #{platform,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bst.common.entity.order.CourierCompany" useGeneratedKeys="true">
+        insert into courier_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="createDatetime != null">
+                create_datetime,
+            </if>
+            <if test="updateDatetime != null">
+                update_datetime,
+            </if>
+            <if test="platform != null">
+                platform,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="createDatetime != null">
+                #{createDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDatetime != null">
+                #{updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="platform != null">
+                #{platform,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.order.CourierCompany">
+        update courier_company
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="createDatetime != null">
+                create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDatetime != null">
+                update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="platform != null">
+                platform = #{platform,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.order.CourierCompany">
+    update courier_company
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      platform = #{platform,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
+

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.goods.GoodsImageMapper">
+  <resultMap id="BaseResultMap" type="com.bst.common.entity.goods.GoodsImage">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="image_type" jdbcType="TINYINT" property="imageType" />
+    <result column="main_id" jdbcType="BIGINT" property="mainId" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, image_type, main_id, image_url, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_image
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_image
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bst.common.entity.goods.GoodsImage">
+    insert into goods_image (id, image_type, main_id, 
+      image_url, create_time)
+    values (#{id,jdbcType=INTEGER}, #{imageType,jdbcType=TINYINT}, #{mainId,jdbcType=BIGINT}, 
+      #{imageUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bst.common.entity.goods.GoodsImage">
+    insert into goods_image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imageType != null">
+        image_type,
+      </if>
+      <if test="mainId != null">
+        main_id,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imageType != null">
+        #{imageType,jdbcType=TINYINT},
+      </if>
+      <if test="mainId != null">
+        #{mainId,jdbcType=BIGINT},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.goods.GoodsImage">
+    update goods_image
+    <set>
+      <if test="imageType != null">
+        image_type = #{imageType,jdbcType=TINYINT},
+      </if>
+      <if test="mainId != null">
+        main_id = #{mainId,jdbcType=BIGINT},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.goods.GoodsImage">
+    update goods_image
+    set image_type = #{imageType,jdbcType=TINYINT},
+      main_id = #{mainId,jdbcType=BIGINT},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByRecode" parameterType="com.bst.common.entity.goods.GoodsImage" resultType="java.lang.String">
+    select
+      image_url
+    from goods_image
+    where
+    <if test="imageType != null">
+      image_type = #{imageType,jdbcType=TINYINT}
+    </if>
+    <if test="mainId != null">
+      and  main_id = #{mainId,jdbcType=BIGINT}
+    </if>
+  </select>
+
+  <!-- 批量插入 -->
+  <insert id ="insertBatchImages" parameterType="java.util.List" >
+    <selectKey resultType ="java.lang.Long" keyProperty= "id"
+               order= "AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey >
+    insert into goods_image
+    (image_type, main_id, image_url)
+    values
+    <foreach collection ="list" item="image" index= "index" separator =",">
+      (
+      #{image.imageType}, #{image.mainId},
+      #{image.imageUrl}
+      )
+    </foreach >
+  </insert >
+
+  <delete id="deleteByMainId" parameterType="java.lang.Long">
+    delete from goods_image
+    where main_id = #{mainId,jdbcType=BIGINT}
+  </delete>
+</mapper>

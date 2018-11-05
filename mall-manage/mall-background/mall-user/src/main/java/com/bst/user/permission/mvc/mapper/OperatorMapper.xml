@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.user.permission.mvc.mapper.OperatorMapper">
+  <resultMap id="BaseResultMap" type="com.bst.backcommon.permission.entity.Operator">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="statue" jdbcType="INTEGER" property="statue" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="macro_id" jdbcType="VARCHAR" property="macroId" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="head_url" jdbcType="VARCHAR" property="headUrl" />
+    <result column="points" jdbcType="INTEGER" property="points" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="user_column" jdbcType="INTEGER" property="userColumn" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="identitys" jdbcType="VARCHAR" property="identitys" />
+    <result column="grades" jdbcType="VARCHAR" property="grades" />
+    <result column="citys" jdbcType="VARCHAR" property="citys" />
+    <result column="verify" jdbcType="INTEGER" property="verify" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="manage_flag" jdbcType="INTEGER" property="manageFlag" />
+  </resultMap>
+  <!--<resultMap id="AdminAccountMap" type="com.bst.user.permission.mvc.entity.AdminAccountInfo">
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+  </resultMap>
+  <select id="findAdminAccountInfoByMainId" resultMap="AdminAccountMap">
+      SELECT o.`name`,o_c.`id_number`,o.`email`,o.`phone` FROM `operator` o LEFT JOIN  `operator_company` o_c ON o.`cid` = o_c.`id` WHERE  o.`id` = #{mainId}
+  </select>-->
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, password, statue, email, phone, add_time, remark, salt, macro_id, creator,
+    updator, head_url, points, type, user_column, parent_id, identitys, grades, citys, 
+    verify, cid, manage_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.bst.backcommon.permission.entity.OperatorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from operator
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operator
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operator
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bst.backcommon.permission.entity.OperatorExample">
+    delete from operator
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bst.backcommon.permission.entity.Operator">
+    insert into operator (id, name, password, 
+      statue, email, phone, 
+      add_time, remark, salt, 
+      macro_id, creator, updator,
+      head_url, points, type, 
+      user_column, parent_id, identitys, 
+      grades, citys, verify, 
+      cid, manage_flag)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{statue,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{macroId,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{updator,jdbcType=INTEGER},
+      #{headUrl,jdbcType=VARCHAR}, #{points,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{userColumn,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{identitys,jdbcType=VARCHAR}, 
+      #{grades,jdbcType=VARCHAR}, #{citys,jdbcType=VARCHAR}, #{verify,jdbcType=INTEGER}, 
+      #{cid,jdbcType=INTEGER}, #{manageFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bst.backcommon.permission.entity.Operator">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into operator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="macroId != null">
+        macro_id,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="headUrl != null">
+        head_url,
+      </if>
+      <if test="points != null">
+        points,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="userColumn != null">
+        user_column,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="identitys != null">
+        identitys,
+      </if>
+      <if test="grades != null">
+        grades,
+      </if>
+      <if test="citys != null">
+        citys,
+      </if>
+      <if test="verify != null">
+        verify,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="manageFlag != null">
+        manage_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="macroId != null">
+        #{macroId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="headUrl != null">
+        #{headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null">
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="userColumn != null">
+        #{userColumn,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="identitys != null">
+        #{identitys,jdbcType=VARCHAR},
+      </if>
+      <if test="grades != null">
+        #{grades,jdbcType=VARCHAR},
+      </if>
+      <if test="citys != null">
+        #{citys,jdbcType=VARCHAR},
+      </if>
+      <if test="verify != null">
+        #{verify,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="manageFlag != null">
+        #{manageFlag,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bst.backcommon.permission.entity.OperatorExample" resultType="java.lang.Long">
+    select count(*) from operator
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update operator
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statue != null">
+        statue = #{record.statue,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null">
+        salt = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.macroId != null">
+        macro_id = #{record.macroId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=INTEGER},
+      </if>
+      <if test="record.updator != null">
+        updator = #{record.updator,jdbcType=INTEGER},
+      </if>
+      <if test="record.headUrl != null">
+        head_url = #{record.headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.points != null">
+        points = #{record.points,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.userColumn != null">
+        user_column = #{record.userColumn,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.identitys != null">
+        identitys = #{record.identitys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grades != null">
+        grades = #{record.grades,jdbcType=VARCHAR},
+      </if>
+      <if test="record.citys != null">
+        citys = #{record.citys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verify != null">
+        verify = #{record.verify,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.manageFlag != null">
+        manage_flag = #{record.manageFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update operator
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      statue = #{record.statue,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      salt = #{record.salt,jdbcType=VARCHAR},
+      macro_id = #{record.macroId,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=INTEGER},
+      updator = #{record.updator,jdbcType=INTEGER},
+      head_url = #{record.headUrl,jdbcType=VARCHAR},
+      points = #{record.points,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      user_column = #{record.userColumn,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      identitys = #{record.identitys,jdbcType=VARCHAR},
+      grades = #{record.grades,jdbcType=VARCHAR},
+      citys = #{record.citys,jdbcType=VARCHAR},
+      verify = #{record.verify,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
+      manage_flag = #{record.manageFlag,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bst.backcommon.permission.entity.Operator">
+    update operator
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="macroId != null">
+        macro_id = #{macroId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="headUrl != null">
+        head_url = #{headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null">
+        points = #{points,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="userColumn != null">
+        user_column = #{userColumn,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="identitys != null">
+        identitys = #{identitys,jdbcType=VARCHAR},
+      </if>
+      <if test="grades != null">
+        grades = #{grades,jdbcType=VARCHAR},
+      </if>
+      <if test="citys != null">
+        citys = #{citys,jdbcType=VARCHAR},
+      </if>
+      <if test="verify != null">
+        verify = #{verify,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="manageFlag != null">
+        manage_flag = #{manageFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bst.backcommon.permission.entity.Operator">
+    update operator
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      statue = #{statue,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      macro_id = #{macroId,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      updator = #{updator,jdbcType=INTEGER},
+      head_url = #{headUrl,jdbcType=VARCHAR},
+      points = #{points,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      user_column = #{userColumn,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      identitys = #{identitys,jdbcType=VARCHAR},
+      grades = #{grades,jdbcType=VARCHAR},
+      citys = #{citys,jdbcType=VARCHAR},
+      verify = #{verify,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      manage_flag = #{manageFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectVerifier" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+      DISTINCT oper.id,
+      oper.name
+    FROM
+      operator oper
+      INNER JOIN sys_operator_role sor ON oper.id = sor.operator_id
+      INNER JOIN sys_role role ON sor.role_id = role.role_id
+      INNER JOIN sys_role_menu srm ON role.role_id = srm.role_id
+      INNER JOIN sys_menu menu ON srm.menu_id = menu.menu_id
+    WHERE oper.statue = 2
+          AND menu.type = 2
+          AND menu.perms = #{verifyMark}
+  </select>
+  <select id="isTransfer" resultType="java.lang.Integer">
+    SELECT
+      COUNT(*)
+    FROM
+      operator oper,
+      sys_operator_role sor,
+      sys_role role,
+      sys_role_menu srm,
+      sys_menu menu
+    WHERE
+      oper.id = sor.operator_id
+      AND sor.role_id = role.role_id
+      AND role.role_id = srm.role_id
+      AND srm.menu_id = menu.menu_id
+      AND oper.statue = 2
+      AND menu.type = 2
+      AND menu.perms = #{transferMark}
+      AND oper.id = #{operaId}
+  </select>
+  <select id="getById" resultType="com.bst.backcommon.permission.entity.Operator">
+    select o.id, o.name, o.statue, o.email, o.phone, o.add_time addTime, o.remark,
+     o.head_url headUrl, o.points, o.type,  o.identitys, o.grades, o.citys, com.name as companyName,com.person as person,
+    o.verify ,c.name as columnName,c.id as `userColumn` from operator o left JOIN  operator_column c  on o.user_column=c.id
+    left JOIN  operator_company com on o.cid=com.id
+    where o.id = #{id}
+  </select>
+
+  <select id="getCountByParentId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*)
+    from operator
+    where parent_id=#{mainId}
+  </select>
+
+  <select id="selectByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from operator
+    where parent_id=#{mainId}
+  </select>
+
+
+  <!--<select id="getCountByParentIdAndManageFlag" parameterType="com.bst.modules.foreign.childaccount.entity.ParentAndManageModel" resultType="java.lang.Integer">
+    select count(*)
+    from operator
+    where parent_id=#{mainId} and manage_flag=#{manageFlag}
+  </select>
+
+  <select id="selectByParentIdAndManageFlag" parameterType="com.bst.modules.foreign.childaccount.entity.ParentAndManageModel" resultMap="BaseResultMap">
+    select *
+    from operator
+    where parent_id=#{mainId} and manage_flag=#{manageFlag}
+  </select>-->
+
+  <!--<select id="findByUnitAndValue" parameterType="com.bst.common.pojo.params.mapper.UnitAndValueModel" resultMap="BaseResultMap">
+    select *
+    from operator
+    where ${unit}=#{unitValue}
+  </select>
+
+  <select id="findByUnitAndValueNotId" parameterType="com.bst.common.pojo.params.mapper.UnitAndValueModel" resultMap="BaseResultMap">
+    select *
+    from operator
+    where ${unit}=#{unitValue} and id!=#{id}
+  </select>-->
+
+</mapper>

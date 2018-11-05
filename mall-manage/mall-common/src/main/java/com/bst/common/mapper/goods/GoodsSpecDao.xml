@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bst.common.mapper.goods.GoodsSpecDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bst.common.entity.goods.GoodsSpecEntity" id="goodsSpecMap">
+        <result property="id" column="id"/>
+        <result property="specNo" column="spec_no"/>
+        <result property="specName" column="spec_name"/>
+		<result property="type" column="type"/>
+		<result property="shopId" column="shop_id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtUpdate" column="gmt_update"/> 	
+    </resultMap>
+
+	<sql id="spe_cloumn_list">
+		id,spec_no,spec_name, gmt_create, gmt_update
+	</sql>
+
+	<select id="queryObject" resultMap="goodsSpecMap">
+		select * from goods_spec where id = #{value}
+	</select>
+
+	<select id="queryList" parameterType="Map"  resultMap="goodsSpecMap">
+		select
+		<include refid="spe_cloumn_list"/>
+		from goods_spec s
+		WHERE s.`type` = 0
+		<if test="shopId != null">
+		   OR s.shop_id = #{shopId}
+		</if>
+       <!-- <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>-->
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from goods_spec 
+	</select>
+	 
+	<insert id="save" parameterType="com.bst.common.entity.goods.GoodsSpecEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into goods_spec
+		(
+			`spec_no`, 
+			`spec_name`,
+		    `type`,
+		    `shop_id`
+			<if test="gmtUpdate != null">, `gmt_update` </if>
+
+		)
+		values
+		(
+
+			#{specNo}, 
+			#{specName},
+		 	#{type},
+		    #{shopId}
+			<if test="gmtUpdate != null">,#{gmtUpdate} </if>
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bst.common.entity.goods.GoodsSpecEntity">
+		update goods_spec 
+		<set>
+			<if test="specNo != null">`spec_no` = #{specNo}, </if>
+			<if test="specName != null">`spec_name` = #{specName}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtUpdate != null">`gmt_update` = #{gmtUpdate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from goods_spec where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from goods_spec where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

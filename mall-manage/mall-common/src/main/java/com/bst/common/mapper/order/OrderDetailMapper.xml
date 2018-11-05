@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bst.common.mapper.order.OrderDetailMapper" >
+  <resultMap id="OrderDetailMonitoringInfo" type="com.bst.common.modle.order.OrderDetailMonitoringInfo" extends="BaseResultMap">
+    <result column="goods_count" property="goodsCount"></result>
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.bst.common.entity.order.OrderDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="spu_no" property="spuNo" jdbcType="BIGINT" />
+    <result column="sku_no" property="skuNo" jdbcType="BIGINT" />
+    <result column="order_details" property="orderDetails" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, order_no, spu_no, sku_no, order_details
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bst.common.entity.order.OrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="queryOrderDetail" resultType="com.bst.common.modle.orders.DetailResult" parameterType="java.lang.Long" >
+    select order_detail.order_no orderNo ,
+order_orders.create_time createTime,order_orders.pay_time payTime,
+order_orders.delivery_time deliveryTime,order_logistics.dhl dhl
+from order_detail  LEFT JOIN order_orders on order_orders.id = order_detail.order_id
+LEFT JOIN order_child on order_child.main_id = order_orders.id
+LEFT JOIN order_logistics on order_logistics.order_id = order_child.id
+where order_orders.id = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bst.common.entity.order.OrderDetailExample" >
+    delete from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bst.common.entity.order.OrderDetail" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_detail (order_id, order_no, spu_no, 
+      sku_no, order_details
+      )
+    values (#{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{spuNo},
+      #{skuNo}, #{orderDetails,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bst.common.entity.order.OrderDetail" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="spuNo != null" >
+        spu_no,
+      </if>
+      <if test="skuNo != null" >
+        sku_no,
+      </if>
+      <if test="orderDetails != null" >
+        order_details,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="spuNo != null" >
+        #{spuNo,jdbcType=BIGINT},
+      </if>
+      <if test="skuNo != null" >
+        #{skuNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderDetails != null" >
+        #{orderDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bst.common.entity.order.OrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectOrderDetailByOrderId" resultMap="BaseResultMap">
+    SELECT
+           id, order_id, order_no, spu_no, sku_no
+    FROM order_detail WHERE order_id = #{orderId}
+  </select>
+    <select id="queryOrderDetailByOrderNo" resultMap="OrderDetailMonitoringInfo">
+       SELECT
+                order_detail.sku_no, order_detail.spu_no,order_orders.goods_count
+    FROM
+    order_orders
+	LEFT JOIN  order_detail  on  order_orders.id = order_detail.order_id
+	WHERE order_orders.order_no= #{ordersNo}
+
+
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+    update order_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spuNo != null" >
+        spu_no = #{record.spuNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.skuNo != null" >
+        sku_no = #{record.skuNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderDetails != null" >
+        order_details = #{record.orderDetails,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      spu_no = #{record.spuNo,jdbcType=BIGINT},
+      sku_no = #{record.skuNo,jdbcType=BIGINT},
+      order_details = #{record.orderDetails,jdbcType=VARCHAR}
+
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.order.OrderDetail" >
+    update order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="spuNo != null" >
+        spu_no = #{spuNo,jdbcType=BIGINT},
+      </if>
+      <if test="skuNo != null" >
+        sku_no = #{skuNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderDetails != null" >
+        order_details = #{orderDetails,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.order.OrderDetail" >
+    update order_detail
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      spu_no = #{spuNo,jdbcType=BIGINT},
+      sku_no = #{skuNo,jdbcType=BIGINT},
+      order_details = #{orderDetails,jdbcType=VARCHAR}
+
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

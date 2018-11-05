@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//config.mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.user.permission.mvc.mapper.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.bst.user.permission.mvc.entity.SysRole">
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="macro_id" jdbcType="VARCHAR" property="macroId" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+  </resultMap>
+  <!--根据用户Id查找用户角色对象-->
+  <select id="findByUserId" parameterType="int" resultMap="BaseResultMap">
+    SELECT
+    r.*
+    FROM sys_operator_role o_r,
+    sys_role r
+    WHERE o_r.role_id = r.role_id
+    AND o_r.operator_id = #{id}
+  </select>
+  <!--根据用户Id查找用户角色名-->
+  <select id="findRolesNameByUserId" parameterType="int" resultType="java.lang.String">
+    SELECT DISTINCT
+    r.role_name
+    FROM sys_operator_role o_r,
+    sys_role r
+    WHERE o_r.role_id = r.role_id
+    AND o_r.operator_id = #{id}
+  </select>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    role_id, role_name, remark, dept_id, create_time, macro_id, creator, updator, order_num
+  </sql>
+  <select id="selectByExample" parameterType="com.bst.user.permission.mvc.entity.SysRoleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_role
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bst.user.permission.mvc.entity.SysRoleExample">
+    delete from sys_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bst.user.permission.mvc.entity.SysRole">
+    insert into sys_role (role_id, role_name, remark, 
+      dept_id, create_time, macro_id, 
+      creator, updator, order_num
+      )
+    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{macroId,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=INTEGER}, #{updator,jdbcType=INTEGER}, #{orderNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bst.user.permission.mvc.entity.SysRole">
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="macroId != null">
+        macro_id,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="macroId != null">
+        #{macroId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bst.user.permission.mvc.entity.SysRoleExample" resultType="java.lang.Long">
+    select count(*) from sys_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_role
+    <set>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.roleName != null">
+        role_name = #{record.roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null">
+        dept_id = #{record.deptId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.macroId != null">
+        macro_id = #{record.macroId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=INTEGER},
+      </if>
+      <if test="record.updator != null">
+        updator = #{record.updator,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_role
+    set role_id = #{record.roleId,jdbcType=BIGINT},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      dept_id = #{record.deptId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      macro_id = #{record.macroId,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=INTEGER},
+      updator = #{record.updator,jdbcType=INTEGER},
+      order_num = #{record.orderNum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bst.user.permission.mvc.entity.SysRole">
+    update sys_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="macroId != null">
+        macro_id = #{macroId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bst.user.permission.mvc.entity.SysRole">
+    update sys_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      macro_id = #{macroId,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      updator = #{updator,jdbcType=INTEGER},
+      order_num = #{orderNum,jdbcType=INTEGER}
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </update>
+</mapper>

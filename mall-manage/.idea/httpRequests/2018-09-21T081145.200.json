@@ -1,0 +1,25 @@
+{
+  "status": 200,
+  "msg": "success",
+  "data": {
+    "orderLogistics": {
+      "id": 492424621950238720,
+      "orderId": 3,
+      "goodsName": "test",
+      "goodsCount": 2,
+      "signer": "pz",
+      "signerPhone": "17608413342",
+      "province": "41000",
+      "city": "长沙市",
+      "area": "芙蓉区",
+      "address": "不知名的地方",
+      "postcode": "41000",
+      "dhl": "yuantong",
+      "trackingNumber": "801336920769797070",
+      "inputTime": "2018-09-20T19:59:39",
+      "inputUser": 1,
+      "lastUpdate": "2018-09-20T19:59:39",
+      "lastOperator": 1
+    }
+  }
+}

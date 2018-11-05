@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-back-common/mall-back-common.iml" filepath="$PROJECT_DIR$/mall-background/mall-back-common/mall-back-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-back-server/mall-back-server.iml" filepath="$PROJECT_DIR$/mall-background/mall-back-server/mall-back-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-background.iml" filepath="$PROJECT_DIR$/mall-background/mall-background.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-common/mall-common.iml" filepath="$PROJECT_DIR$/mall-common/mall-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods.iml" filepath="$PROJECT_DIR$/mall-background/mall-goods/mall-goods.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/mall-goods-controller.iml" filepath="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/mall-goods-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/mall-goods-service.iml" filepath="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/mall-goods-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-h5/mall-h5.iml" filepath="$PROJECT_DIR$/mall-h5/mall-h5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-manage.iml" filepath="$PROJECT_DIR$/mall-manage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-order/mall-order.iml" filepath="$PROJECT_DIR$/mall-background/mall-order/mall-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-controller/mall-order-controller.iml" filepath="$PROJECT_DIR$/mall-background/mall-order/mall-order-controller/mall-order-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-service/mall-order-service.iml" filepath="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/mall-order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-scheduled/mall-scheduled.iml" filepath="$PROJECT_DIR$/mall-scheduled/mall-scheduled.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-background/mall-user/mall-user.iml" filepath="$PROJECT_DIR$/mall-background/mall-user/mall-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter/spring-boot-my-id-generate-statter.iml" filepath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter/spring-boot-my-id-generate-statter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/spring-boot-my-redis-starter.iml" filepath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/spring-boot-my-redis-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-starter.iml" filepath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter/spring-boot-my-swagger-starter.iml" filepath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter/spring-boot-my-swagger-starter.iml" />
+    </modules>
+  </component>
+</project>

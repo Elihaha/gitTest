@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bst.common.mapper.goods.GoodsSpecValueDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bst.common.entity.goods.GoodsSpecValueEntity" id="goodsSpecValueMap">
+        <result property="id" column="id"/>
+        <result property="specId" column="spec_id"/>
+        <result property="specValue" column="spec_value"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtUpdate" column="gmt_update"/>
+    </resultMap>
+
+	<select id="queryListSpecValue" resultMap="goodsSpecValueMap">
+		select * from goods_spec_value where spec_id = #{value}
+	</select>
+
+	<insert id="saveSpecValueList" parameterType="Map"  useGeneratedKeys="true" keyProperty="id" >
+		insert into goods_spec_value
+		( `spec_id`, `spec_value`)
+		values
+		<foreach collection="list" item ="temp" separator=",">
+			(
+			#{temp.specId},
+			#{temp.specValue}
+			)
+		</foreach>
+	</insert>
+
+	<select id="queryList" resultMap="goodsSpecValueMap">
+		select * from goods_spec_value
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from goods_spec_value 
+	</select>
+	 
+	<insert id="save" parameterType="com.bst.common.entity.goods.GoodsSpecValueEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into goods_spec_value
+		(
+			`spec_id`, 
+			`spec_value`, 
+			`gmt_create`, 
+			`gmt_update`
+		)
+		values
+		(
+			#{specId}, 
+			#{specValue}, 
+			#{gmtCreate}, 
+			#{gmtUpdate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bst.common.entity.goods.GoodsSpecValueEntity">
+		update goods_spec_value 
+		<set>
+			<if test="specId != null">`spec_id` = #{specId}, </if>
+			<if test="specValue != null">`spec_value` = #{specValue}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtUpdate != null">`gmt_update` = #{gmtUpdate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from goods_spec_value where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from goods_spec_value where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,26 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.bat.generate.GenerateIdProperties",
+      "name": "generate",
+      "type": "com.bat.generate.GenerateIdProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.bat.generate.GenerateIdProperties",
+      "defaultValue": 0,
+      "name": "generate.datacenter-id",
+      "description": "datacenterId 数据中心ID (0~31)",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.bat.generate.GenerateIdProperties",
+      "defaultValue": 0,
+      "name": "generate.worker-id",
+      "description": "workerId 工作ID (0~31)",
+      "type": "java.lang.Long"
+    }
+  ]
+}

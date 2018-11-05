@@ -1,0 +1,107 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config",
+      "type": "com.bst.common.utils.RedisParam"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.courier-company-code",
+      "description": "field 快递公司",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.courier-company-name",
+      "description": "field 快递公司",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.goods-shop-base-info-key",
+      "description": "field  商店首页key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.goods-spu-base-info-key",
+      "description": "field 商品key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.key-goodssku",
+      "description": "sku 前綴",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.key-goodssku-all",
+      "description": "skuAll 前綴",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.key-goodsspu",
+      "description": "spu 前綴",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.order-automatic-receipt",
+      "description": "自动签收 @return",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.order-close-the-return",
+      "description": "关闭退货",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.order-refund-return-timeout",
+      "description": "orderRefundReturnTimeout   退款退货超时 @return",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.order-refund-timeout",
+      "description": "退款超时 @return",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.order-refuse-return-timeout",
+      "description": "拒绝退货超时 @return",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.order-timeout-delay-key",
+      "description": "field 订单有效期延时",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.orderlogistics",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.postage-config",
+      "description": "field   运费",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bst.common.utils.RedisParam",
+      "name": "redis.config.push-mysql",
+      "description": "更新数据 的消息队列的 名字",
+      "type": "java.lang.String"
+    }
+  ]
+}

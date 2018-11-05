@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mall-back-common" />
+        <module name="mall-back-server" />
+        <module name="mall-common" />
+        <module name="mall-goods-controller" />
+        <module name="mall-goods-service" />
+        <module name="mall-h5" />
+        <module name="mall-order-controller" />
+        <module name="mall-order-service" />
+        <module name="mall-scheduled" />
+        <module name="mall-user" />
+        <module name="spring-boot-my-id-generate-statter" />
+        <module name="spring-boot-my-redis-starter" />
+        <module name="spring-boot-my-swagger-starter" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mall-back-common" target="1.8" />
+      <module name="mall-back-server" target="1.8" />
+      <module name="mall-background" target="1.8" />
+      <module name="mall-common" target="1.8" />
+      <module name="mall-goods" target="1.8" />
+      <module name="mall-goods-controller" target="1.8" />
+      <module name="mall-goods-service" target="1.8" />
+      <module name="mall-h5" target="1.8" />
+      <module name="mall-manage" target="1.8" />
+      <module name="mall-order" target="1.8" />
+      <module name="mall-order-controller" target="1.8" />
+      <module name="mall-order-service" target="1.8" />
+      <module name="mall-scheduled" target="1.8" />
+      <module name="mall-user" target="1.8" />
+      <module name="spring-boot-my-id-generate-statter" target="1.8" />
+      <module name="spring-boot-my-redis-starter" target="1.8" />
+      <module name="spring-boot-my-starter" target="1.8" />
+      <module name="spring-boot-my-swagger-starter" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

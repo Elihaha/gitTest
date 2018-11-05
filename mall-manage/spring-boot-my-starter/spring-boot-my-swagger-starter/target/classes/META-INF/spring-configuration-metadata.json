@@ -1,0 +1,66 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "name": "swagger",
+      "type": "com.pz.swagger.ApiInfoAutoProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "外部接口文档",
+      "name": "swagger.description",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "Apache 2.0",
+      "name": "swagger.licence",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "http:\/\/www.apache.org\/licenses\/LICENSE-2.0.html",
+      "name": "swagger.licence-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "http:\/\/www.apache.org\/licenses\/LICENSE-2.0.html",
+      "name": "swagger.service-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": " 前后端接口-外部",
+      "name": "swagger.title",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "2919274153@qq.com",
+      "name": "swagger.user-email",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "pz",
+      "name": "swagger.user-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "www.baidu.com",
+      "name": "swagger.user-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pz.swagger.ApiInfoAutoProperties",
+      "defaultValue": "1.0.0",
+      "name": "swagger.version",
+      "type": "java.lang.String"
+    }
+  ]
+}

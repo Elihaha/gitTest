@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>mall-background</artifactId>
+        <groupId>com.bst</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mall-back-server</artifactId>
+    <version>${mall.project.version}</version>
+    <name>mall-back-server</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bst</groupId>
+            <artifactId>mall-back-common</artifactId>
+            <version>${mall.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bst</groupId>
+            <artifactId>mall-user</artifactId>
+            <version>${mall.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bst</groupId>
+            <artifactId>mall-goods-controller</artifactId>
+            <version>${mall.project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bst</groupId>
+            <artifactId>mall-goods-service</artifactId>
+            <version>${mall.project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bst</groupId>
+            <artifactId>mall-order-controller</artifactId>
+            <version>${mall.project.version}</version>
+        </dependency>
+
+        <!--自定义 starter -->
+        <dependency>
+            <groupId>com.pz.swagger</groupId>
+            <artifactId>spring-boot-my-swagger-starter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bst</groupId>
+            <artifactId>spring-boot-my-redis-starter</artifactId>
+            <version>1.1.23-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

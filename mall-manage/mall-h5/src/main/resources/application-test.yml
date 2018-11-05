@@ -1,0 +1,69 @@
+server:
+  port: 9096
+spring:
+  profiles: test
+  datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: LearnStudy@123
+      url: jdbc:mysql://192.168.50.182:3306/mall_data?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+      hikari:
+        auto-commit: true
+        max-lifetime: 1800000
+        pool-name: Mall-HikariCP
+        minimum-idle: 5
+        idle-timeout: 300000
+        maximum-pool-size: 10
+  resources.static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${file.path}
+  redis:
+#    host: 192.168.50.180
+#    port: 7001
+    host: 120.79.164.233
+    port: 7501
+    cluster:
+#      nodes: 192.168.50.180:7001,192.168.50.181:7002,192.168.50.182:7001
+      nodes: 120.79.164.233:7501,120.79.164.233:7502,120.79.164.233:7503,120.79.164.233:7504,120.79.164.233:7505,120.79.164.233:7506
+      max-redirects: 6
+    password: qwsedh./asd0sad;as,.asdgay213y1ad89we
+
+fast-dfs:
+  config:
+    connect_timeout: 3
+    network_timeout: 30
+    charset: UTF-8
+    http:
+      tracker_http_port: 80
+      anti_steal_token: true
+      secret_key:  FastDFS1234567890
+#    tracker_server: 172.16.18.111:22122
+    tracker_server: 192.168.50.182:22122
+    group: group1
+    httpServerPath: http://192.168.50.182:8888/
+
+platform:
+  user:
+    interface: http://appapi-dev.safetree.com.cn/usercenter/api/users/get-userinfo-byticket
+    timeout: 10800
+  connect.timeout: 5000
+
+#goodsInfo的redis存
+redis:
+  config:
+    goods-spu-base-info-key: goods_spu_baseInfo_key
+    orderlogistics: ORDERLOGISTICS
+    key-goodsspu: GOODSSPU
+    key-goodssku: GOODSSKU
+    push-mysql: PUSHMYSQL
+    courier-company-code: COURIER_COMPANY_CODE
+    courier-company-name: COURIER_COMPANY_NAME
+    postage-config: POSTAGE_CONFIG
+    order-timeout-delay-key: order:timeout:delay
+    key-goodssku-all: goodssku:all
+    goods-shop-base-info-key: goods_shop_base_info_key
+pay:
+  wxpay:
+    notify-url: https://mall-test.xueanquan.com/dev/api/wxpay/notify
+    pay-id: 1487803572
+    app-id: wxd7ef8434e1a91564
+    key: HZAKTEST1234567887654321TSETKAZH

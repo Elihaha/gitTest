@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bst.common.mapper.order.OrderLogisticsDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bst.common.entity.order.OrderLogisticsEntity" id="orderLogisticsMap">
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="goodsName" column="goods_name"/>
+        <result property="goodsCount" column="goods_count"/>
+        <result property="signer" column="signer"/>
+        <result property="signerPhone" column="signer_phone"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="area" column="area"/>
+        <result property="address" column="address"/>
+        <result property="postcode" column="postcode"/>
+        <result property="dhl" column="dhl"/>
+        <result property="trackingNumber" column="tracking_number"/>
+        <result property="inputTime" column="input_time"/>
+        <result property="inputUser" column="input_user"/>
+        <result property="lastUpdate" column="last_update"/>
+        <result property="lastOperator" column="last_operator"/>
+    </resultMap>
+
+    <resultMap type="com.bst.common.modle.order.OrderLogisticsDto" id="orderLogisticsPojoMap">
+        <result property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="goodsName" column="goods_name"/>
+        <result property="goodsCount" column="goods_count"/>
+        <result property="signer" column="signer"/>
+        <result property="signerPhone" column="signer_phone"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="area" column="area"/>
+        <result property="address" column="address"/>
+        <result property="postcode" column="postcode"/>
+        <result property="dhl" column="dhl"/>
+        <result property="trackingNumber" column="tracking_number"/>
+        <result property="inputTime" column="input_time"/>
+        <result property="inputUser" column="input_user"/>
+        <result property="lastUpdate" column="last_update"/>
+        <result property="lastOperator" column="username"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="queryObject" resultMap="orderLogisticsMap">
+		select * from order_logistics where id = #{id}
+	</select>
+
+
+    <select id="queryList" resultMap="orderLogisticsMap">
+        select log.*
+        from order_logistics as log
+        LEFT JOIN order_child as child on child.id = log.order_id
+        <include refid="list" />
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+
+    <sql id="list">
+        <where>
+            <if test="shopId != null" >
+                and ord.shop_id = #{shopId}
+            </if>
+            <if test="status != null">
+                and child.`STATUS` in
+               (
+                <foreach collection="status" item="s" index="index" separator="," >
+                    #{s,jdbcType=INTEGER}
+                </foreach>
+
+                )
+            </if>
+            <if test="orderId != null">
+                and LOCATE(#{orderId},order_id)>0
+            </if>
+            <if test="signer != null">
+                and LOCATE(#{signer},signer)>0
+            </if>
+            <if test="signerPhone != null">
+                and LOCATE(#{signerPhone},signer_phone)>0
+            </if>
+            <if test="startDateTime != null">
+                and input_time &gt;  #{startDateTime}
+            </if>
+            <if test="endDateTime != null">
+                and input_time &lt;  #{endDateTime}
+            </if>
+            <if test="trackingNumber != null">
+                and LOCATE(#{trackingNumber},tracking_number)>0
+            </if>
+        </where>
+
+
+    </sql>
+    <select id="queryTotal" resultType="int">
+        select count(*)
+        from order_logistics as log
+        LEFT JOIN order_child as child on child.id = log.order_id
+        INNER JOIN order_orders as ord on ord.id = child.main_id
+        LEFT JOIN shipping_address AS shipaddress ON log.order_id = shipaddress.orderd_id
+        <include refid="list" />
+    </select>
+    <select id="getOrderLogisticsEntitiesByOrderId"
+            resultMap="orderLogisticsMap">
+             select * from order_logistics where order_id = #{orderId}
+	</select>
+
+    <select id="getOrderLogisticsEntitiesByOrderNO"
+            resultMap="orderLogisticsMap">
+             select * from order_logistics as log
+        LEFT JOIN order_child as child on child.id = log.order_id
+        where child.order_no = #{orderNo}
+	</select>
+    <select id="queryOrderLogisticsDtoList" resultMap="orderLogisticsPojoMap">
+        select log.*,child.`STATUS` as status ,child.order_no as order_no ,(select op.name from operator op where op.id = log.last_operator) as username,shipaddress.*
+        from order_logistics as
+        log
+        LEFT JOIN order_child as child on child.id = log.order_id
+        INNER JOIN order_orders as ord on ord.id = child.main_id
+        LEFT JOIN shipping_address AS shipaddress ON child.main_id = shipaddress.orderd_id
+        <include refid="list" />
+        ORDER BY input_time DESC
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+    <select id="getOrderLogisticsEntitiesByMainNo"
+            resultType="com.bst.common.entity.order.OrderLogisticsEntity">
+            select logistics.* from
+			 order_logistics as  logistics
+			 LEFT JOIN order_child AS child ON child.id = logistics.order_id
+			 LEFT JOIN 	order_orders AS orders  on orders.id = child.main_id
+			 where  orders.order_no = #{orderNo}
+    </select>
+
+    <insert id="save" parameterType="com.bst.common.entity.order.OrderLogisticsEntity">
+		insert into order_logistics
+		(
+			`id`, 
+			`order_id`, 
+			`goods_name`, 
+			`goods_count`,
+			`dhl`, 
+			`tracking_number`, 
+			`input_time`, 
+			`input_user`, 
+			`last_update`, 
+			`last_operator`
+		)
+		values
+		(
+			#{id},
+			#{orderId}, 
+			#{goodsName}, 
+			#{goodsCount},
+			#{dhl}, 
+			#{trackingNumber}, 
+			#{inputTime}, 
+			#{inputUser}, 
+			#{lastUpdate}, 
+			#{lastOperator}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bst.common.entity.order.OrderLogisticsEntity">
+        update order_logistics
+        <set>
+            <if test="orderId != null">`order_id` = #{orderId},</if>
+            <if test="goodsName != null">`goods_name` = #{goodsName},</if>
+            <if test="goodsCount != null">`goods_count` = #{goodsCount},</if>
+            <if test="signer != null">`signer` = #{signer},</if>
+            <if test="signerPhone != null">`signer_phone` = #{signerPhone},</if>
+            <if test="province != null">`province` = #{province},</if>
+            <if test="city != null">`city` = #{city},</if>
+            <if test="area != null">`area` = #{area},</if>
+            <if test="address != null">`address` = #{address},</if>
+            <if test="postcode != null">`postcode` = #{postcode},</if>
+            <if test="dhl != null">`dhl` = #{dhl},</if>
+            <if test="trackingNumber != null">`tracking_number` = #{trackingNumber},</if>
+            <if test="inputTime != null">`input_time` = #{inputTime},</if>
+            <if test="inputUser != null">`input_user` = #{inputUser},</if>
+            <if test="lastUpdate != null">`last_update` = #{lastUpdate},</if>
+            <if test="lastOperator != null">`last_operator` = #{lastOperator}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from order_logistics where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from order_logistics where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

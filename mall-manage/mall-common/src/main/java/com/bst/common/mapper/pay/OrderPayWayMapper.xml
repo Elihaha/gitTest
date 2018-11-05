@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.pay.OrderPayWayMapper">
+  <resultMap id="BaseResultMap" type="com.bst.common.entity.pay.Payment">
+    <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+
+    <result column="pay_cus_no" jdbcType="VARCHAR" property="payCusNo" />
+    <result column="pay_secret_key" jdbcType="VARCHAR" property="paySecretKey" />
+    <result column="pay_currency" jdbcType="VARCHAR" property="payCurrency" />
+    <result column="pay_detail" jdbcType="VARCHAR" property="payDetail" />
+    <result column="pay_image" jdbcType="VARCHAR" property="payImage" />
+    <result column="pay_enable" jdbcType="BIT" property="payEnable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pay_name, pay_cus_no, pay_secret_key, pay_currency, pay_detail, pay_image,
+    pay_enable
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_pay_way
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultType="com.bst.common.entity.pay.Payment">
+    select
+    id, pay_name, pay_image
+    from order_pay_way WHERE pay_enable = TRUE
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from order_pay_way
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bst.common.entity.pay.Payment" useGeneratedKeys="true">
+    insert into order_pay_way (pay_name, pay_cus_no,
+      pay_secret_key, pay_currency, pay_detail, 
+      pay_image, pay_enable)
+    values (#{payName,jdbcType=VARCHAR}, #{payType,jdbcType=TINYINT}, #{payCusNo,jdbcType=VARCHAR}, 
+      #{paySecretKey,jdbcType=VARCHAR}, #{payCurrency,jdbcType=VARCHAR}, #{payDetail,jdbcType=VARCHAR}, 
+      #{payImage,jdbcType=VARCHAR}, #{payEnable,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bst.common.entity.pay.Payment" useGeneratedKeys="true">
+    insert into order_pay_way
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payName != null">
+        pay_name,
+      </if>
+
+      <if test="payCusNo != null">
+        pay_cus_no,
+      </if>
+      <if test="paySecretKey != null">
+        pay_secret_key,
+      </if>
+      <if test="payCurrency != null">
+        pay_currency,
+      </if>
+      <if test="payDetail != null">
+        pay_detail,
+      </if>
+      <if test="payImage != null">
+        pay_image,
+      </if>
+      <if test="payEnable != null">
+        pay_enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payName != null">
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payCusNo != null">
+        #{payCusNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paySecretKey != null">
+        #{paySecretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="payCurrency != null">
+        #{payCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="payDetail != null">
+        #{payDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="payImage != null">
+        #{payImage,jdbcType=VARCHAR},
+      </if>
+      <if test="payEnable != null">
+        #{payEnable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.pay.Payment">
+    update order_pay_way
+    <set>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+
+      <if test="payCusNo != null">
+        pay_cus_no = #{payCusNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paySecretKey != null">
+        pay_secret_key = #{paySecretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="payCurrency != null">
+        pay_currency = #{payCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="payDetail != null">
+        pay_detail = #{payDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="payImage != null">
+        pay_image = #{payImage,jdbcType=VARCHAR},
+      </if>
+      <if test="payEnable != null">
+        pay_enable = #{payEnable,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.pay.Payment">
+    update order_pay_way
+    set pay_name = #{payName,jdbcType=VARCHAR},
+
+      pay_cus_no = #{payCusNo,jdbcType=VARCHAR},
+      pay_secret_key = #{paySecretKey,jdbcType=VARCHAR},
+      pay_currency = #{payCurrency,jdbcType=VARCHAR},
+      pay_detail = #{payDetail,jdbcType=VARCHAR},
+      pay_image = #{payImage,jdbcType=VARCHAR},
+      pay_enable = #{payEnable,jdbcType=BIT}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>

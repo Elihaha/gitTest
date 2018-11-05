@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.shop.ShippingAddressMapper">
+  <resultMap id="BaseResultMap" type="com.bst.common.entity.shop.ShippingAddress">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="orderd_id" jdbcType="BIGINT" property="orderdId" />
+    <result column="signer" jdbcType="VARCHAR" property="signer" />
+    <result column="signer_phone" jdbcType="VARCHAR" property="signerPhone" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+  </resultMap>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bst.common.entity.shop.ShippingAddress" useGeneratedKeys="true">
+    insert into shipping_address (orderd_id, signer, signer_phone, 
+      province, city, area, 
+      address, postcode)
+    values (#{orderdId,jdbcType=BIGINT}, #{signer,jdbcType=VARCHAR}, #{signerPhone,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bst.common.entity.shop.ShippingAddress" useGeneratedKeys="true">
+    insert into shipping_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderdId != null">
+        orderd_id,
+      </if>
+      <if test="signer != null">
+        signer,
+      </if>
+      <if test="signerPhone != null">
+        signer_phone,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="postcode != null">
+        postcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderdId != null">
+        #{orderdId,jdbcType=BIGINT},
+      </if>
+      <if test="signer != null">
+        #{signer,jdbcType=VARCHAR},
+      </if>
+      <if test="signerPhone != null">
+        #{signerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <sql id="Base_Column_List">
+  id, orderd_id,signer,signer_phone,province,city,area,address,postcode
+  </sql>
+  <select id="queryByOrderId" resultType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from shipping_address where
+    orderd_id = #{orderId}
+  </select>
+</mapper>

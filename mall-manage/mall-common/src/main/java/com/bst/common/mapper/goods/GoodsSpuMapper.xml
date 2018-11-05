@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.goods.GoodsSpuMapper">
+    <resultMap id="BaseResultMap" type="com.bst.common.entity.goods.GoodsSpu">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="spu_no" jdbcType="VARCHAR" property="spuNo"/>
+        <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="low_price" jdbcType="DECIMAL" property="lowPrice"/>
+        <result column="high_price" jdbcType="DECIMAL" property="highPrice"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+        <result column="brand_id" jdbcType="BIGINT" property="brandId"/>
+        <result column="goods_detail" jdbcType="BIGINT" property="goodsDetail"/>
+        <result column="discount" jdbcType="TINYINT" property="discount"/>
+        <result column="total_putaway" jdbcType="INTEGER" property="totalPutaway"/>
+        <result column="total_stock" jdbcType="INTEGER" property="totalStock"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate"/>
+        <result column="putaway_time" jdbcType="TIMESTAMP" property="putawayTime"/>
+        <result column="remove_time" jdbcType="TIMESTAMP" property="removeTime"/>
+        <result column="goods_status" jdbcType="TINYINT" property="goodsStatus"/>
+        <result column="is_sell" jdbcType="BIT" property="isSell"/>
+        <result column="soldout_count" jdbcType="INTEGER" property="soldoutCount"/>
+        <result column="operator_id" jdbcType="INTEGER" property="operatorId"/>
+
+    </resultMap>
+
+    <resultMap id="BaseResultMapSpec" type="com.bst.common.modle.goods.SpecInfo">
+        <result column="spec_id" jdbcType="BIGINT" property="id" />
+        <result column="spec_no" jdbcType="VARCHAR" property="specNo" />
+        <result column="spec_name" jdbcType="VARCHAR" property="specName" />
+        <collection property="goodsSpecValueEntities"  resultMap="com.bst.common.mapper.goods.GoodsSpecValueMapper.BaseResultMap"></collection>
+    </resultMap>
+
+    <resultMap id="BaseResultMapInfo" type="com.bst.common.modle.goods.GoodsRedisInfo" extends="BaseResultMap">
+        <result property="shopName" column="shop_name"></result>
+        <collection  property="specInfos" column="{spuId=id}" ofType="com.bst.common.modle.goods.SpecInfo"
+                      select="getSpecsBySpuId"></collection >
+        <collection property="skuIds" column="{spuId=id}" ofType="string" select="getSkuIdsBySpuId"></collection>
+        <collection property="imagesList" column="{spuId=id}" ofType="string" select="getImageUrlBySpuId"></collection>
+
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bst.common.entity.goods.GoodsSpu">
+        <result column="goods_detail" jdbcType="LONGVARCHAR" property="goodsDetail"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, spu_no, shop_id, goods_name, low_price, high_price, category_id, brand_id, discount,
+        total_putaway, total_stock, gmt_create, gmt_update, putaway_time, remove_time, goods_status,
+        is_sell, soldout_count,operator_id
+    </sql>
+    <sql id="Blob_Column_List">
+        goods_detail
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from goods_spu
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from goods_spu
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.bst.common.entity.goods.GoodsSpu">
+        insert into goods_spu (id, spu_no, shop_id,
+        goods_name, low_price, high_price,
+        category_id, brand_id, discount,
+        total_putaway, total_stock, gmt_create,
+        gmt_update, putaway_time, remove_time,
+        goods_status, is_sell, soldout_count,
+        goods_detail,operator_id)
+        values (#{id,jdbcType=BIGINT}, #{spuNo,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT},
+        #{goodsName,jdbcType=VARCHAR}, #{lowPrice,jdbcType=DECIMAL}, #{highPrice,jdbcType=DECIMAL},
+        #{categoryId,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT}, #{discount,jdbcType=TINYINT},
+        #{totalPutaway,jdbcType=INTEGER}, #{totalStock,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP},
+        #{gmtUpdate,jdbcType=TIMESTAMP}, #{putawayTime,jdbcType=TIMESTAMP}, #{removeTime,jdbcType=TIMESTAMP},
+        #{goodsStatus,jdbcType=TINYINT}, #{isSell,jdbcType=BIT}, #{soldoutCount,jdbcType=INTEGER},
+        #{goodsDetail,jdbcType=LONGVARCHAR},#{operatorId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.bst.common.entity.goods.GoodsSpu" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into goods_spu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="spuNo != null">
+                spu_no,
+            </if>
+            <if test="shopId != null">
+                shop_id,
+            </if>
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="lowPrice != null">
+                low_price,
+            </if>
+            <if test="highPrice != null">
+                high_price,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="discount != null">
+                discount,
+            </if>
+            <if test="totalPutaway != null">
+                total_putaway,
+            </if>
+            <if test="totalStock != null">
+                total_stock,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update,
+            </if>
+            <if test="putawayTime != null">
+                putaway_time,
+            </if>
+            <if test="removeTime != null">
+                remove_time,
+            </if>
+            <if test="goodsStatus != null">
+                goods_status,
+            </if>
+            <if test="isSell != null">
+                is_sell,
+            </if>
+            <if test="soldoutCount != null">
+                soldout_count,
+            </if>
+            <if test="goodsDetail != null">
+                goods_detail,
+            </if>
+            <if test="operatorId != null">
+                operator_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="spuNo != null">
+                #{spuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="shopId != null">
+                #{shopId,jdbcType=BIGINT},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="lowPrice != null">
+                #{lowPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="highPrice != null">
+                #{highPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=BIGINT},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=BIGINT},
+            </if>
+            <if test="discount != null">
+                #{discount,jdbcType=TINYINT},
+            </if>
+            <if test="totalPutaway != null">
+                #{totalPutaway,jdbcType=INTEGER},
+            </if>
+            <if test="totalStock != null">
+                #{totalStock,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="putawayTime != null">
+                #{putawayTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="removeTime != null">
+                #{removeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="goodsStatus != null">
+                #{goodsStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isSell != null">
+                #{isSell,jdbcType=BIT},
+            </if>
+            <if test="soldoutCount != null">
+                #{soldoutCount,jdbcType=INTEGER},
+            </if>
+            <if test="goodsDetail != null">
+                #{goodsDetail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="operatorId != null">
+                #{operatorId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.goods.GoodsSpu">
+        update goods_spu
+        <set>
+            <if test="spuNo != null">
+                spu_no = #{spuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId,jdbcType=BIGINT},
+            </if>
+            <if test="goodsName != null">
+                goods_name = #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="lowPrice != null">
+                low_price = #{lowPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="highPrice != null">
+                high_price = #{highPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=BIGINT},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=BIGINT},
+            </if>
+            <if test="discount != null">
+                discount = #{discount,jdbcType=TINYINT},
+            </if>
+            <if test="totalPutaway != null">
+                total_putaway = #{totalPutaway,jdbcType=INTEGER},
+            </if>
+            <if test="totalStock != null">
+                total_stock = #{totalStock,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="putawayTime != null">
+                putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="removeTime != null">
+                remove_time = #{removeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="goodsStatus != null">
+                goods_status = #{goodsStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isSell != null">
+                is_sell = #{isSell,jdbcType=BIT},
+            </if>
+            <if test="soldoutCount != null">
+                soldout_count = #{soldoutCount,jdbcType=INTEGER},
+            </if>
+            <if test="goodsDetail != null">
+                goods_detail = #{goodsDetail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="operatorId != null">
+                operator_id = #{operatorId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bst.common.entity.goods.GoodsSpu">
+        update goods_spu
+        set spu_no = #{spuNo,jdbcType=VARCHAR},
+        shop_id = #{shopId,jdbcType=BIGINT},
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+        low_price = #{lowPrice,jdbcType=DECIMAL},
+        high_price = #{highPrice,jdbcType=DECIMAL},
+        category_id = #{categoryId,jdbcType=BIGINT},
+        brand_id = #{brandId,jdbcType=BIGINT},
+        discount = #{discount,jdbcType=TINYINT},
+        total_putaway = #{totalPutaway,jdbcType=INTEGER},
+        total_stock = #{totalStock,jdbcType=INTEGER},
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+        putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+        remove_time = #{removeTime,jdbcType=TIMESTAMP},
+        goods_status = #{goodsStatus,jdbcType=TINYINT},
+        is_sell = #{isSell,jdbcType=BIT},
+        soldout_count = #{soldoutCount,jdbcType=INTEGER},
+        goods_detail = #{goodsDetail,jdbcType=LONGVARCHAR},
+        operator_id = #{operatorId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.goods.GoodsSpu">
+        update goods_spu
+        set spu_no = #{spuNo,jdbcType=VARCHAR},
+        shop_id = #{shopId,jdbcType=BIGINT},
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+        low_price = #{lowPrice,jdbcType=DECIMAL},
+        high_price = #{highPrice,jdbcType=DECIMAL},
+        category_id = #{categoryId,jdbcType=BIGINT},
+        brand_id = #{brandId,jdbcType=BIGINT},
+        discount = #{discount,jdbcType=TINYINT},
+        total_putaway = #{totalPutaway,jdbcType=INTEGER},
+        total_stock = #{totalStock,jdbcType=INTEGER},
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+        putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+        remove_time = #{removeTime,jdbcType=TIMESTAMP},
+        goods_status = #{goodsStatus,jdbcType=TINYINT},
+        is_sell = #{isSell,jdbcType=BIT},
+        soldout_count = #{soldoutCount,jdbcType=INTEGER},
+        operator_id = #{operatorId,jdbcType=INTEGER},
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="countByExample" parameterType="com.bst.common.entity.goods.GoodsSpuExample"
+            resultType="java.lang.Integer">
+        select count(*) from goods_spu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <delete id="deleteByExample" parameterType="com.bst.common.entity.goods.GoodsSpuExample">
+        delete from goods_spu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+            parameterType="com.bst.common.entity.goods.GoodsSpuExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from goods_spu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bst.common.entity.goods.GoodsSpuExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from goods_spu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update goods_spu
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.spuNo != null">
+                spu_no = #{record.spuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shopId != null">
+                shop_id = #{record.shopId,jdbcType=BIGINT},
+            </if>
+            <if test="record.goodsName != null">
+                goods_name = #{record.goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lowPrice != null">
+                low_price = #{record.lowPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.highPrice != null">
+                high_price = #{record.highPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.categoryId != null">
+                category_id = #{record.categoryId,jdbcType=BIGINT},
+            </if>
+            <if test="record.brandId != null">
+                brand_id = #{record.brandId,jdbcType=BIGINT},
+            </if>
+            <if test="record.discount != null">
+                discount = #{record.discount,jdbcType=TINYINT},
+            </if>
+            <if test="record.totalPutaway != null">
+                total_putaway = #{record.totalPutaway,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalStock != null">
+                total_stock = #{record.totalStock,jdbcType=INTEGER},
+            </if>
+            <if test="record.gmtCreate != null">
+                gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.gmtUpdate != null">
+                gmt_update = #{record.gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.putawayTime != null">
+                putaway_time = #{record.putawayTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.removeTime != null">
+                remove_time = #{record.removeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.goodsStatus != null">
+                goods_status = #{record.goodsStatus,jdbcType=TINYINT},
+            </if>
+            <if test="record.isSell != null">
+                is_sell = #{record.isSell,jdbcType=BIT},
+            </if>
+            <if test="record.soldoutCount != null">
+                soldout_count = #{record.soldoutCount,jdbcType=INTEGER},
+            </if>
+            <if test="record.goodsDetail != null">
+                goods_detail = #{record.goodsDetail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="record.operatorId != null">
+                operator_id = #{record.operatorId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map">
+        update goods_spu
+        set id = #{record.id,jdbcType=BIGINT},
+        spu_no = #{record.spuNo,jdbcType=VARCHAR},
+        shop_id = #{record.shopId,jdbcType=BIGINT},
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+        low_price = #{record.lowPrice,jdbcType=DECIMAL},
+        high_price = #{record.highPrice,jdbcType=DECIMAL},
+        category_id = #{record.categoryId,jdbcType=BIGINT},
+        brand_id = #{record.brandId,jdbcType=BIGINT},
+        discount = #{record.discount,jdbcType=TINYINT},
+        total_putaway = #{record.totalPutaway,jdbcType=INTEGER},
+        total_stock = #{record.totalStock,jdbcType=INTEGER},
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+        gmt_update = #{record.gmtUpdate,jdbcType=TIMESTAMP},
+        putaway_time = #{record.putawayTime,jdbcType=TIMESTAMP},
+        remove_time = #{record.removeTime,jdbcType=TIMESTAMP},
+        goods_status = #{record.goodsStatus,jdbcType=TINYINT},
+        is_sell = #{record.isSell,jdbcType=BIT},
+        soldout_count = #{record.soldoutCount,jdbcType=INTEGER},
+        goods_detail = #{record.goodsDetail,jdbcType=LONGVARCHAR},
+        operator_id = #{record.operatorId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update goods_spu
+        set id = #{record.id,jdbcType=BIGINT},
+        spu_no = #{record.spuNo,jdbcType=VARCHAR},
+        shop_id = #{record.shopId,jdbcType=BIGINT},
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+        low_price = #{record.lowPrice,jdbcType=DECIMAL},
+        high_price = #{record.highPrice,jdbcType=DECIMAL},
+        category_id = #{record.categoryId,jdbcType=BIGINT},
+        brand_id = #{record.brandId,jdbcType=BIGINT},
+        discount = #{record.discount,jdbcType=TINYINT},
+        total_putaway = #{record.totalPutaway,jdbcType=INTEGER},
+        total_stock = #{record.totalStock,jdbcType=INTEGER},
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+        gmt_update = #{record.gmtUpdate,jdbcType=TIMESTAMP},
+        putaway_time = #{record.putawayTime,jdbcType=TIMESTAMP},
+        remove_time = #{record.removeTime,jdbcType=TIMESTAMP},
+        goods_status = #{record.goodsStatus,jdbcType=TINYINT},
+        is_sell = #{record.isSell,jdbcType=BIT},
+        soldout_count = #{record.soldoutCount,jdbcType=INTEGER},
+        operator_id = #{record.operatorId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+
+    <sql id="Result_Column_List">
+        spu.id, spu.spu_no spuNo, spu.shop_id shopId, spu.goods_name goodsName, spu.low_price lowPrice, spu.high_price
+        highPrice, spu.category_id categoryId, spu.brand_id branIid, spu.discount,
+        spu.total_putaway totalPutaway, spu.total_stock totalStock, spu.gmt_create gmtCreate, spu.gmt_update gmtUpdate,
+        spu.putaway_time putawayTime, spu.remove_time removeTime, spu.goods_status goodsStatus,
+        spu.is_sell isSell, spu.soldout_count soldoutCount,spu.operator_id operatorId
+    </sql>
+    <sql id="Result_Blob_Column_List">
+        spu.goods_detail goodsDetail
+    </sql>
+
+    <select id="queryListByRecord" resultType="com.bst.common.modle.goods.GoodsResult"
+            parameterType="com.bst.common.modle.goods.GoodsQuery">
+        select
+        <include refid="Result_Column_List"/>
+        ,
+        <include refid="Result_Blob_Column_List"/>
+        , cory.category_name categoryName,r.name operatorName
+        , t2.parentName parentName
+        FROM
+        goods_spu spu
+        left join goods_category cory on spu.category_id = cory.id
+        left join operator r on r.id = spu.operator_id
+        left join (select t.id as t2id,t1.category_name as parentName from goods_category t
+        left join goods_category t1 on t.pid=t1.id) t2
+        on spu.category_id =t2.t2id
+        WHERE
+        1=1
+        <if test="query.shopId != null ">
+            AND spu.shop_id = #{query.shopId}
+        </if>
+        <if test="query.goodsName != null and query.goodsName != ''">
+            AND spu.goods_name LIKE CONCAT('%',#{query.goodsName},'%')
+        </if>
+        <if test="query.statusRange != null and query.statusRange != ''">
+            AND spu.goods_status = #{query.statusRange}
+        </if>
+        <if test="query.startUpdate!=null">
+            AND spu.putaway_time &gt; #{query.startUpdate}
+        </if>
+        <if test="query.endUpdate!=null">
+            AND spu.putaway_time &lt;= #{query.endUpdate}
+        </if>
+        ORDER BY spu.gmt_create DESC
+    </select>
+
+    <select id="selectGoodsSpuAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_spu where goods_status in ( '0', '1', '2' )
+    </select>
+
+    <select id="queryPicAndName" resultType="com.bst.common.modle.goods.GoodsPicNameQuery"
+            parameterType="java.lang.Long">
+        select goods_image.image_url imageUrl,goods_spu.goods_name goodsName,max(goods_sku.sell_price)
+        sellPrice,shop_info.shop_name shopName
+        from goods_spu INNER JOIN goods_image on goods_spu.id = goods_image.main_id
+        INNER JOIN goods_sku on goods_sku.spu_id =goods_spu.id
+        INNER JOIN shop_info on shop_info.id = goods_spu.shop_id where goods_spu.id = #{goodsSpuId}
+    </select>
+    <select id="selectRedisInfoByPrimaryKey" resultMap="BaseResultMapInfo">
+        SELECT
+        goods_spu.id,
+        goods_spu.goods_status,
+        goods_spu.spu_no,
+        goods_spu.goods_name,
+        goods_spu.low_price,
+        goods_spu.high_price,
+        goods_spu.operator_id,
+        goods_spu.goods_detail,
+        goods_spu.total_stock,
+        goods_spu.soldout_count,
+        shop_info.shop_name,
+        shop_info.id as shop_id
+        FROM
+        <choose>
+            <when test=" shopId != null or spuNo != null ">
+                (SELECT * from goods_spu
+                <where>
+                    <if test="shopId !=null">
+                        goods_spu.shop_id = #{shopId}
+                    </if>
+                    <if test="spuNo !=null">
+                        and goods_spu.spu_no = #{spuNo}
+                    </if>
+                </where>
+                ) as goods_spu
+            </when>
+            <otherwise>
+                goods_spu
+            </otherwise>
+        </choose>
+        LEFT JOIN shop_info ON goods_spu.shop_id= shop_info.id
+
+--         order  by  goods_spu.gmt_create DESC
+    </select>
+
+    <select id="getSkuIdsBySpuId" resultType="java.lang.Long">
+        SELECT id as sku_id FROM goods_sku WHERE spu_id = #{spuId}
+    </select>
+
+
+    <select id="getSpecsBySpuId" resultType="java.lang.Long"
+            resultMap="BaseResultMapSpec">
+     SELECT
+ goods_spec.spec_name,
+  goods_spec. spec_no,
+	goods_spec.id as spec_id ,
+	goods_spec_value.id,
+	goods_spec_value.spec_value
+	FROM goods_spu
+   left
+	 JOIN   goods_spu_spec on   goods_spu.id= goods_spu_spec.spu_id
+	 left
+	 JOIN   goods_spec on   goods_spec.id= goods_spu_spec.spec_id
+	 	 left
+	 JOIN   goods_spec_value on   goods_spec_value.spec_id= goods_spec.id
+
+
+ WHERE goods_spu.id =  #{spuId}
+    </select>
+
+
+    <select id="getImageUrlBySpuId" resultType="java.lang.String">
+        SELECT
+        goods_image.image_url
+        FROM
+        goods_spu
+        -- (SELECT * from goods_spu where goods_spu.shop_id = 1)
+        AS goods_spu
+        LEFT JOIN (SELECT * from goods_image where image_type = 1 ) AS goods_image ON goods_spu.spu_no= goods_image.main_no
+        where goods_spu.id = #{spuId}
+    </select>
+
+    <select id="queryByCategoryIdAndShopId"  resultType="com.bst.common.modle.goods.GoodsSpuCategoryResponse">
+         select
+        goods_spu.id  spuId, goods_spu.spu_no spuNo, goods_spu.goods_name goodsName, goods_spu.low_price lowPrice, goods_spu.high_price highPrice,
+        goods_spu.soldout_count soldoutCount,
+        goods_image.image_url imageUrl
+        from goods_spu  left join goods_image
+        on  goods_image.main_id = goods_spu.id and goods_image.image_type = #{imageType}
+        where
+        1 = 1
+        <if test = "categoryId != null ">
+        and  goods_spu.category_id = #{categoryId}
+        </if>
+        and
+       goods_spu.shop_id = #{shopId}
+
+        and
+        goods_spu.goods_status = #{goodsStatus}
+        order by goods_spu.putaway_time desc
+    </select>
+
+    <select id="queryAllSpuByShopId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_spu where  goods_spu.shop_id = #{shopId}
+
+    </select>
+
+    <!-- 批量更新数据 -->
+    <update id="updateBatchById" parameterType="java.util.List">
+        update goods_spu
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="goods_status =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.goodsStatus !=null and item.goodsStatus != -1">
+                        when id=#{item.id} then #{item.goodsStatus}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="operator_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.operatorId !=null and item.operatorId != -1">
+                        when id=#{item.id} then #{item.operatorId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="is_sell =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.isSell !=null">
+                        when id=#{item.id} then #{item.isSell}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="putaway_time =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.putawayTime !=null">
+                        when id=#{item.id} then #{item.putawayTime}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="remove_time =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.removeTime !=null">
+                        when id=#{item.id} then #{item.removeTime}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+
+
+</mapper>

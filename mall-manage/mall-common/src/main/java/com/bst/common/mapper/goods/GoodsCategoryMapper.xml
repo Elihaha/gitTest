@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bst.common.mapper.goods.GoodsCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.bst.common.entity.goods.GoodsCategory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="grade" jdbcType="TINYINT" property="grade" />
+    <result column="is_parent" jdbcType="BIT" property="isParent" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="shop_id"  jdbcType="BIGINT" property="shopId"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, category_name, grade, is_parent, pid, gmt_create, gmt_update, shop_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="queryListByCateGory" parameterType="com.bst.common.entity.goods.GoodsCategory" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from goods_category
+    where
+    1 = 1
+      and shop_id = #{shopId,jdbcType=BIGINT}
+    <if test="pid != null">
+      and pid = #{pid,jdbcType=BIGINT}
+    </if>
+  </select>
+
+  <select id="queryListByPid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from goods_category
+    where
+    1 = 1
+    <if test="shopId != null">
+    and shop_id = #{shopId,jdbcType=BIGINT}
+    </if>
+    <if test="pid != null">
+      and pid = #{pid,jdbcType=BIGINT}
+    </if>
+  </select>
+
+  <select id="selectAll" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from goods_category
+  </select>
+  <select id="queryListByRecord"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from goods_category
+
+    <if test="categoryName != null">
+      where
+      category_name = #{categoryName,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByPid" parameterType="java.lang.Long">
+     delete from goods_category
+    where pid = #{pid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bst.common.entity.goods.GoodsCategory">
+    insert into goods_category (id, category_name, grade, 
+      is_parent, pid, gmt_create, 
+      gmt_update, shop_id)
+    values (#{id,jdbcType=BIGINT}, #{categoryName,jdbcType=VARCHAR}, #{grade,jdbcType=TINYINT}, 
+      #{isParent,jdbcType=BIT}, #{pid,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtUpdate,jdbcType=TIMESTAMP},#{shopId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bst.common.entity.goods.GoodsCategory" useGeneratedKeys="true" keyProperty="id">
+    insert into goods_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="isParent != null">
+        is_parent,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=TINYINT},
+      </if>
+      <if test="isParent != null">
+        #{isParent,jdbcType=BIT},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bst.common.entity.goods.GoodsCategory">
+    update goods_category
+    <set>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=TINYINT},
+      </if>
+      <if test="isParent != null">
+        is_parent = #{isParent,jdbcType=BIT},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.goods.GoodsCategory">
+    update goods_category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=TINYINT},
+      is_parent = #{isParent,jdbcType=BIT},
+      pid = #{pid,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      shop_id = #{shopId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-back-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-back-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-goods" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-background/mall-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-h5" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-scheduled" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-my-starter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter" charset="UTF-8" />
+  </component>
+</project>

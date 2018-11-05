@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bst.common.mapper.order.ProvinceCityDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bst.common.entity.order.ProvinceCityEntity" id="provinceCityMap">
+        <result property="id" column="id"/>
+        <result property="name" column="NAME"/>
+        <result property="grade" column="grade"/>
+        <result property="province" column="province"/>
+        <result property="enable" column="ENABLE"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.bst.common.entity.order.ProvinceCityEntity">
+		select * from province_city where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.bst.common.entity.order.ProvinceCityEntity">
+		select * from province_city
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from province_city 
+	</select>
+	 
+	<insert id="save" parameterType="com.bst.common.entity.order.ProvinceCityEntity">
+		insert into province_city
+		(
+			`id`, 
+			`NAME`, 
+			`grade`, 
+			`province`, 
+			`ENABLE`
+		)
+		values
+		(
+			#{id}, 
+			#{name}, 
+			#{grade}, 
+			#{province}, 
+			#{enable}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bst.common.entity.order.ProvinceCityEntity">
+		update province_city 
+		<set>
+			<if test="name != null">`NAME` = #{name}, </if>
+			<if test="grade != null">`grade` = #{grade}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="enable != null">`ENABLE` = #{enable}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from province_city where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from province_city where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

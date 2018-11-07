@@ -76,7 +76,7 @@ public class OrderCreateService {
      *
      */
 
-    public Result createOrder(long goodsSkuId, int count,  ShippingAddressRequest shippingAddressRequest) {
+    public Result createOrder(String goodsSkuNo, int count,  ShippingAddressRequest shippingAddressRequest) {
         //  手动回滚
         String rollbackSpu = null;
         String rollbackSku = null;
@@ -84,7 +84,7 @@ public class OrderCreateService {
             // 订单实体
             Orders nOrders = new Orders();
             //通过SpuId查询spu表
-            GoodsSku goodsSku = goodsSkuMapper.selectByPrimaryKey(goodsSkuId);
+            GoodsSku goodsSku = goodsSkuMapper.selectSkuBySkuNo(goodsSkuNo);
             GoodsSpu goodsSpu = goodsSpuMapper.selectByPrimaryKey(goodsSku.getSpuId());
             //  更新  spu 库存
             String spuNo= goodsSpu.getSpuNo();
@@ -118,10 +118,13 @@ public class OrderCreateService {
             int num = ordersMapper.insertSelective(nOrders);
 //        //更新库存
             //查询出图片，商品，价格
-            GoodsPicNameQuery goodsPicNameQuery = goodsSpuMapper.queryPicAndName(goodsSku.getSpuId());
-            String img = goodsPicNameQuery.getImageUrl();
-            goodsPicNameQuery.setImageUrl(img);
+            GoodsPicNameQuery goodsPicNameQuery = goodsSpuMapper.queryPicAndName(goodsSku.getSkuNo());
+            /**>>>>>>>>>>>>>>>>>>>>>>>
+            goodsPicNameQuery.setPecValue();
+            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<***/
+            goodsPicNameQuery.setPecValue("红-大-i5  写死的规格");
             String orderDetails = JSON.toJSONString(goodsPicNameQuery);
+            //默认付款类型
             int payType = 1;
             //创建订单详情表
             orderService.createOrderDetail(nOrders.getId(), nOrders.getOrderNo(), rollbackSpu, rollbackSku, orderDetails);

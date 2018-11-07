@@ -30,6 +30,9 @@ public class GoodsResult extends GoodsSpu {
 
     private String price;
 
+    /**商品图片地址*/
+    private String imageUrl;
+
     public String getCategoryName() {
         return categoryName;
     }
@@ -68,5 +71,13 @@ public class GoodsResult extends GoodsSpu {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

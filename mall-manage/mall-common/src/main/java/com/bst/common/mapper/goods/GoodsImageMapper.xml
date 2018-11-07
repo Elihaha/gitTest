@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.bst.common.entity.goods.GoodsImage">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="image_type" jdbcType="TINYINT" property="imageType" />
-    <result column="main_id" jdbcType="BIGINT" property="mainId" />
+    <result column="main_no" jdbcType="VARCHAR" property="mainNo" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, image_type, main_id, image_url, create_time
+    id, image_type, main_no, image_url, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +22,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bst.common.entity.goods.GoodsImage">
-    insert into goods_image (id, image_type, main_id, 
+    insert into goods_image (id, image_type, main_no, 
       image_url, create_time)
-    values (#{id,jdbcType=INTEGER}, #{imageType,jdbcType=TINYINT}, #{mainId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=INTEGER}, #{imageType,jdbcType=TINYINT}, #{mainNo,jdbcType=VARCHAR},
       #{imageUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bst.common.entity.goods.GoodsImage">
@@ -36,8 +36,8 @@
       <if test="imageType != null">
         image_type,
       </if>
-      <if test="mainId != null">
-        main_id,
+      <if test="mainNo != null">
+        main_no,
       </if>
       <if test="imageUrl != null">
         image_url,
@@ -53,8 +53,8 @@
       <if test="imageType != null">
         #{imageType,jdbcType=TINYINT},
       </if>
-      <if test="mainId != null">
-        #{mainId,jdbcType=BIGINT},
+      <if test="mainNo != null">
+        #{mainNo,jdbcType=VARCHAR},
       </if>
       <if test="imageUrl != null">
         #{imageUrl,jdbcType=VARCHAR},
@@ -70,8 +70,8 @@
       <if test="imageType != null">
         image_type = #{imageType,jdbcType=TINYINT},
       </if>
-      <if test="mainId != null">
-        main_id = #{mainId,jdbcType=BIGINT},
+      <if test="mainNo != null">
+        main_no = #{mainNo,jdbcType=VARCHAR},
       </if>
       <if test="imageUrl != null">
         image_url = #{imageUrl,jdbcType=VARCHAR},
@@ -85,7 +85,7 @@
   <update id="updateByPrimaryKey" parameterType="com.bst.common.entity.goods.GoodsImage">
     update goods_image
     set image_type = #{imageType,jdbcType=TINYINT},
-      main_id = #{mainId,jdbcType=BIGINT},
+      main_no = #{mainNo,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
@@ -99,9 +99,16 @@
     <if test="imageType != null">
       image_type = #{imageType,jdbcType=TINYINT}
     </if>
-    <if test="mainId != null">
-      and  main_id = #{mainId,jdbcType=BIGINT}
+    <if test="mainNo != null">
+      and  main_no = #{mainNo,jdbcType=VARCHAR}
     </if>
+  </select>
+
+  <select id="queryUrlBySkuNo" parameterType="java.util.List" resultType="java.lang.String">
+    select image_url from goods_image where main_no in
+    <foreach collection="list"  item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
 
   <!-- 批量插入 -->
@@ -111,18 +118,35 @@
       SELECT LAST_INSERT_ID()
     </selectKey >
     insert into goods_image
-    (image_type, main_id, image_url)
+    (image_type, main_no, image_url)
     values
     <foreach collection ="list" item="image" index= "index" separator =",">
       (
-      #{image.imageType}, #{image.mainId},
+      #{image.imageType}, #{image.mainNo},
       #{image.imageUrl}
       )
     </foreach >
   </insert >
 
-  <delete id="deleteByMainId" parameterType="java.lang.Long">
+  <!-- 批量插入 -->
+  <insert id ="insertAndUpdateByMainNo" parameterType="java.util.List" >
+    <selectKey resultType ="java.lang.Long" keyProperty= "id"
+               order= "AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey >
+    REPLACE into goods_image
+    (image_type, main_no, image_url)
+    values
+    <foreach collection ="list" item="image" index= "index" separator =",">
+      (
+      #{image.imageType}, #{image.mainNo},
+      #{image.imageUrl}
+      )
+    </foreach >
+  </insert >
+
+  <delete id="deleteByMainNo" parameterType="java.lang.String">
     delete from goods_image
-    where main_id = #{mainId,jdbcType=BIGINT}
+    where main_no = #{mainNo,jdbcType=VARCHAR}
   </delete>
 </mapper>

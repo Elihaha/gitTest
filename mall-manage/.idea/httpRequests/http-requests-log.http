@@ -1,96 +1,10 @@
-POST http://192.168.60.102:9097/login
-accept: */*
-Content-Type: application/json
-
-{ "password": "admin1", "username": "admin"}
-
-<> 2018-09-26T120659.200.json
-
-###
-
-POST http://192.168.60.102:9097/orderlogistics/list?number=10&page=1&status=7
-Accept: */*
-
-###
-
-POST http://192.168.60.102:9097/login
-accept: */*
-Content-Type: application/json
-
-{ "password": "admin1", "username": "admin"}
-
-<> 2018-09-26T120649.200.json
-
-###
-
-POST http://192.168.60.102:9097/orderlogistics/list?number=10&page=1&status=7
-Accept: */*
-
-###
-
-POST http://192.168.60.102:9097/orderlogistics/list?number=10&page=1&status=7
-
-###
-
-POST http://192.168.60.102:9097/orderlogistics/list?number=10&page=1&status=7
-
-###
-
-GET http://192.168.60.102:9097/postageconfig/list?like=123&number=10&page=1
-
-<> 2018-09-25T044753.200.json
-
-###
-
-POST http://192.168.60.102:9097/login
-accept: */*
-Content-Type: application/json
-
-{ "password": "admin1", "username": "admin"}
-
-<> 2018-09-25T044751.200.json
-
-###
-
-GET http://192.168.60.102:9097/postageconfig/list?like=123&number=10&page=1
-
-<> 2018-09-25T044652.200.json
-
-###
-
-GET http://127.0.0.1:9097/postageconfig/list
-accept: */*
-Content-Type: application/json
-
-{ "number": 10, "page": 1,"like":"qw122312"}
-
-<> 2018-09-25T042326.200.json
-
-###
-
-GET http://127.0.0.1:9097/postageconfig/list
-accept: */*
-Content-Type: application/json
-
-{ "number": 10, "page": 1}
-
-<> 2018-09-25T042223.200.json
-
-###
-
-GET http://192.168.60.102:9097/orderlogistics/info/492424621950238720
+POST http://localhost:9097/login
 Accept: */*
 Cache-Control: no-cache
 
-<> 2018-09-21T081145.200.json
+{username:admin, password:admin }
 
-###
-
-GET http://192.168.60.102:9097/orderlogistics/info/492424621950238700
-Accept: */*
-Cache-Control: no-cache
-
-<> 2018-09-21T080527.200.json
+<> 2018-11-07T105804.415.json
 
 ###
 

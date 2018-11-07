@@ -127,7 +127,7 @@ public class OrderLogisticsController {
         stringObjectHashMap.put("signer", params.getSigner());
 //          手机号  signer_phone
         stringObjectHashMap.put("signerPhone", params.getSignerPhone());
-//          发货时间      开始时间  - 结束时间
+//          jedisCluster()时间      开始时间  - 结束时间
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             String startDateTime = params.getStartDateTime();

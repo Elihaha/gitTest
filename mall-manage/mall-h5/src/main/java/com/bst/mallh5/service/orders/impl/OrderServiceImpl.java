@@ -89,9 +89,11 @@ public class OrderServiceImpl implements OrderService {
         nOrders.setOrderNo(IdGenerate.generate(IdGenerate.ORDER_NO_PREFIX));//生成唯一的子订单编号
 
         //   获取当前登录 人员信息
-        PlatformUser user = (PlatformUser) SecurityUtils.getSubject().getPrincipal();
-        nOrders.setConsumerId(user.userUniqueFlag());
-        nOrders.setConsumerName(user.getNickName());
+       //PlatformUser user = (PlatformUser) SecurityUtils.getSubject().getPrincipal();
+       // nOrders.setConsumerId(user.userUniqueFlag());
+        //nOrders.setConsumerName(user.getNickName());
+        nOrders.setConsumerId("zou123");
+        nOrders.setConsumerName("zouqiang");
         nOrders.setTelephone(build.getSignerPhone());
 
         nOrders.setShopId(shopInfo.getId());
@@ -173,9 +175,9 @@ public class OrderServiceImpl implements OrderService {
 
     //查询所有主订单
     public Map queryOrdersList(Integer page, Integer rows, Byte orderStatus) {
-        PlatformUser user = (PlatformUser) SecurityUtils.getSubject().getPrincipal();
-        String userId = user.userUniqueFlag();
-
+        //PlatformUser user = (PlatformUser) SecurityUtils.getSubject().getPrincipal();
+       // String userId = user.userUniqueFlag();
+        String userId = "zou123";
         Map<String, Object> requestmap = getStringObjectHashMap(page, rows);
         requestmap.put("userId", userId);
         requestmap.put("ordersStatus", orderStatus);
@@ -195,34 +197,6 @@ public class OrderServiceImpl implements OrderService {
         return map;
 
     }
-
-    //查询所有子订单
-    public Map queryOrderChildsList(Long ordersId, Integer page, Integer rows) {
-        try {
-            PageHelper.startPage(page, rows);
-            OrderChildExample example = new OrderChildExample();
-            OrderChildExample.Criteria criteria = example.createCriteria();
-            criteria.andMainIdEqualTo(ordersId);
-            List<OrderChild> list = orderChildMapper.selectByExample(example);
-            PageInfo<OrderChild> pageInfo = new PageInfo<>(list);
-            //获得总条数
-            long total = pageInfo.getTotal();
-            Map map = new HashMap();
-            map.put("list", list);
-            map.put("total", total);
-
-            return map;
-        } catch (Exception ex) {
-            LOGGER.error("service层查询错误" + ex);
-            return null;
-        }
-    }
-
-    //查询子订单
-    public OrderChild queryOrderChild(Long OrderChildId) {
-        return orderChildMapper.selectByPrimaryKey(OrderChildId);
-    }
-
 
     //插入主订单
     public int insertOrders(Orders orders) {
@@ -277,7 +251,7 @@ public class OrderServiceImpl implements OrderService {
 
     //更新收货状态
     public int updateOrderStatus(long orderid) {
-        return ordersMapper.insertOrdersStatus(orderid);
+        return ordersMapper.updateOrdersStatus(orderid);
 
     }
 
@@ -289,6 +263,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public long updateOrderFinishPay(String orderNo, byte payType, byte fromStatus) {
         return ordersMapper.updateOrderPayStatus(orderNo, payType, fromStatus);
+    }
+
+    @Override
+    public Map queryOrderDetailStatus() {
+        PlatformUser user = (PlatformUser) SecurityUtils.getSubject().getPrincipal();
+        return ordersMapper.queryOrderDetailStatus(user.getAuthCacheKey());
     }
 
 

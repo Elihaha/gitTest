@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.bst.order.service.MallOrdersServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.213 s <<< FAILURE! - in com.bst.order.service.MallOrdersServiceApplicationTests
+initializationError(com.bst.order.service.MallOrdersServiceApplicationTests)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.ExceptionInInitializerError
+Caused by: java.lang.IllegalStateException: SpringJUnit4ClassRunner requires JUnit 4.12 or higher.
+

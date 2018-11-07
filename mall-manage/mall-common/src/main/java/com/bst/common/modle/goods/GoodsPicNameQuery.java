@@ -7,6 +7,15 @@ import java.math.BigDecimal;
  * @create 2018-09-27 0:15
  **/
 public class GoodsPicNameQuery {
+
+
+    private String goodsName;
+    private String imageUrl;
+    private BigDecimal sellPrice;
+    private String shopName;
+    //规格
+    private String pecValue;
+
     public String getGoodsName() {
         return goodsName;
     }
@@ -22,10 +31,6 @@ public class GoodsPicNameQuery {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    private String goodsName;
-    private String imageUrl;
-    private BigDecimal sellPrice;
 
     public BigDecimal getSellPrice() {
         return sellPrice;
@@ -43,5 +48,11 @@ public class GoodsPicNameQuery {
         this.shopName = shopName;
     }
 
-    private String shopName;
+    public String getPecValue() {
+        return pecValue;
+    }
+
+    public void setPecValue(String pecValue) {
+        this.pecValue = pecValue;
+    }
 }

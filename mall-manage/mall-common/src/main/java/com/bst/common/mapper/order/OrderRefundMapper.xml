@@ -286,6 +286,10 @@
       operator = #{operator,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <update id="updateRefundByOrderNo" parameterType="java.lang.String">
+        update order_refund set refund = 5
+        where order_no = #{orderNo}
+    </update>
     <select id="selectByOrderNo" parameterType="string" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

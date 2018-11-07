@@ -111,6 +111,8 @@ public interface GoodsRedisService {
     public byte getSpuStatis( String spuNo);
     public void updateSpuStockCount(String skuNo, Integer stock);
 
+    public String getSkuSpecVaules( String spuNo);
+
     public Set<SkuInfoQuery> getAllSpecSkuInfoBySpuNo(String key);
     public Result getAllSpuInfoByShopId(Long shopId, Integer start, Integer end);
 

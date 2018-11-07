@@ -55,7 +55,7 @@ public class ShiroConfig {
         filterChainMap.put("/swagger-resources/**", "anon");
         filterChainMap.put("/configuration/**", "anon");
         filterChainMap.put("/v2/**", "anon");
-        filterChainMap.put("/mallh5/goods/**", "anon");
+        filterChainMap.put("/mallh5/**", "anon");
         filterChainMap.put("/orderlogistics/queryInfo/**", "anon");
         filterChainMap.put("/wxpay/**", "anon");
         filterChainMap.put("/**", "statelessAuthc");

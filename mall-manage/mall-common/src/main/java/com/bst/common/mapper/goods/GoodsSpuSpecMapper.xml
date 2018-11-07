@@ -65,7 +65,7 @@
     </trim>
   </insert>
   <insert id="insertByList" parameterType="java.util.List">
-    insert into goods_spu_spec (spu_id, spec_id,
+    REPLACE into goods_spu_spec (spu_id, spec_id,
       gmt_create, gmt_update)
       values
       <foreach item="goodsSpuSpec" collection="list"    separator="," >

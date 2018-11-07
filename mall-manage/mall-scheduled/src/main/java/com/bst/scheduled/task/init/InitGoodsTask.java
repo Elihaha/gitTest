@@ -69,7 +69,6 @@ public class InitGoodsTask implements  Runnable {
             System.out.println("-------------------------------------------------------------------------------------");
             System.out.println("-------------------------------------------------------------------------------------");
             goodsRedisService.setGoodsRedisInfos(shopId, spuNo);
-
         } else {
             new RuntimeException("请配置数据");
         }

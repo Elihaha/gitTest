@@ -283,4 +283,11 @@
       operator = #{operator,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!--放入缓存中的数据-->
+  <select id="selectAllInfo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM shop_info
+  </select>
 </mapper>

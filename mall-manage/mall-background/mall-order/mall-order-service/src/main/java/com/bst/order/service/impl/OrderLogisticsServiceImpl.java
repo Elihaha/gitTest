@@ -3,6 +3,7 @@ package com.bst.order.service.impl;
 
 import com.bst.backcommon.permission.PermissionInfoUtil;
 import com.bst.backcommon.permission.entity.Operator;
+import com.bst.common.constants.OrdersConstants;
 import com.bst.common.entity.order.OrderChildExample;
 import com.bst.common.entity.order.OrderLogisticsEntity;
 import com.bst.common.mapper.order.OrderChildMapper;
@@ -41,6 +42,11 @@ public class OrderLogisticsServiceImpl implements OrderLogisticsService {
 	OrderChildMapper orderChildMapper;
 	@Autowired
 	OrderLogisticsService orderLogisticsService;
+
+
+
+
+
 
 	@Autowired
 	RedisParam redisParam;
@@ -142,7 +148,8 @@ public class OrderLogisticsServiceImpl implements OrderLogisticsService {
 	public void updateByOrderNo(OrderLogisticsUpdateDto orderLogistics) {
 		OrderChildExample goodsSkuExample = new OrderChildExample();
 		goodsSkuExample.createCriteria().andOrderNoEqualTo(orderLogistics.getOrderNo());
-		orderChildMapper.updateByOrderNo(orderLogistics.getOrderNo() ,new  Byte("6"));
+		orderChildMapper.updateByOrderNo(orderLogistics.getOrderNo() , OrdersConstants.PENDING_RECEIPT.getStatusNo());
+
 
 	}
 

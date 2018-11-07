@@ -55,7 +55,7 @@ public interface GoodsSpuMapper {
     @Options(statementType = StatementType.CALLABLE)
     void updateBatchBySpuNo(Map map);
 
-    GoodsPicNameQuery queryPicAndName(Long goodsSpuId);
+    GoodsPicNameQuery queryPicAndName(String goodsSkuNo);
 
     List<GoodsSpuCategoryResponse> queryByCategoryIdAndShopId(@Param("categoryId") Long  categoryId,
                                                               @Param("shopId") Long shopId,

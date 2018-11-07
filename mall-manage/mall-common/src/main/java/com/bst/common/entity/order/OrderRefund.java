@@ -20,7 +20,7 @@ public class OrderRefund {
 
     private String refundReason;
 
-    private byte refundType;
+    private Byte refundType;
 
     private Date applyTime;
 
@@ -102,5 +102,13 @@ public class OrderRefund {
 
     public void setOperator(String operator) {
         this.operator = operator == null ? null : operator.trim();
+    }
+
+    public Byte getRefundType() {
+        return refundType;
+    }
+
+    public void setRefundType(Byte refundType) {
+        this.refundType = refundType;
     }
 }

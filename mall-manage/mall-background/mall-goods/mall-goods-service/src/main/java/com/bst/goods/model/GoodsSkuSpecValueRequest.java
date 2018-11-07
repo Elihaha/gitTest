@@ -24,6 +24,12 @@ public class GoodsSkuSpecValueRequest {
     /**sku旧库存*/
     private Integer skuOldTotalStock;
 
+    /**规格图片*/
+    private String spcPic;
+
+    /**已售數量*/
+    private Integer soldoutCount;
+
     public List<Long> getList() {
         return list;
     }
@@ -62,5 +68,20 @@ public class GoodsSkuSpecValueRequest {
 
     public void setSkuOldTotalStock(Integer skuOldTotalStock) {
         this.skuOldTotalStock = skuOldTotalStock;
+    }
+
+    public String getSpcPic() {
+        return spcPic;
+    }
+    public void setSpcPic(String spcPic) {
+        this.spcPic = spcPic;
+    }
+
+    public Integer getSoldoutCount() {
+        return soldoutCount;
+    }
+
+    public void setSoldoutCount(Integer soldoutCount) {
+        this.soldoutCount = soldoutCount;
     }
 }

@@ -50,17 +50,12 @@ public class GoodsSpuRequest {
     @ApiModelProperty(value = "商品id集合")
     private List<Long> ids;
 
-    @ApiModelProperty(value = "商品的原始库存")
-    private Integer oldTotalStock;
-
-    @ApiModelProperty(value = "规格id")
+    @ApiModelProperty(value = "规格名id")
     private List<Long> specId;
 
     @ApiModelProperty(value = "规格明细")
     private List<GoodsSkuSpecValueRequest> goodsSkuSpecValueList;
 
-   /* @ApiModelProperty(value = "sku的id,价格和新增库存")
-    private List<GoodsSkuRequest> goodsSkuRequestList;*/
     public GoodsSpuRequest() {
     }
 
@@ -136,13 +131,6 @@ public class GoodsSpuRequest {
         this.ids = ids;
     }
 
-    public Integer getOldTotalStock() {
-        return oldTotalStock;
-    }
-
-    public void setOldTotalStock(Integer oldTotalStock) {
-        this.oldTotalStock = oldTotalStock;
-    }
 
     public List<Long> getSpecId() {
         return specId;

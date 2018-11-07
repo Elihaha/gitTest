@@ -18,8 +18,8 @@ public class CategoryCode {
 
     public final static Long THEALLDEFAULTLEVEL = -1L;
 
-    //图片类型 2 为缩略图
-    public final static Byte IMAGETYPE = 2;
+    //图片类型 1 为商品展示图
+    public final static Byte IMAGETYPE = 1;
     // 1 商品状态为上架
     public final static Byte GOODSSTATUS = 1;
 }

@@ -1,5 +1,7 @@
 package com.bst.mallh5;
 
+import com.bst.common.entity.goods.GoodsSku;
+import com.bst.common.mapper.goods.GoodsSkuMapper;
 import com.bst.common.mapper.order.OrderChildMapper;
 import com.bst.common.mapper.order.OrdersMapper;
 import com.bst.common.service.GoodsRedisService;
@@ -12,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = MallH5Application.class)
 public class MallH5ApplicationTests {
 
     @Autowired
@@ -25,12 +27,17 @@ public class MallH5ApplicationTests {
     OrdersMapper ordersMapper;
     @Autowired
     GoodsRedisService goodsRedisService;
+    @Autowired
+    GoodsSkuMapper goodsSkuMapper;
 
 
 
     @Test
     public void contextLoads() {
        Long OrderId = 15L;
+
+       GoodsSku goodsSku =  goodsSkuMapper.selectSkuBySkuNo("SKU507999864496324608");
+       System.out.println(goodsSku);
 //        {GOODSSKU}:SPU495638537387900928
 //     List<OrderChild>  list = orderChildMapper.selectByMainId(OrderId);
 //

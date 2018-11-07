@@ -23,7 +23,7 @@ import java.util.Set;
  * @create 2018-09-17 17:28
  **/
 @RestController
-@RequestMapping("mallh5/goods")
+@RequestMapping("mallh5/goods/")
 @Api(value = "mallH5_goods", description = "商品相关的接口<author:lumin>")
 public class GoodsController {
     private static final Logger LOGGER = LoggerFactory.getLogger(GoodsController.class);

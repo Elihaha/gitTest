@@ -9,9 +9,12 @@ import com.bst.scheduled.service.AbstractRedisTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
 
 /**
- * @description
+ * @description   直接关闭退款
  * 2.商家发货七天后系统自动签收，若中途产生退款，7天倒计时
  *
  *   暂停直至退款关闭
@@ -62,5 +65,11 @@ public class RedisOrderCloseTheReturn extends AbstractRedisTask {
         }
     }
 
+
+
+    public void add(String value) {
+        final long l = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli()+addDateTime(7);
+        super.add(l, value);
+    }
 
 }

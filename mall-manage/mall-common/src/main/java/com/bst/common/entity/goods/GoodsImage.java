@@ -7,7 +7,7 @@ public class GoodsImage {
 
     private Integer imageType;
 
-    private Long mainId;
+    private String mainNo;
 
     private String imageUrl;
 
@@ -29,12 +29,12 @@ public class GoodsImage {
         this.imageType = imageType;
     }
 
-    public Long getMainId() {
-        return mainId;
+    public String getMainNo() {
+        return mainNo;
     }
 
-    public void setMainId(Long mainId) {
-        this.mainId = mainId;
+    public void setMainNo(String mainNo) {
+        this.mainNo = mainNo;
     }
 
     public String getImageUrl() {

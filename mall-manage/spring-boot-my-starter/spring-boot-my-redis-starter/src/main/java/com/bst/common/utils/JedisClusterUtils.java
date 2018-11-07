@@ -46,10 +46,13 @@ public class JedisClusterUtils implements StringService, HashService {
     }
 
 
-
-
-
-
+    /**
+     * 本方法更新redis数据中的过期时间
+     * @param key
+     * @param expiretime
+     * @param result
+     * @param <T>
+     */
     private <T> void UpExpiretime(String key, int expiretime, Optional<T> result) {
         if (result.isPresent()) {
             if (expiretime > 0) {
@@ -59,13 +62,23 @@ public class JedisClusterUtils implements StringService, HashService {
     }
 
 
-
-
-
+    /**
+     * 本方法为调用下面的方法并不设置超时时间
+     * @param key
+     * @param arg
+     * @return
+     */
     public Long sAdd(@NonNull String key, @NonNull String... arg) {
        return sAdd(key,-1 ,arg);
     };
 
+    /**
+     *本方法将一个或多个 arg 元素加入到集合 key 当中,过期时间为 expiretime
+     * @param key
+     * @param expiretime
+     * @param arg
+     * @return
+     */
     public Long sAdd(@NonNull String key, int expiretime, @NonNull String... arg) {
         int arglen = arg.length;
         Set<Object> collect = Stream.of(arg).filter(Objects::nonNull).collect(Collectors.toSet());
@@ -88,16 +101,32 @@ public class JedisClusterUtils implements StringService, HashService {
         return result;
     }
 
+    /**
+     * 此方法是用来进入smember方法
+     * @param key
+     * @param expiretime
+     * @return
+     */
     public Set<String> setGet(String key, int expiretime) {
         return smembers(key, expiretime);
     }
 
+    /**
+     * 查询集合 key 中的所有成员。并设置失效时间
+     * 不存在的 key 被视为空集合,
+     * @param key
+     * @param expiretime
+     * @return
+     */
     public Set<String> smembers(@NonNull String key, int expiretime) {
         try {
-
+            //scard(key)  返回集合 key 的基数(集合中元素的数量)
             Long llen = jedisCluster().scard(key);
+            //数量为0则抛异常
             if (llen == 0) throw new RuntimeException(key + "值为null");
+            //取得key中的所有成员
             Set<String> lrange1 = jedisCluster().smembers(key);
+            //设置失效时间
             UpExpiretime(key, expiretime, Optional.ofNullable(lrange1));
             return lrange1;
         } catch (Exception e) {
@@ -132,6 +161,11 @@ public class JedisClusterUtils implements StringService, HashService {
         }
     }
 
+    /**
+     *此方法是用来判断key是否存在
+     * @param key
+     * @return
+     */
     public Boolean existsObject(String key) {
         try {
 
@@ -142,10 +176,21 @@ public class JedisClusterUtils implements StringService, HashService {
         }
     }
 
+    /**
+     * 此方法用来调用下面的方法,并且不设置过期时间
+     * @param key
+     * @return
+     */
     public Set<String> keys(@NonNull String key) {
         return keys(key, -1);
     }
 
+    /**
+     * 此方法是进行keys命令查询
+     * @param key
+     * @param expiretime
+     * @return
+     */
     public Set<String> keys(@NonNull String key, int expiretime) {
         try {
 
@@ -166,11 +211,18 @@ public class JedisClusterUtils implements StringService, HashService {
         return Collections.EMPTY_SET;
     }
 
-
+    /**
+     * 此方法为查询匹配key的所有数据
+     *cursor为scan的游标,scan是靠游标来移动
+     * @param key
+     * @param consumer
+     * @return
+     */
     public Boolean keysStream(@NonNull String key, Consumer<List<String>> consumer) {
         try {
 
             String cursor = "-1";
+            //只要游标不为0,就一直找下去
             do {
                 cursor = scan("0", key + "*", consumer);
             } while (!cursor.equals("0"));
@@ -294,7 +346,11 @@ public class JedisClusterUtils implements StringService, HashService {
         return jedisCluster().zcard(key);
     }
 
-
+    /**
+     * 查询key的类型
+     * @param key
+     * @return
+     */
     public  String  type(String key){
         System.out.println(jedisCluster().type(key)+" ------------ "+key);
         return jedisCluster().type(key);

@@ -2,7 +2,7 @@ package com.bst.mallh5.controller;
 
 import com.bst.common.modle.Result;
 import com.bst.common.service.GoodsRedisService;
-import com.bst.mallh5.service.order.PostageConfigHService;
+import com.bst.mallh5.service.orders.PostageConfigHService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

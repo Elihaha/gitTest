@@ -164,10 +164,12 @@
         orders.pay_time payTime,
         orders.last_update lastUpdate,
         orders.delivery_time deliveryTime,
-        orders.order_status orderStatus from order_orders orders
+        orders.order_status orderStatus,
+        orders.pay_type payType from order_orders orders
         INNER JOIN order_detail ON order_detail.order_id = orders.id
         INNER JOIN goods_spu ON goods_spu.spu_no = order_detail.spu_no
         INNER JOIN shop_info info on orders.shop_id = info.id
+        left JOIN order_refund on order_refund.order_no = orders.order_no
         where info.permission_id = #{userId ,jdbcType=BIGINT}
         <if test="orderStatus != null and orderStatus != ''">
             AND orders.order_status = #{orderStatus}
@@ -189,6 +191,9 @@
         </if>
         <if test="endUpdate != null">
             and orders.last_update &lt; #{endUpdate}
+        </if>
+        <if test="refund != null">
+            order_refund.refund = #{refund}
         </if>
         ORDER BY orders.create_time desc
 
@@ -588,7 +593,7 @@ WHERE
       postage = #{postage,jdbcType=DECIMAL}
     where id = #{id,jdbcType=BIGINT}
   </update>
-    <update id="insertOrdersStatus" parameterType="java.lang.Long">
+    <update id="updateOrdersStatus" parameterType="java.lang.Long">
     update order_orders
 set order_orders.order_status = 7  where order_orders.id = #{orderId} and order_orders.order_status = 6
   </update>
@@ -647,5 +652,16 @@ set order_orders.order_status = 7  where order_orders.id = #{orderId} and order_
     <select id="initOrderToRedis" parameterType="java.lang.Long" resultMap="BaseResultMap">
        SELECT id, order_no, unix_timestamp(DATE_ADD(create_time,INTERVAL 2 HOUR)) AS timestampNum  FROM `order_orders` WHERE order_status = 1 AND id >#{id} LIMIT 2000;
    </select>
+
+    <select id="queryOrderDetailStatus" resultType="Map" >
+            SELECT o.order_status,o.consumer_name,o.telephone,s.province,s.city,s.address,o.order_no,o.create_time,
+            o.pay_type,o.pay_time,o.delivery_time,o.total_amount,o.postage,r.pay_amount,ol.dhl
+            FROM order_orders o
+            INNER JOIN shipping_address s ON o.id = s.orderd_id
+            INNER JOIN order_pay_record r ON r.order_id = o.id
+            INNER JOIN order_child oc ON oc.main_id = o.id
+            INNER JOIN order_logistics ol ON ol.order_id = oc.id
+            WHERE o.consumer_id = #{cosumerId}
+    </select>
 
 </mapper>

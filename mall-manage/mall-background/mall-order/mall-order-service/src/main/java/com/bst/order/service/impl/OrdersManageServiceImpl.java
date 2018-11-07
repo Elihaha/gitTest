@@ -233,18 +233,20 @@ public class OrdersManageServiceImpl implements OrdersManageService {
                 Map<String, Object> map = new HashMap<>();
                 map.put("userId", (long) operator.getId());
                 map.put("orderStatus", 11 == orderStatus ? null : orderStatus);
+                //退款状态
+                map.put("refund",query.getRefund());
                 map.put("orderNo", query.getOrderNo());
                 map.put("consumerName", query.getConsumerName());
                 map.put("telephone", query.getTelephone());
                 DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-                if(StringUtils.isNotBlank(query.getstartUpdate())) {
-                    LocalDate startUpdate = LocalDate.parse(query.getstartUpdate(), f);
+                if(StringUtils.isNotBlank(query.getStartUpdate())) {
+                    LocalDate startUpdate = LocalDate.parse(query.getStartUpdate(), f);
                     LocalDateTime.of(startUpdate, LocalTime.MIN);
                     map.put("startUpdate", startUpdate);
                 }
-                if(StringUtils.isNotBlank(query.getendUpdate())) {
-                    LocalDate endUpdate = LocalDate.parse(query.getendUpdate(), f);
+                if(StringUtils.isNotBlank(query.getEndUpdate())) {
+                    LocalDate endUpdate = LocalDate.parse(query.getEndUpdate(), f);
                     LocalDateTime.of(endUpdate, LocalTime.MIN);
                     map.put("endUpdate", endUpdate);
                 }

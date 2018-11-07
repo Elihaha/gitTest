@@ -12,6 +12,8 @@ public class GoodsSpu {
     public static final   String SALES_VOLUME="Sales_volume";
     public static final   String STATUS="status";
 
+    public static final   String SPEC_VAULES="spec_vaules";
+
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 

@@ -8,6 +8,8 @@
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     id, spec_id, spec_value, gmt_create, gmt_update
   </sql>
@@ -94,4 +96,21 @@
       gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <select id="queryListSpecValue" resultMap="BaseResultMap">
+		select * from goods_spec_value where spec_id = #{value}
+	</select>
+
+  <insert id="saveSpecValueList" parameterType="Map"  useGeneratedKeys="true" keyProperty="id" >
+    insert into goods_spec_value
+    ( `spec_id`, `spec_value`)
+    values
+    <foreach collection="list" item ="temp" separator=",">
+      (
+      #{temp.specId},
+      #{temp.specValue}
+      )
+    </foreach>
+  </insert>
 </mapper>

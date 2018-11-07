@@ -19,9 +19,13 @@ public interface GoodsImageMapper {
 
     int updateByPrimaryKey(GoodsImage record);
 
-    List<String> selectByRecode(GoodsImage recode);
+    String selectByRecode(GoodsImage recode);
 
     int insertBatchImages(List<GoodsImage> images);
 
-    int deleteByMainId(Long mainId);
+    int deleteByMainNo(String mainNo);
+
+    int insertAndUpdateByMainNo(List<GoodsImage> images);
+
+    List<String> queryUrlBySkuNo(List<String> list);
 }

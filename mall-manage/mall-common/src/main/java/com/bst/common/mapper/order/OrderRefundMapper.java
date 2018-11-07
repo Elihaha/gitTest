@@ -33,4 +33,6 @@ public interface OrderRefundMapper {
     int updateByPrimaryKey(OrderRefund record);
 
     OrderRefund selectByOrderNo(String orderNo);
+
+    int updateRefundByOrderNo(String orderNo);
 }

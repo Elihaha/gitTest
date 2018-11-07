@@ -3,6 +3,7 @@ package com.bst.common.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.bst.common.entity.goods.GoodsSpecValueEntity;
 import com.bst.common.entity.goods.GoodsSpu;
 import com.bst.common.mapper.goods.GoodsSkuMapper;
 import com.bst.common.mapper.goods.GoodsSpuMapper;
@@ -12,6 +13,7 @@ import com.bst.common.modle.goods.GoodsSkuAndImg;
 import com.bst.common.modle.goods.SkuInfoQuery;
 import com.bst.common.modle.goods.SpecInfo;
 import com.bst.common.service.GoodsRedisService;
+import com.bst.common.service.HashService;
 import com.bst.common.utils.JedisClusterUtils;
 import com.bst.common.utils.RedisParam;
 import lombok.extern.slf4j.Slf4j;
@@ -206,8 +208,7 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
             if (StringUtils.isBlank(skuNO)) {
                 throw new RuntimeException("skuNO  is  null");
             }
-            String keyGoodssku = redisParam.getKeyGoodssku();
-            String key = skuNO.startsWith(keyGoodssku) ? skuNO : keyGoodssku + skuNO;
+            String key = RedisParam.hashKey(redisParam.getKeyGoodssku(),RedisParam.HASH) + skuNO;
             decr = jedisCluster.hdecrBy(key, GoodsSpu.STOCK);
             log.info("delCountBySkuNO  {}", decr);
         } catch (Exception e) {
@@ -236,7 +237,7 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
             if (number < 0) {
                 throw new RuntimeException("number  is  0 如果要增加  请调 addCountBySkuNO ");
             }
-            String key = redisParam.getKeyGoodssku() + skuNO;
+            String key = RedisParam.hashKey(redisParam.getKeyGoodssku(),RedisParam.HASH) + skuNO;
             decr = jedisCluster.hdecrBy(key, GoodsSpu.STOCK, number);
             log.info("delCountBySkuNO  入参key前缀:【{}】入参编号：【{}】，增加数量【{}】，结果【{}】", key, skuNO, number, decr);
         } catch (Exception e) {
@@ -280,7 +281,8 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
             if (StringUtils.isBlank(spuNO)) {
                 throw new RuntimeException("spuNO  is  null");
             }
-            decr = jedisCluster.hincr(redisParam.getKeyGoodsspu() + spuNO, GoodsSpu.STOCK);
+            String key = RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNO;
+            decr = jedisCluster.hincr(key, GoodsSpu.STOCK);
             log.info("addCountBySpuNO  {}", decr);
         } catch (Exception e) {
 //            e.printStackTrace();
@@ -333,7 +335,8 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
             if (StringUtils.isBlank(spuNO)) {
                 throw new RuntimeException("spuNO  is  null");
             }
-            decr = jedisCluster.hdecrBy(redisParam.getKeyGoodsspu() + spuNO, GoodsSpu.STOCK);
+            String key = RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNO;
+            decr = jedisCluster.hdecrBy(key + spuNO, GoodsSpu.STOCK);
             log.info("delCountBySpuNO   入参编号：【{}】,结果【{}】", spuNO, decr);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -366,7 +369,7 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
             if (number < 0) {
                 throw new RuntimeException("number  is  0  如果要增加  请调 addCountBySpuNO ");
             }
-            String key = redisParam.getKeyGoodsspu() + spuNO;
+            String key = RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNO;
             decr = jedisCluster.hdecrBy(key, GoodsSpu.STOCK, number);
             log.info("delCountBySpuId   入参编号：【{}】，减少数量【{}】，结果【{}】", key, number, decr);
         } catch (Exception e) {
@@ -513,7 +516,7 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
 
     /**
      *          // 更新状态
-     * @param skuNo
+     * @param spuNo
      */
     public byte getSkuStatis( String spuNo) {
         return Byte.valueOf(jedisCluster.hget(RedisParam.hashKey(redisParam.getKeyGoodssku(),RedisParam.HASH) + spuNo, GoodsSpu.STATUS).get()) ;
@@ -525,7 +528,7 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
 
     /**
      *          // 更新状态
-     * @param skuNo
+     * @param spuNo
      */
     public void updateSpuStatis( String spuNo,byte b) {
         jedisCluster.hset(RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNo, GoodsSpu.STATUS,b);
@@ -534,7 +537,7 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
 
     /**
      *          // 更新状态
-     * @param skuNo
+     * @param spuNo
      */
     public byte getSpuStatis( String spuNo) {
         return Byte.valueOf(jedisCluster.hget(RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNo, GoodsSpu.STATUS).get()) ;
@@ -564,12 +567,31 @@ public class GoodsRedisServiceImpl implements GoodsRedisService {
      * @param goodsSku
      */
     private void setSpecificationcCacheSku(GoodsSkuAndImg goodsSku) {
-        final List<String> collect = goodsSku.getGoodsSpecValueEntity().stream().map(goodsSpecValueEntity -> goodsSpecValueEntity.getId()+"").collect(Collectors.toList());
-         String join = String.join(RedisParam.COLON, collect);
+        final Map<String, String> collect = goodsSku.getGoodsSpecValueEntity().stream().collect(Collectors.toMap(goodsSpecValueEntity ->   goodsSpecValueEntity.getId()+""  , GoodsSpecValueEntity::getSpecValue));
+     //     設置  生成规格值id
+        String join = String.join(RedisParam.UNDERLINE, collect.keySet());
         if (StringUtils.isBlank(join)){
             join="-1";
         }
-        goodsRedisService.addSkuInfoBySpuNo(goodsSku.getSpuNo(),join , goodsSku.getInfo());
+        final String spuNo = goodsSku.getSpuNo();
+        goodsRedisService.addSkuInfoBySpuNo(spuNo,join , goodsSku.getInfo());
+
+        //   規格 join   values  规格中文值
+        String joinValues = String.join(RedisParam.UNDERLINE, collect.values());
+        if (StringUtils.isBlank(joinValues)){
+            joinValues=" 無 ";
+        }
+        jedisCluster.hset(RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNo, GoodsSpu.SPEC_VAULES,joinValues);
+
+    }
+
+
+    /**
+     *          // 更新 join
+     * @param spuNo
+     */
+    public String getSkuSpecVaules( String spuNo) {
+        return jedisCluster.hget(RedisParam.hashKey(redisParam.getKeyGoodsspu(),RedisParam.HASH) + spuNo, GoodsSpu.SPEC_VAULES).orElse("无") ;
     }
 
 

@@ -45,16 +45,6 @@ public interface OrderService {
     //查询所有主订单
     public Map queryOrdersList(Integer page, Integer rows,Byte orderStatus);
 
-    //查询所有子订单
-    public Map queryOrderChildsList(Long ordersId,Integer page, Integer rows);
-
-    //查询子订单
-    public OrderChild queryOrderChild(Long OrderChildId);
-
-
-
-//    //插入主订单
-//    public int insertOrders(Orders order);
 
     //通过订单号查询订单
     public Orders queryOrdersByOrdersNo(String OrderNo);
@@ -76,4 +66,9 @@ public interface OrderService {
     void updateByPrimaryKeySelective(Orders order);
 
     long updateOrderFinishPay(String orderNo, byte payType, byte fromStatus);
+
+    // 查询订单详情状态
+    Map  queryOrderDetailStatus();
+
+
 }

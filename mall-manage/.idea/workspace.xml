@@ -2,29 +2,17 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/GoodsRedisService.java" description="public  void setGoodsSkuAndImgs(String spuNo, Long..." line="94" />
-    <bookmark url="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/test/java/com/bst/common/CommonApplicationTests.java" description="entries.stream().forEach(stringStringEntry -&gt; {});" line="46" />
     <bookmark url="file://$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/service/goods/GoodsService.java" description="public Result getAllSpuInfoByShopId(Long shopId, I..." line="25" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9941ca8d-dc36-43c3-bf67-25a125d08c71" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/OrdersManageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/OrdersManageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/impl/OrdersManageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/impl/OrdersManageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/constants/OrdersConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/constants/OrdersConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/constants/ReturnOfGoodsConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/constants/ReturnOfGoodsConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSkuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSkuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSpuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSpuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/order/OrdersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/order/OrdersMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/order/OrdersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/order/OrdersMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/GoodsRedisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/GoodsRedisServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/RedisOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/RedisOrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/AbstractRedisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/AbstractRedisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderAutomaticReceipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderAutomaticReceipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderCloseTheReturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderCloseTheReturn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefundReturnTimeout.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefundReturnTimeout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefundTimeout.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefundTimeout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefuseReturnTimeout.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefuseReturnTimeout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsCategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsCategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/impl/ShopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/impl/ShopService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/task/RedisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/task/RedisTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/JedisClusterUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/JedisClusterUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/test/java/com/bst/common/CommonApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/test/java/com/bst/common/CommonApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/RedisParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/RedisParam.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/mall-background/mall-user/target/" />
     <ignored path="$PROJECT_DIR$/mall-background/mall-order/target/" />
@@ -44,6 +32,7 @@
     <ignored path="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/target/" />
     <ignored path="$PROJECT_DIR$/mall-scheduled/target/" />
     <ignored path="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter/target/" />
+    <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,19 +83,22 @@
     <session id="-776763587">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.3" value="2" />
+          <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.52" value="1" />
+          <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -123,45 +115,45 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="23" />
+          <entry key="class" value="26" />
           <entry key="goods_sku" value="1" />
           <entry key="goods_spec" value="1" />
           <entry key="goods_spu" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="568" />
+          <entry key="java" value="665" />
           <entry key="properties" value="2" />
           <entry key="sql" value="1" />
-          <entry key="xml" value="33" />
+          <entry key="xml" value="40" />
           <entry key="yml" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="23" />
+          <entry key="CLASS" value="26" />
           <entry key="Database Element" value="4" />
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="568" />
+          <entry key="JAVA" value="665" />
           <entry key="Properties" value="2" />
           <entry key="Scratch" value="1" />
-          <entry key="XML" value="33" />
+          <entry key="XML" value="40" />
           <entry key="YAML" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="java" value="5640" />
-          <entry key="txt" value="448" />
-          <entry key="xml" value="602" />
+          <entry key="java" value="6326" />
+          <entry key="txt" value="546" />
+          <entry key="xml" value="734" />
           <entry key="yml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5640" />
-          <entry key="PLAIN_TEXT" value="449" />
-          <entry key="SQL" value="16" />
-          <entry key="XML" value="586" />
+          <entry key="JAVA" value="6326" />
+          <entry key="PLAIN_TEXT" value="547" />
+          <entry key="SQL" value="19" />
+          <entry key="XML" value="715" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -169,47 +161,47 @@
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.js.language.service.starts" />
     </session>
-    <session id="-1630541464">
+    <session id="574271198">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.23" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="2" />
-          <entry key="factories" value="1" />
-          <entry key="iml" value="4" />
-          <entry key="java" value="51" />
-          <entry key="log" value="1" />
-          <entry key="properties" value="2" />
-          <entry key="xml" value="11" />
-          <entry key="yml" value="7" />
+          <entry key="class" value="7" />
+          <entry key="gitignore" value="2" />
+          <entry key="java" value="99" />
+          <entry key="xml" value="5" />
+          <entry key="yml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="2" />
-          <entry key="IDEA_MODULE" value="4" />
-          <entry key="JAVA" value="51" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Properties" value="2" />
-          <entry key="XML" value="11" />
-          <entry key="YAML" value="7" />
-          <entry key="spring.factories" value="1" />
+          <entry key="CLASS" value="7" />
+          <entry key="Git file" value="2" />
+          <entry key="JAVA" value="99" />
+          <entry key="XML" value="5" />
+          <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="43" />
+          <entry key="java" value="926" />
+          <entry key="txt" value="51" />
+          <entry key="xml" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="43" />
+          <entry key="JAVA" value="926" />
+          <entry key="PLAIN_TEXT" value="51" />
+          <entry key="SQL" value="2" />
+          <entry key="XML" value="32" />
         </counts>
       </usages-collector>
     </session>
@@ -217,10 +209,64 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/model/CategoryQueryResponse.java">
+        <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/redis/MyRedisAutoConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="96">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/JedisClusterUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="349" column="15" selection-start-line="349" selection-start-column="15" selection-end-line="349" selection-end-column="15" />
+              <folding>
+                <element signature="e#896#897#0" expanded="true" />
+                <element signature="e#944#945#0" expanded="true" />
+                <element signature="e#990#991#0" expanded="true" />
+                <element signature="e#1025#1026#0" expanded="true" />
+                <element signature="e#1087#1088#0" expanded="true" />
+                <element signature="e#1135#1136#0" expanded="true" />
+                <element signature="e#1672#1673#0" expanded="true" />
+                <element signature="e#1711#1712#0" expanded="true" />
+                <element signature="e#2911#2912#0" expanded="true" />
+                <element signature="e#2959#2960#0" expanded="true" />
+                <element signature="e#4649#4650#0" expanded="true" />
+                <element signature="e#4685#4686#0" expanded="true" />
+                <element signature="e#10506#10507#0" expanded="true" />
+                <element signature="e#10532#10533#0" expanded="true" />
+                <element signature="e#10588#10589#0" expanded="true" />
+                <element signature="e#10623#10624#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/GoodsScheduledTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="43" column="58" lean-forward="true" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/function/Consumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-253">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/src/main/java/com/bst/goods/controller/GoodsCategoryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -228,35 +274,71 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsCategoryServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="-936">
+              <caret line="144" column="9" lean-forward="true" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/src/main/java/com/bst/goods/controller/GoodsCategoryController.java">
+        <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/RedisParam.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.20/swagger-annotations-1.5.20.jar!/io/swagger/annotations/Api.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="5" column="18" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="18" />
+            <state relative-caret-position="-655">
+              <caret line="163" column="44" lean-forward="true" selection-start-line="163" selection-start-column="44" selection-end-line="163" selection-end-column="44" />
+              <folding>
+                <element signature="e#1662#1663#0" expanded="true" />
+                <element signature="e#1708#1709#0" expanded="true" />
+                <element signature="e#1746#1747#0" expanded="true" />
+                <element signature="e#1789#1790#0" expanded="true" />
+                <element signature="e#1827#1828#0" expanded="true" />
+                <element signature="e#1870#1871#0" expanded="true" />
+                <element signature="e#1906#1907#0" expanded="true" />
+                <element signature="e#1947#1948#0" expanded="true" />
+                <element signature="e#1993#1994#0" expanded="true" />
+                <element signature="e#2047#2048#0" expanded="true" />
+                <element signature="e#2093#2094#0" expanded="true" />
+                <element signature="e#2148#2149#0" expanded="true" />
+                <element signature="e#2194#2195#0" expanded="true" />
+                <element signature="e#2245#2246#0" expanded="true" />
+                <element signature="e#2296#2297#0" expanded="true" />
+                <element signature="e#2352#2353#0" expanded="true" />
+                <element signature="e#2397#2398#0" expanded="true" />
+                <element signature="e#2447#2448#0" expanded="true" />
+                <element signature="e#2498#2499#0" expanded="true" />
+                <element signature="e#2554#2555#0" expanded="true" />
+                <element signature="e#2739#2740#0" expanded="true" />
+                <element signature="e#2791#2792#0" expanded="true" />
+                <element signature="e#2836#2837#0" expanded="true" />
+                <element signature="e#2893#2894#0" expanded="true" />
+                <element signature="e#2938#2939#0" expanded="true" />
+                <element signature="e#2995#2996#0" expanded="true" />
+                <element signature="e#3035#3036#0" expanded="true" />
+                <element signature="e#3087#3088#0" expanded="true" />
+                <element signature="e#3128#3129#0" expanded="true" />
+                <element signature="e#3180#3181#0" expanded="true" />
+                <element signature="e#3228#3229#0" expanded="true" />
+                <element signature="e#3281#3282#0" expanded="true" />
+                <element signature="e#3633#3634#0" expanded="true" />
+                <element signature="e#3672#3673#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsCategoryMapper.java">
+        <entry file="jar://D:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/JedisCluster.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="203">
+              <caret line="505" column="37" lean-forward="true" selection-start-line="505" selection-start-column="37" selection-end-line="505" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/function/Predicate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1413">
+              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -280,13 +362,21 @@
       <find>setJedisConnectionFactory</find>
       <find>addCountBySkuNO</find>
       <find>------------</find>
-      <find>lombok</find>
+      <find>发货</find>
+      <find>GoodsSkuAndImg</find>
+      <find>orderController</find>
+      <find>getSpecValueBySpuId</find>
+      <find>queryPage</find>
+      <find>QueryShop</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>log()</replace>
       <replace>jedisCluster()</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>D:\IdeaProjects02\mall-manage</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -296,27 +386,12 @@
       </map>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="dummy://restClient/response2.json" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/service/AbstractRedisService.java" />
-        <option value="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/src/main/java/com/bst/goods/controller/GoodsController.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/GoodsRedisService.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSpecMapper.xml" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/modle/goods/GoodsRedisInfo.java" />
-        <option value="$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/model/goods/GoodsResponse.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/modle/goods/SpecInfo.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/entity/goods/GoodsSpecValueEntity.java" />
-        <option value="$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/controller/OrderController.java" />
-        <option value="$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/shiro/ShiroConfig.java" />
-        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/service/HashService.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/entity/goods/GoodsSpu.java" />
-        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/service/StringService.java" />
-        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/GoodsTask.java" />
-        <option value="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsSpuServiceImpl.java" />
-        <option value="$PROJECT_DIR$/mall-h5/src/main/resources/application-dev.yml" />
-        <option value="$PROJECT_DIR$/mall-background/mall-back-server/src/main/resources/application-dev.yml" />
-        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shiro/RedisCacheConfig.java" />
         <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shiro/ShiroConfig.java" />
         <option value="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/src/main/java/com/bst/goods/controller/GoodsSpecController.java" />
         <option value="$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/service/goods/impl/GoodsServiceImpl.java" />
@@ -325,17 +400,11 @@
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/GoodsScheduledTask.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/GoodsStockTask.java" />
         <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter/src/main/java/com/bat/generate/service/impl/snowflake/SnowflakeGenerateIdConfiguration.java" />
-        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/init/InitGoodsTask.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/RedisOrderMonitoring.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/init/InitAllTask.java" />
-        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/RedisParam.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderMonitoring.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSkuMapper.xml" />
-        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/test/java/com/bst/common/CommonApplicationTests.java" />
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/RedisOrderServiceImpl.java" />
-        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/JedisClusterUtils.java" />
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSpuMapper.xml" />
-        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderAutomaticReceipt.java" />
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/constants/ReturnOfGoodsConstants.java" />
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/constants/OrdersConstants.java" />
         <option value="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/OrdersManageService.java" />
@@ -344,12 +413,36 @@
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/order/OrdersMapper.java" />
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/order/OrdersMapper.xml" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefundReturnTimeout.java" />
+        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderCloseTheReturn.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefundTimeout.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderRefuseReturnTimeout.java" />
-        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderCloseTheReturn.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/impl/OrderLogisticsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/task/service/impl/RedisOrderAutomaticReceipt.java" />
+        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/impl/RedisOrderAutomaticReceipt.java" />
         <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/AbstractRedisTask.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/modle/goods/GoodsSkuAndImg.java" />
+        <option value="$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/controller/GoodsController.java" />
+        <option value="$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/controller/OrderController.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsBrandMapper.java" />
+        <option value="$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/init/InitGoodsTask.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/entity/goods/GoodsSpu.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/GoodsRedisService.java" />
+        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/test/java/com/bst/common/CommonApplicationTests.java" />
         <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/GoodsRedisServiceImpl.java" />
-        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/utils/RedisParam.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSkuMapper.xml" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/task/RedisTask.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/InitCache/InitCache.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/ICacheService.java" />
+        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/service/StringService.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/impl/ICacheServiceImpl.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/initCache/InitCache.java" />
+        <option value="$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.xml" />
+        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/login/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/impl/ShopService.java" />
+        <option value="$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsCategoryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/JedisClusterUtils.java" />
+        <option value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/RedisParam.java" />
       </list>
     </option>
   </component>
@@ -365,6 +458,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="localRepository" value="D:\.m2\repository" />
         <option name="mavenHome" value="D:/java/env/apache-maven-3.5.4" />
         <option name="userSettingsFile" value="D:\java\env\apache-maven-3.5.4\conf\settings.xml" />
       </MavenGeneralSettings>
@@ -391,20 +485,18 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="137" />
-    <option name="y" value="38" />
-    <option name="width" value="1898" />
-    <option name="height" value="1103" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-227" />
+    <option name="y" value="127" />
+    <option name="width" value="1899" />
+    <option name="height" value="980" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
-      <hideEmptyPackages ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -412,313 +504,12 @@
               <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
               <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-back-server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-back-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-back-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="goods" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="goods" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="goods" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="goods" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-background" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-goods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mallgoodsservice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="mall-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-id-generate-statter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-id-generate-statter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-id-generate-statter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-swagger-starter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-swagger-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-manage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-manage" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-my-swagger-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -727,16 +518,20 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="ToolWindowAnalyze Dataflow from.ShowToolbar" value="false" />
+    <property name="ToolWindowAnalyze Dataflow to.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541413710215" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541585675687" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -750,6 +545,33 @@
       <recent name="D:\IdeaProjects02\mall-manage\mall-background\mall-goods\src\main\java\com\bst\goods\service\impl" />
       <recent name="D:\IdeaProjects02\mall-manage\mall-background\mall-goods\src\main\java\com\bst\goods\service" />
     </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:9097" />
+          <option name="urlPath" value="login" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{username:admin, password:admin }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -767,9 +589,9 @@
         </RuleState>
       </list>
     </option>
-    <option name="contentProportion" value="0.17694806" />
+    <option name="contentProportion" value="0.23505977" />
   </component>
-  <component name="RunManager" selected="Spring Boot.MallBackServerApplication">
+  <component name="RunManager" selected="Spring Boot.MallScheduledApplication">
     <configuration name="CommonApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-boot-my-redis-starter" />
       <extension name="coverage">
@@ -819,6 +641,9 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpringBootOptions">
+    <option name="showAdditionalConfigNotification" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -840,9 +665,13 @@
       <workItem from="1541044134928" duration="26446000" />
       <workItem from="1541120863523" duration="125000" />
       <workItem from="1541121458888" duration="33023000" />
-      <workItem from="1541379240694" duration="21938000" />
-      <workItem from="1541402468823" duration="2175000" />
-      <workItem from="1541404720863" duration="8945000" />
+      <workItem from="1541379240694" duration="34220000" />
+      <workItem from="1541466319771" duration="572000" />
+      <workItem from="1541466970482" duration="7674000" />
+      <workItem from="1541475532127" duration="9115000" />
+      <workItem from="1541488090127" duration="526000" />
+      <workItem from="1541488684943" duration="13114000" />
+      <workItem from="1541551811232" duration="29672000" />
     </task>
     <task id="LOCAL-00001" summary="修复了 订单bug   优化了订单流程">
       <created>1540181235825</created>
@@ -928,13 +757,45 @@
       <option name="project" value="LOCAL" />
       <updated>1541159257290</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=" 修改    任务调度 模块">
+      <created>1541414454516</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1541414454519</updated>
+    </task>
+    <task id="LOCAL-00014" summary="  修改  h5  項目不能啓動·1的 bug">
+      <created>1541467814745</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1541467814745</updated>
+    </task>
+    <task id="LOCAL-00015" summary="增加 一个接口 GoodsRedisService    getSkuSpecVaules">
+      <created>1541474185669</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1541474185669</updated>
+    </task>
+    <task id="LOCAL-00016" summary="增加  修改 减少库存的存">
+      <created>1541476356976</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1541476356976</updated>
+    </task>
+    <task id="LOCAL-00017" summary="增加  修改 减少库存的存">
+      <created>1541486675496</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1541486675496</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CommonApplicationTests_contextLoads - 2018.11.02 at 10h 20m 51s.xml">
-      <configuration name="CommonApplicationTests.contextLoads" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CommonApplicationTests_contextLoads - 2018.11.02 at 10h 23m 05s.xml">
       <configuration name="CommonApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
@@ -959,12 +820,15 @@
     <history-entry file="CommonApplicationTests_contextLoads - 2018.11.05 at 10h 10m 29s.xml">
       <configuration name="CommonApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CommonApplicationTests_contextLoads - 2018.11.05 at 16h 17m 38s.xml">
+    <history-entry file="CommonApplicationTests_contextLoads - 2018.11.06 at 11h 30m 26s.xml">
+      <configuration name="CommonApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonApplicationTests_contextLoads - 2018.11.06 at 11h 32m 17s.xml">
       <configuration name="CommonApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147021000" />
+    <option name="totallyTimeSpent" value="208856000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -976,10 +840,56 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-181" y="102" width="1519" height="784" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30630028" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49909255" visible="true" weight="0.22313485" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" sideWeight="0.5018182" side_tool="true" weight="0.2386059" />
+      <window_info id="JRebel" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="REST Client" sideWeight="0.49932975" weight="0.65486723" />
+      <window_info anchor="bottom" id="Analyze Dataflow from" weight="0.3259587" />
+      <window_info anchor="bottom" id="Analyze Dataflow to" weight="0.32852563" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32977587" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" visible="true" weight="0.1923077" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.8351206" weight="0.24188791" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3980464" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.49031007" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.56434315" weight="0.7182891" />
+      <window_info anchor="bottom" id="Spring" order="9" weight="0.32523617" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.14075068" side_tool="true" weight="0.27286136" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32658568" />
+      <window_info anchor="bottom" id="JProfiler" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" sideWeight="0.49945533" weight="0.25885227" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.53351206" weight="0.32448378" />
+      <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.49932975" weight="0.07079646" />
+      <window_info anchor="bottom" id="Run Dashboard" order="16" sideWeight="0.85924935" weight="0.29647437" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="17" />
+      <window_info anchor="bottom" id="Tail" order="18" />
+      <window_info anchor="bottom" id="Problems" order="19" />
+      <window_info anchor="bottom" id="JRebel Executor" order="20" />
+      <window_info anchor="bottom" id="JRebel Console" order="21" sideWeight="0.14075068" side_tool="true" weight="0.18731563" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.403833" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.18096514" />
+      <window_info anchor="right" id="Bean Validation" order="6" weight="0.32897604" />
+      <window_info anchor="right" id="Database" order="7" weight="0.32991803" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="RestServices" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26385927" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -987,44 +897,47 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info id="JRebel" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Problems" order="0" />
-      <window_info anchor="bottom" id="Database Console" order="1" weight="0.32977587" />
-      <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32928476" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49932975" weight="0.31858408" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.3980464" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="8" weight="0.49031007" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5648907" weight="0.71929824" />
-      <window_info anchor="bottom" id="Spring" order="10" weight="0.32523617" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5073727" side_tool="true" weight="0.17846608" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32658568" />
-      <window_info anchor="bottom" id="JProfiler" order="13" />
-      <window_info anchor="bottom" id="Database Changes" order="14" weight="0.25910932" />
-      <window_info anchor="bottom" id="Version Control" order="15" weight="0.8960864" />
-      <window_info anchor="bottom" id="Messages" order="16" sideWeight="0.49262735" weight="0.17846608" />
-      <window_info anchor="bottom" id="Run Dashboard" order="17" sideWeight="0.49931693" weight="0.24041298" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="18" sideWeight="0.49932975" weight="0.32890856" />
-      <window_info anchor="bottom" id="Tail" order="19" />
-      <window_info anchor="bottom" id="JRebel Executor" order="20" />
-      <window_info anchor="bottom" id="JRebel Console" order="21" sideWeight="0.50067025" side_tool="true" weight="0.31858408" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32977587" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.51867664" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3991462" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.49031007" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.7203842" />
+      <window_info anchor="bottom" id="Spring" order="9" weight="0.3276414" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3296" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.3276414" />
+      <window_info anchor="bottom" id="JProfiler" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.26040554" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.37786776" />
+      <window_info anchor="bottom" id="Messages" order="15" weight="0.32230523" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="16" visible="true" weight="0.45357525" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Maven Projects" order="5" weight="0.39480874" />
-      <window_info anchor="right" id="Bean Validation" order="6" weight="0.32908848" />
+      <window_info anchor="right" id="Bean Validation" order="6" weight="0.32936507" />
       <window_info anchor="right" id="Database" order="7" weight="0.32991803" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="RestServices" order="10" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -1068,7 +981,23 @@
     <MESSAGE value="修正  數據结构 的 更改、" />
     <MESSAGE value="增加 多个 定时任务 模版" />
     <MESSAGE value="跟新緩存數據結構" />
-    <option name="LAST_COMMIT_MESSAGE" value="跟新緩存數據結構" />
+    <MESSAGE value=" 修改    任务调度 模块" />
+    <MESSAGE value="  修改  h5  項目不能啓動·1的 bug" />
+    <MESSAGE value="增加 一个接口 GoodsRedisService    getSkuSpecVaules" />
+    <MESSAGE value="增加  修改 减少库存的存" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加  修改 减少库存的存" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/initCache/InitCache.java</url>
+          <line>27</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -1113,341 +1042,505 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/resources/META-INF/spring.factories">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/redis/RedisConfigure.java">
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/service/StringService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="-168">
+          <caret line="41" column="7" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-starter.iml">
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/service/HashService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1133" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/resources/application-dao.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSpuMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="312">
+          <caret line="105" column="5" lean-forward="true" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter/spring-boot-my-swagger-starter.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/Constants.java">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsSpecServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/entity/goods/GoodsCategory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/entity/goods/GoodsBrand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/entity/goods/GoodsSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-346">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="68" column="30" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-manage.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter/src/main/java/com/pz/swagger/ApiInfoAutoProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-swagger-starter/src/main/java/com/pz/swagger/SwaggerApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-id-generate-statter/src/main/java/com/bat/generate/GenerateIdProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/src/main/java/com/bst/server/swagger/Swagger2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="168">
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar!/org/apache/ibatis/annotations/Mapper.class">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsSpecValueServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="96">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsSkuMapper.java">
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/redis/RedisConfigure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="22" column="41" lean-forward="true" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+        <state relative-caret-position="240">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/utils/OrderNoUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-690" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/redis/RedisConfigure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="-435">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/redis/RedisClient.java">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/impl/OrderPostageServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1886">
-          <caret line="92" column="59" lean-forward="true" selection-start-line="92" selection-start-column="59" selection-end-line="92" selection-end-column="59" />
+        <state relative-caret-position="24">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/config/ExpressType.java">
+    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/RedisOrderServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-507">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="-223">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/GoodsRedisServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2139" />
+        <state relative-caret-position="14184">
+          <caret line="628" column="17" selection-start-line="628" selection-start-column="17" selection-end-line="628" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/impl/PostageConfigServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="116" column="32" selection-start-line="116" selection-start-column="32" selection-end-line="116" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/src/main/resources/application-dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="44" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-677" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mall-h5/src/main/java/com/bst/mallh5/MallH5Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        <state relative-caret-position="192">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3312" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-common/src/main/java/com/bst/backcommon/conditional/windows/WindowsUploadPath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="138">
+          <caret line="286" column="14" selection-start-line="286" selection-start-column="14" selection-end-line="286" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/logs/mall-background/debug.log">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/mvc/entity/SysOperatorMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1863" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-common/src/main/java/com/bst/backcommon/exception/MallException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="48">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/mall-common.iml">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/mvc/entity/SysMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2914" />
+        <state relative-caret-position="96">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-common/src/main/java/com/bst/backcommon/conditional/windows/WindowsConditional.java">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/src/main/java/com/bst/server/MallBackServerApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
+        <state relative-caret-position="168">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding>
+            <element signature="e#613#614#0" expanded="true" />
+            <element signature="e#689#690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/service/AbstractRedisTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="131" column="46" lean-forward="true" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/login/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/MallScheduledApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shiro/RedisCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2457">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shiro/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shiro/UserRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/controller/ShopManagerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/impl/ShopService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/utils/AccountValidatorUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2217">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/utils/StatusCodeConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-345">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/resources/application.yml">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/utils/JwtUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="34" column="49" lean-forward="true" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/GoodsRedisService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-common/src/main/java/com/bst/backcommon/io/excel/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-common/src/main/java/com/bst/backcommon/io/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-common/src/main/java/com/bst/backcommon/io/excel/ExcelWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1247">
-          <caret line="271" column="45" lean-forward="true" selection-start-line="271" selection-start-column="45" selection-end-line="271" selection-end-column="45" />
+        <state relative-caret-position="264">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/pom.xml">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1656" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/test/java/com/bst/common/CommonApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/model/SkuStockRedis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-back-server/src/main/java/com/bst/server/MallBackServerApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/RedisOrderServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/service/impl/GoodsRedisServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="109" column="142" selection-start-line="109" selection-start-column="142" selection-end-line="109" selection-end-column="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/utils/RedisParam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/model/CategoryQueryResponse.java">
+    <entry file="file://$PROJECT_DIR$/mall-background/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="-3015">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/goods/GoodsCategoryMapper.java">
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/model/CategoryCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="48">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-order/mall-order-service/src/main/java/com/bst/order/service/impl/OrdersManageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1101">
+          <caret line="263" column="13" lean-forward="true" selection-start-line="263" selection-start-column="13" selection-end-line="263" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/redis/RedisClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1045">
+          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/util/RedisInputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/Protocol.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="159" column="26" selection-start-line="159" selection-start-column="26" selection-end-line="159" selection-end-column="26" />
+          <folding>
+            <element signature="e#6977#6978#0" expanded="true" />
+            <element signature="e#7018#7019#0" expanded="true" />
+            <element signature="e#8302#8303#0" expanded="true" />
+            <element signature="e#8336#8337#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/Connection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="317" column="31" selection-start-line="317" selection-start-column="31" selection-end-line="317" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/Jedis.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="428" column="33" selection-start-line="428" selection-start-column="33" selection-end-line="428" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/initCache/InitCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-common/src/main/java/com/bst/common/mapper/shop/ShopInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504">
+          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/redis/MyRedisAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/JedisClusterUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="349" column="15" selection-start-line="349" selection-start-column="15" selection-end-line="349" selection-end-column="15" />
+          <folding>
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#990#991#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1135#1136#0" expanded="true" />
+            <element signature="e#1672#1673#0" expanded="true" />
+            <element signature="e#1711#1712#0" expanded="true" />
+            <element signature="e#2911#2912#0" expanded="true" />
+            <element signature="e#2959#2960#0" expanded="true" />
+            <element signature="e#4649#4650#0" expanded="true" />
+            <element signature="e#4685#4686#0" expanded="true" />
+            <element signature="e#10506#10507#0" expanded="true" />
+            <element signature="e#10532#10533#0" expanded="true" />
+            <element signature="e#10588#10589#0" expanded="true" />
+            <element signature="e#10623#10624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-scheduled/src/main/java/com/bst/scheduled/task/GoodsScheduledTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="43" column="58" lean-forward="true" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/ICacheService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mall-background/mall-user/src/main/java/com/bst/user/permission/shop/service/impl/ICacheServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/function/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-service/src/main/java/com/bst/goods/service/impl/GoodsCategoryServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="-936">
+          <caret line="144" column="9" lean-forward="true" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-boot-my-starter/spring-boot-my-redis-starter/src/main/java/com/bst/common/utils/RedisParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-655">
+          <caret line="163" column="44" lean-forward="true" selection-start-line="163" selection-start-column="44" selection-end-line="163" selection-end-column="44" />
+          <folding>
+            <element signature="e#1662#1663#0" expanded="true" />
+            <element signature="e#1708#1709#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
+            <element signature="e#1789#1790#0" expanded="true" />
+            <element signature="e#1827#1828#0" expanded="true" />
+            <element signature="e#1870#1871#0" expanded="true" />
+            <element signature="e#1906#1907#0" expanded="true" />
+            <element signature="e#1947#1948#0" expanded="true" />
+            <element signature="e#1993#1994#0" expanded="true" />
+            <element signature="e#2047#2048#0" expanded="true" />
+            <element signature="e#2093#2094#0" expanded="true" />
+            <element signature="e#2148#2149#0" expanded="true" />
+            <element signature="e#2194#2195#0" expanded="true" />
+            <element signature="e#2245#2246#0" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2352#2353#0" expanded="true" />
+            <element signature="e#2397#2398#0" expanded="true" />
+            <element signature="e#2447#2448#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
+            <element signature="e#2554#2555#0" expanded="true" />
+            <element signature="e#2739#2740#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#2836#2837#0" expanded="true" />
+            <element signature="e#2893#2894#0" expanded="true" />
+            <element signature="e#2938#2939#0" expanded="true" />
+            <element signature="e#2995#2996#0" expanded="true" />
+            <element signature="e#3035#3036#0" expanded="true" />
+            <element signature="e#3087#3088#0" expanded="true" />
+            <element signature="e#3128#3129#0" expanded="true" />
+            <element signature="e#3180#3181#0" expanded="true" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3281#3282#0" expanded="true" />
+            <element signature="e#3633#3634#0" expanded="true" />
+            <element signature="e#3672#3673#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/JedisCluster.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="505" column="37" lean-forward="true" selection-start-line="505" selection-start-column="37" selection-end-line="505" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/function/Predicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1413">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mall-background/mall-goods/mall-goods-controller/src/main/java/com/bst/goods/controller/GoodsCategoryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.20/swagger-annotations-1.5.20.jar!/io/swagger/annotations/Api.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="18" />
+        <state relative-caret-position="72">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>mall-goods-controller</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

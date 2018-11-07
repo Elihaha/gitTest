@@ -557,7 +557,7 @@
         ,
         <include refid="Result_Blob_Column_List"/>
         , cory.category_name categoryName,r.name operatorName
-        , t2.parentName parentName
+        , t2.parentName parentName,goods_image.image_url imageUrl
         FROM
         goods_spu spu
         left join goods_category cory on spu.category_id = cory.id
@@ -565,6 +565,7 @@
         left join (select t.id as t2id,t1.category_name as parentName from goods_category t
         left join goods_category t1 on t.pid=t1.id) t2
         on spu.category_id =t2.t2id
+        left join goods_image on goods_image.main_no = spu.spu_no
         WHERE
         1=1
         <if test="query.shopId != null ">
@@ -592,12 +593,12 @@
     </select>
 
     <select id="queryPicAndName" resultType="com.bst.common.modle.goods.GoodsPicNameQuery"
-            parameterType="java.lang.Long">
-        select goods_image.image_url imageUrl,goods_spu.goods_name goodsName,max(goods_sku.sell_price)
+            parameterType="java.lang.String">
+       select goods_image.image_url imageUrl,goods_sku.sku_name goodsName,goods_sku.sell_price
         sellPrice,shop_info.shop_name shopName
-        from goods_spu INNER JOIN goods_image on goods_spu.id = goods_image.main_id
-        INNER JOIN goods_sku on goods_sku.spu_id =goods_spu.id
-        INNER JOIN shop_info on shop_info.id = goods_spu.shop_id where goods_spu.id = #{goodsSpuId}
+        from goods_sku INNER JOIN goods_image on goods_sku.sku_no = goods_image.main_no
+				INNER JOIN goods_spu on goods_spu.id = goods_sku.spu_id
+        INNER JOIN shop_info on shop_info.id = goods_spu.shop_id where goods_sku.sku_no = #{goodsSkuNo}
     </select>
     <select id="selectRedisInfoByPrimaryKey" resultMap="BaseResultMapInfo">
         SELECT
@@ -679,7 +680,7 @@
         goods_spu.soldout_count soldoutCount,
         goods_image.image_url imageUrl
         from goods_spu  left join goods_image
-        on  goods_image.main_id = goods_spu.id and goods_image.image_type = #{imageType}
+        on  goods_image.main_no = goods_spu.spu_no and goods_image.image_type = #{imageType}
         where
         1 = 1
         <if test = "categoryId != null ">

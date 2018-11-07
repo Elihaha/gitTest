@@ -1,5 +1,6 @@
 package com.bst.mallh5.service.goods.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.bst.common.entity.goods.GoodsCategory;
 import com.bst.common.entity.goods.GoodsSpu;
 import com.bst.common.mapper.goods.GoodsCategoryMapper;
@@ -119,6 +120,11 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
                 result.setStatus(502);
                 result.setMsg("fail");
                 return result;
+            }
+            for(GoodsSpuCategoryResponse goodsSpuCategoryResponse : list) {
+
+                List<String> imageList = JSON.parseArray(goodsSpuCategoryResponse.getImageUrl(), String.class);
+                goodsSpuCategoryResponse.setImageUrl(imageList.get(0));
             }
             map.put("list", list);
             map.put("total", total);

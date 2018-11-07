@@ -3,12 +3,9 @@ package com.bst.mallh5.controller;
 
 import com.bst.common.constants.HttpConstants;
 
-import com.bst.common.entity.order.OrderLogisticsEntity;
 import com.bst.common.modle.Result;
-import com.bst.common.pojo.QueryKuaidiJson;
-import com.bst.common.utils.KuaiDI100Util;
 
-import com.bst.mallh5.service.order.OrderLogisticsHService;
+import com.bst.mallh5.service.orders.OrderLogisticsHService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 /**

@@ -1,79 +1,69 @@
 package com.bst;
 
-import com.bst.common.config.Snowflake.SnowflakeId;
-import com.bst.common.modle.order.OrderLogisticsDto;
-import com.bst.common.modle.order.PostageConfigPojo;
-import com.bst.common.pojo.ResultData;
-import com.bst.common.utils.HttpWebResponseUtility;
+import com.bst.common.entity.goods.GoodsImage;
+import com.bst.common.entity.goods.GoodsSku;
+import com.bst.common.mapper.goods.GoodsImageMapper;
+import com.bst.common.mapper.goods.GoodsSkuMapper;
+import com.bst.server.MallBackServerApplication;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigDecimal;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+@Slf4j
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = MallBackServerApplication.class)
 
 public class PostageTest {
 
+    @Autowired
+    private GoodsImageMapper goodsImageMapper;
+    @Autowired
+    private GoodsSkuMapper goodsSkuMapper;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostageTest.class);
     @Test
-    public void UIOmBg(){
-        System.out.println(
-                PostageConfigPojo
-                        .builder()
-                        .postage(new BigDecimal(99.99).setScale(2,   BigDecimal.ROUND_HALF_UP))
-                        .province("长沙")
-                        .status(0)
-                        .build()
-        );
-
-
-        System.out.println(
-                OrderLogisticsDto
-                        .builder()
-                        .address("不知名的地方")
-                        .area("芙蓉区")
-                        .signer("pz")
-                        .signerPhone("17608413342")
-                        .city("长沙市")
-                        .postcode("41000")
-                        .province("湖南")
-                        .goodsCount(2)
-                        .goodsName("test")
-//                        .orderId(1232143124141341L)
-                        .dhl("yuantong")
-                        .trackingNumber(889999834560284183L+"")
-                        .build()
-        );
-
-
-
-    }
-
-
-
-    @Test
-    public void  aVoid(){
-//         Long javaLong=4941-9119-0363-6029-44L;
-//         Long jsLong  =4941-9119-0363-6029-40L;
-//         Long  sss    =4942-0202-8554-1908-48L;
-//
-//        System.out.println(SnowflakeId.getId());
-        Integer integer = null;
-        System.out.println(Stream.of(5, 6, 7, 20).anyMatch(s -> s.equals(integer)));
-    }
-    @Test
-    public void  asasda(){
-//         Long javaLong=4941-9119-0363-6029-44L;
-//         Long jsLong  =4941-9119-0363-6029-40L;
-//         Long  sss    =4942-0202-8554-1908-48L;
-//
-//        System.out.println(SnowflakeId.getId());
-        Integer integer = null;
-        System.out.println(Stream.of(5, 6, 7, 20).anyMatch(s -> s.equals(integer)));
+    public void imageTest(){
+        List<GoodsImage> imageList = new ArrayList<>();
+        GoodsImage goodsImage1 = new GoodsImage();
+        goodsImage1.setMainNo("123");
+        goodsImage1.setImageType(4);
+        goodsImage1.setImageUrl("123大");
+        goodsImage1.setCreateTime(new Date());
+        imageList.add(goodsImage1);
+        GoodsImage goodsImage2 = new GoodsImage();
+        goodsImage2.setMainNo("456");
+        goodsImage2.setImageType(4);
+        goodsImage2.setImageUrl("456123");
+        goodsImage2.setCreateTime(new Date());
+        imageList.add(goodsImage2);
+        goodsImageMapper.insertAndUpdateByMainNo(imageList);
     }
 
     @Test
-    public void asdasda(){
+    public void getUrlTest() {
+        try {
+            Long spuId = 59L;
 
-        ResultData errorMgs = new ResultData();
-        HttpWebResponseUtility.createGetHttpResponse("https://www.kuaidi100.com/query?type=shunfeng&postid=289283464329&temp=0.936491380151816", errorMgs);
-        System.out.println(errorMgs);
+        List<GoodsSku> skuIdList = goodsSkuMapper.selectByspuId(spuId);
+        List<String> skuNoList = new ArrayList<>();
+        for (GoodsSku goodsSku : skuIdList) {
+            skuNoList.add(goodsSku.getSkuNo());
+        }
+        List<String> specPicList = goodsImageMapper.queryUrlBySkuNo(skuNoList);
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + specPicList);
+    }catch (Exception ex){
+            LOGGER.error("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",ex);
+        }
     }
+
 }

@@ -189,10 +189,22 @@ public class RedisParam {
     }
 
 
-
+    /**
+     * 前缀
+     */
     private static final String PREFIX = "{";
+    /**
+     * 后缀
+     */
     private static final String SUFFIX = "}";
+    /**
+     * 冒号
+     */
     public  static final String COLON = ":";
+    /**
+     * 下划线
+     */
+    public  static final String UNDERLINE = "_";
     public  static final String HASH = "HASH";
     public  static final String SET = "SET";
 

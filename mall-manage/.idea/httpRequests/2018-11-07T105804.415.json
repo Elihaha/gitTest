@@ -1,0 +1,7 @@
+{
+  "timestamp": "2018-11-07 10:58:04",
+  "status": 415,
+  "error": "Unsupported Media Type",
+  "message": "Content type '*/*;charset=UTF-8' not supported",
+  "path": "/login"
+}

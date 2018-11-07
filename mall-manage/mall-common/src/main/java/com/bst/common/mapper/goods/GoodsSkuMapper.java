@@ -55,4 +55,6 @@ public interface GoodsSkuMapper {
     int insertGoodsSkuByList(List<GoodsSku> list);
 
     int updateSkuTotalAndPriceByList(List<GoodsSku> list);
+
+    GoodsSku selectSkuBySkuNo(String skuNo);
 }

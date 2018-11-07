@@ -36,11 +36,11 @@ public class OrderController {
     @PostMapping("/createOrder")
     public Result createOrder(@RequestBody OrdersRequest request){
         int  count= request.getCount();
-        long goodsSkuId =request.getGoodsSkuId();
+        String goodsSkuNo =request.getGoodsSkuNo();
         ShippingAddressRequest shippingAddressRequest = request.getShippingAddressRequest();
         Result result;
         try {
-            result =  createOrder.createOrder(goodsSkuId, count,  shippingAddressRequest);
+            result =  createOrder.createOrder(goodsSkuNo, count,  shippingAddressRequest);
             return result;
         }catch(Exception ex){
           log.error(ex.getMessage(),ex);
@@ -51,7 +51,6 @@ public class OrderController {
         }
         //return userId;
     }
-
 
 
     //查询所有主订单
@@ -76,49 +75,7 @@ public class OrderController {
             return result;
         }
     }
-    //查询子订单
-    @ApiOperation(value = "查询单个子订单",notes = " Long orderChildId 子订单ID")
-    @PostMapping("/queryOrderChild")
-    public Result queryOrderChild( Long orderChildId){
-        Result result = new Result();
-        try {
-            OrderChild orderChild = orderService.queryOrderChild(orderChildId);
-            if(orderChild.equals(null)){
-                result.setMsg("查询失败");
-                result.setStatus(500);
-            }
-            result.setData(orderChild);
-            result.setMsg("查询成功");
-            result.setStatus(200);
-            return result;
-        }catch(Exception ex){
-            result.setMsg("查询失败");
-            result.setStatus(500);
-            return result;
-        }
-    }
-    //查询所有子订单
-    @ApiOperation(value = "查询所有子订单",notes = "Long OrdersId 主订单的id ,查询主订单下的所有订单  ，Integer page 页码, Integer rows 每页数量")
-    @GetMapping("/querytOrderChildList")
-    public Result querytOrderChildList( Long ordersId,Integer page, Integer rows){
-        Result result = new Result();
-        try {
-            Map  map = orderService.queryOrderChildsList(ordersId, page, rows);
-            if(map.equals(null)){
-                result.setMsg("查询失败");
-                result.setStatus(500);
-            }
-            result.setData(map);
-            result.setMsg("查询成功");
-            result.setStatus(200);
-            return result;
-        }catch(Exception ex){
-            LOGGER.error("查询失败",ex);
-            result.setMsg("查询失败");
-            result.setStatus(500);
-            return result;
-        }
-    }
+
 
     //查看订单详情
     //查询订单详情
@@ -146,9 +103,9 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/received/{orderId}")
+    @PutMapping("/received/{orderId}")
     @ApiOperation(value = "确认收货",notes = " Long orderid 主订单ID ，Byte orderstatus 订单状态")
-    public Result queryOrderDetail(@PathVariable("orderId") long orderId ){
+    public Result updateOrderDetail(@PathVariable("orderId") long orderId ){
         Result result = new Result();
         try {
            int sax =  orderService.updateOrderStatus(orderId);
@@ -163,6 +120,23 @@ public class OrderController {
         }catch (Exception ex){
             log.error("Failed to modify received state",ex);
             result.setMsg("修改已收货状态失败");
+            result.setStatus(200);
+            return result;
+        }
+    }
+
+     //查询订单详情状态
+    @ApiOperation(value = "查询订单详情状态",notes = "订单详情状态")
+    @GetMapping("/queryOrderDetailStatus")
+    public Result queryOrderDetailStatus(){
+        Result result  = new Result();
+        try {
+         Map OrderdetailStatus = orderService.queryOrderDetailStatus();
+         result.setData(OrderdetailStatus);
+         return result;
+        }catch (Exception e){
+            LOGGER.error("failed to query order details status",e);
+            result.setMsg("查询订单详情状态失敗");
             result.setStatus(200);
             return result;
         }

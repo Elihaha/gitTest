@@ -21,8 +21,12 @@
     <resultMap id="GoodsSkuAndImg" type="com.bst.common.modle.goods.GoodsSkuAndImg" extends="BaseResultMap">
         <result column="image_url" jdbcType="VARCHAR" property="imgPath"></result>
         <result property="spuNo" jdbcType="VARCHAR" column="spu_no"></result>
-        <association property="goodsSpecValueEntity"
-                     resultMap="com.bst.common.mapper.goods.GoodsSpecValueDao.goodsSpecValueMap"></association>
+        <collection property="goodsSpecValueEntity"
+                    column="{skuNo=sku_no}" javaType="ArrayList"  ofType="com.bst.common.entity.goods.GoodsSpecValueEntity" select="getSpecValueBySpuId">
+            <result column="id"  property="id"></result>
+            <result column="spec_value" property="specValue"></result>
+        </collection>
+        <!--resultMap="com.bst.common.mapper.goods.GoodsSpecValueMapper.BaseResultMap"-->
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -217,7 +221,7 @@
       cost_price, market_price, pricing,
       sell_price, stock, spu_id,
       show_weight, gmt_create, gmt_update,
-      sku_status, is_sell, soldout_count
+      sku_status, is_sell
       )
     values
     <foreach collection="list" item="goodsSku" separator=",">
@@ -225,7 +229,7 @@
         #{goodsSku.costPrice,jdbcType=DECIMAL}, #{goodsSku.marketPrice,jdbcType=DECIMAL}, #{goodsSku.pricing,jdbcType=DECIMAL},
         #{goodsSku.sellPrice,jdbcType=DECIMAL}, #{goodsSku.stock,jdbcType=INTEGER}, #{goodsSku.spuId,jdbcType=BIGINT},
         #{goodsSku.showWeight,jdbcType=INTEGER}, #{goodsSku.gmtCreate,jdbcType=TIMESTAMP}, #{goodsSku.gmtUpdate,jdbcType=TIMESTAMP},
-        #{goodsSku.skuStatus,jdbcType=TINYINT}, #{goodsSku.isSell,jdbcType=BIT}, #{goodsSku.soldoutCount,jdbcType=INTEGER}
+        #{goodsSku.skuStatus,jdbcType=TINYINT}, #{goodsSku.isSell,jdbcType=BIT}
         )
     </foreach>
 
@@ -417,38 +421,49 @@
         goods_image.image_url,
         goods_spu.spu_no,
         goods_sku.sku_status,
-        goods_sku.soldout_count,
-        spec.spec_value,
-        spec.id as id
-
+        goods_sku.soldout_count
         FROM
         <choose>
             <when test=" shopId != null or spuNo != null ">
                 (SELECT * from goods_sku
-                 <where>
-                     <if test="shopId !=null">
-                         goods_spu.shop_id =  #{shopId}
-                     </if>
-                     <if test="spuNo !=null">
-                      and   goods_spu.spu_no =  #{spuNo}
-                     </if>
-                 </where>
+                <where>
+                    <if test="shopId !=null">
+                        goods_spu.shop_id = #{shopId}
+                    </if>
+                    <if test="spuNo !=null">
+                        and goods_spu.spu_no = #{spuNo}
+                    </if>
+                </where>
                 ) as goods_sku
             </when>
             <otherwise>
                 goods_sku
             </otherwise>
         </choose>
-        LEFT JOIN ( SELECT * FROM goods_image WHERE goods_image.image_type = 4 ) AS goods_image ON goods_sku.sku_no = goods_image.main_no
+        LEFT JOIN ( SELECT * FROM goods_image WHERE goods_image.image_type = 4 ) AS goods_image ON goods_sku.sku_no =
+        goods_image.main_no
         LEFT JOIN goods_spu on goods_sku.spu_id=goods_spu.id
+        -- order by goods_spu.gmt_create DESC
+    </select>
+
+    <select id="getSpecValueBySpuId" resultMap="com.bst.common.mapper.goods.GoodsSpecValueMapper.BaseResultMap" >
+        SELECT   spec.spec_value,
+        spec.id
+        FROM goods_sku
         LEFT JOIN ( SELECT c.*, goods_sku_spec_value.sku_no FROM goods_spec_value c
         LEFT JOIN goods_sku_spec_value ON c.id = goods_sku_spec_value.spec_value_id ) spec ON goods_sku.sku_no = spec.sku_no
-
-        order  by  goods_spu.gmt_create DESC
+        where  goods_sku.sku_no=#{skuNo}
     </select>
 
     <select id="getSkuIdsBySpuId" resultType="java.lang.Long">
         SELECT id FROM goods_sku WHERE spu_id = #{spuId}
+    </select>
+
+    <select id="selectSkuBySkuNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_sku
+        where  sku_no = #{skuNo}
     </select>
 
 

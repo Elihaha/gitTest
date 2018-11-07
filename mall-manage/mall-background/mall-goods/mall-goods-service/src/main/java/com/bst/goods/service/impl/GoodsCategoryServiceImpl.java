@@ -82,6 +82,7 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
                 Operator operator = PermissionInfoUtil.getCurrentLogginUser();
                 goodsCategory.setShopId(operator.getShopInfo().getId());
             }
+
             goodsCategoryMapper.insertSelective(goodsCategory);
 
             return goodsCategory;

@@ -149,5 +149,15 @@ public abstract class AbstractRedisTask implements  Runnable {
         init();
     }
 
-    public abstract void add();
+    public  void  add(Long score,String value){
+        jedisCluster.zadd(getKey(),score,value);
+    };
+
+
+    protected int addDateTime(int day){
+         return  day*24*60*60*1000;
+    }
+
+
+
 }

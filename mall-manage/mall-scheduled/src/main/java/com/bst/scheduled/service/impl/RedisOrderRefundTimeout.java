@@ -9,6 +9,9 @@ import com.bst.scheduled.service.AbstractRedisTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
 
 /**
  * @description RefundTimeout 退款超时
@@ -50,9 +53,19 @@ public class RedisOrderRefundTimeout extends AbstractRedisTask {
     public void init() {
         orderRefundTimeout = redisParam.getOrderTimeoutDelayKey();
         lowSize = jedisCluster.zcard(orderRefundTimeout);
-        if (lowSize==0) {
-            lowSize=1L;
+        if (lowSize == 0) {
+            lowSize = 1L;
         }
+    }
+
+    public void addRedisOrderRefundTimeout(String value) {
+        final long l = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli() + addDateTime(7);
+        super.add(l, value);
+    }
+
+    public void addRedisOrderRefundReturnTimeout(String value) {
+        final long l = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli() + addDateTime(10);
+        super.add(l, value);
     }
 
 

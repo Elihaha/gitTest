@@ -46,7 +46,7 @@ public interface OrdersMapper {
     DetailResult queryOrderDetail(Long orderid);
     List<AllOrdersQuery> queryAllOrderDetail(Map map);
 
-    int insertOrdersStatus(Long orderId);
+    int updateOrdersStatus(Long orderId);
 
     OrderChildDto   queryOrderChildDtoByOrderNo(@Param("orderNo") String orderNo);
 
@@ -68,4 +68,5 @@ public interface OrdersMapper {
     int updateOrderReturnStatus(@Param("orderNo") String orderNo, @Param("statusNo") Byte statusNo);
 
     void updateReturnStatus(@Param("orderNo") String orderNo, @Param("statusNo") int ordinal);
+    Map queryOrderDetailStatus(String cosumerId);
 }

@@ -72,8 +72,6 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
     private GoodsSkuSpecValueMapper goodsSkuSpecValueMapper;
 
 
-
-
     @Autowired
     private RedisParam redisParam;
 
@@ -89,17 +87,6 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             Result result = new Result();
             //获取当前登陆的用户
             Operator operator = PermissionInfoUtil.getCurrentLogginUser();
-            /**得出商品最高价，最低价*/
-            List<GoodsSkuSpecValueRequest> goodsSkuSpecValueList = request.getGoodsSkuSpecValueList();
-            //最低价
-            BigDecimal lowPrice = new BigDecimal(goodsSkuSpecValueList.stream().mapToDouble(object ->
-                    object.getGoodsSkuPrice().doubleValue()
-            ).min().getAsDouble());
-            //最高价
-            BigDecimal highPrice = new BigDecimal(goodsSkuSpecValueList.stream().mapToDouble(object ->
-                    object.getGoodsSkuPrice().doubleValue()
-            ).max().getAsDouble());
-
             //商品记录
             GoodsSpu spu = new GoodsSpu();
             BeanUtils.copyProperties(request, spu);
@@ -112,12 +99,26 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             spu.setOperatorId(operator.getId());
             //商品状态（0未上架，1上架，2已下架）
             spu.setGoodsStatus((byte) CommonConstants.goodsShelfStatus);
-            spu.setLowPrice(lowPrice);
-            spu.setHighPrice(highPrice);
+            if (request.getGoodsSkuSpecValueList() != null || request.getGoodsSkuSpecValueList().size() != 0) {
+
+                /**得出商品最高价，最低价*/
+                Map<String, Object> map = workOut(request);
+                spu.setLowPrice((BigDecimal) map.get("lowPrice"));
+                spu.setHighPrice((BigDecimal) map.get("highPrice"));
+                //上架总数(新增时，就是剩余总库存)
+                spu.setTotalPutaway((Integer) map.get("spuTotalStock"));
+                //所有sku库存之和
+                spu.setTotalStock((Integer) map.get("spuTotalStock"));
+            } else {
+                spu.setLowPrice(request.getGoodsPrice());
+                spu.setHighPrice(request.getGoodsPrice());
+                //上架总数(新增时，就是剩余总库存)
+                spu.setTotalPutaway(request.getTotalStock());
+                //所有sku库存之和
+                spu.setTotalStock(request.getTotalStock());
+            }
             spu.setSoldoutCount(0);
             spu.setIsSell(false);
-            //上架总数(新增时，就是剩余总库存)
-            spu.setTotalPutaway(request.getTotalStock());
             spu.setGmtCreate(new Date());
             spu.setGmtUpdate(new Date());
             //保存spu记录
@@ -125,43 +126,32 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             /**
              * 保存商品spu规格
              * */
-           /* List<GoodsSpuSpec> goodsSpuSpecList = new ArrayList<>();
-            for (Long specId : request.getSpecId()) {
-                GoodsSpuSpec goodsSpuSpec = new GoodsSpuSpec();
-                goodsSpuSpec.setSpecId(specId);
-                //注意spu插入是否有返回spuId
-                goodsSpuSpec.setSpuId(spu.getId());
-                goodsSpuSpec.setGmtCreate(new Date());
-                goodsSpuSpec.setGmtUpdate(new Date());
-                goodsSpuSpecList.add(goodsSpuSpec);
+            //修改或添加规格字
+            if(request.getSpecId()!=null||request.getSpecId().size()!=0) {
+                addGoodsSpuSpec(request, spu);
             }
-            goodsSpuSpecMapper.insertByList(goodsSpuSpecList);
-            */
-            /**保存商品sku和sku规格值*/
+
+            //此list增加商品没用到
             List<SkuStockRedis> skuStockRedisList = new ArrayList<>();
-            saveGoodsSkuAndGoodsSpec(goodsSkuSpecValueList, spu,skuStockRedisList);
-            //批量保存商品图片
-            List<String> images = request.getImagesList();
-            GoodsImage image = null;
-            List<GoodsImage> imageList = new ArrayList<GoodsImage>();
-            for (String i : images) {
-                image = new GoodsImage();
-                image.setImageType(1);
-                image.setImageUrl(i);
-                image.setMainId(spu.getId());
-                imageList.add(image);
+            /**保存商品sku和sku规格值*/
+
+            /**》》》》》》》》》》》》》》》判断request.getGoodsSkuSpecValueList()是否为空*/
+            if (request.getGoodsSkuSpecValueList() != null || request.getGoodsSkuSpecValueList().size() != 0) {
+                saveGoodsSkuAndGoodsSpec(request.getGoodsSkuSpecValueList(), spu, skuStockRedisList);
             }
-            if (imageList.size() > 0) {
-                goodsImageMapper.insertBatchImages(imageList);
-            }
+            /**批量保存商品图片*/
+            addSpuPic(request, spu);
+
             result.setStatus(HttpConstants.SUCCESS);
             result.setMsg("商品创建成功");
             result.setData(spu);
             List<GoodsSku> goodsSkuList = goodsSkuMapper.selectByspuId(spu.getId());
             //将创建的商品库存，存入redis中
             goodsRedisService.addCountBySpuNO(spu.getSpuNo(), spu.getTotalStock());
-            for (GoodsSku goodsSku : goodsSkuList) {
-                goodsRedisService.addCountBySkuNO(goodsSku.getSkuNo(), goodsSku.getStock());
+            if (goodsSkuList != null || goodsSkuList.size() != 0) {
+                for (GoodsSku goodsSku : goodsSkuList) {
+                    goodsRedisService.addCountBySkuNO(goodsSku.getSkuNo(), goodsSku.getStock());
+                }
             }
             return result;
         } catch (Exception e) {
@@ -184,12 +174,8 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             if (goodsSpu == null) {
                 return Result.error("当前商品不存在");
             }
-            List<GoodsSku> goodsSku = goodsSkuMapper.selectByspuId(goodsSpu.getId());
-            if (goodsSku == null) {
-                return Result.error("当前商品规格不存在");
-            }
             if (request == null || StringUtils.isEmpty(request.getGoodsName())
-                    || StringUtils.isEmpty(request.getGoodsDetail()) || (request.getGoodsPrice() == null || "".equals(request.getGoodsPrice()))) {
+                    || StringUtils.isEmpty(request.getGoodsDetail())) {
                 return Result.error("编辑商品失败：入参不完整");
             }
             if (request.getImagesList() == null || request.getImagesList().size() < 1) {
@@ -199,15 +185,33 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             BeanUtils.copyProperties(request, updateSpu);
             updateSpu.setId(goodsSpu.getId());
             updateSpu.setGmtUpdate(new Date());
-            //重新编辑的新剩余库存
-            Integer newTotalStock = request.getTotalStock();
-            //之前的剩余库存
-            Integer oldTotalStock = request.getOldTotalStock();
+
             //剩余库存差值
-            int minus = newTotalStock - oldTotalStock;
-            //编辑之后的总库存
-            updateSpu.setTotalPutaway(goodsSpu.getTotalPutaway() + minus);
-            //重新编辑之后的商品就是未上架状态
+            int minus;
+            if (request.getGoodsSkuSpecValueList() != null || request.getGoodsSkuSpecValueList().size() != 0) {
+
+                Map<String, Object> map = workOut(request);
+                //之前的剩余库存
+                Integer oldTotalStock = goodsSpu.getTotalStock();
+                //剩余库存差值
+                minus = (Integer) map.get("spuTotalStock") - oldTotalStock;
+                //编辑之后的总库存
+                updateSpu.setTotalPutaway(goodsSpu.getTotalPutaway() + minus);
+                //重新编辑之后的商品就是未上架状态
+                updateSpu.setLowPrice((BigDecimal) map.get("lowPrice"));
+                updateSpu.setHighPrice((BigDecimal) map.get("highPrice"));
+                updateSpu.setTotalStock((Integer) map.get("spuTotalStock"));
+            } else {
+                //之前的剩余库存
+                Integer oldTotalStock = goodsSpu.getTotalStock();
+                //剩余库存差值
+                minus = request.getTotalStock() - oldTotalStock;
+                //编辑之后的总库存
+                updateSpu.setTotalPutaway(goodsSpu.getTotalPutaway() + minus);
+                updateSpu.setLowPrice(request.getGoodsPrice());
+                updateSpu.setHighPrice(request.getGoodsPrice());
+                updateSpu.setTotalStock(request.getTotalStock());
+            }
             updateSpu.setGoodsStatus((byte) CommonConstants.goodsShelfStatus);
             //当前操作人Id
             //获取当前登陆的用户
@@ -216,48 +220,23 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             //商品规格记录》》》》》》》》》》》》》》》》》》》》》》》
             GoodsSku sku = new GoodsSku();
             //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            /**得出商品最高价，最低价*/
-            List<GoodsSkuSpecValueRequest> goodsSkuSpecValueList = request.getGoodsSkuSpecValueList();
-
-            //最低价
-            BigDecimal lowPrice = new BigDecimal(goodsSkuSpecValueList.stream().mapToDouble(object ->
-                    object.getGoodsSkuPrice().doubleValue()
-            ).min().getAsDouble());
-
-            //最高价
-            BigDecimal highPrice = new BigDecimal(goodsSkuSpecValueList.stream().mapToDouble(object ->
-                    object.getGoodsSkuPrice().doubleValue()
-            ).max().getAsDouble());
-
-            updateSpu.setLowPrice(lowPrice);
-            updateSpu.setHighPrice(highPrice);
-
             goodsSpuMapper.updateByPrimaryKeySelective(updateSpu);
-            /**skuId和库存增量*/
+            //修改或添加规格字
+            if(request.getSpecId()!=null||request.getSpecId().size()!=0) {
+                addGoodsSpuSpec(request, updateSpu);
+            }
+            /**skuId和库存增量，存放redis*/
             List<SkuStockRedis> skuStockRedisList = new ArrayList<>();
-            /**整理sku*/
-           // List<GoodsSku> goodsSkuList = updateSkuPriceAndTotalStock(request.getGoodsSkuSpecValueList(), updateSpu, skuStockRedisList);
             /** 更新sku的价格库存*/
-            //goodsSkuMapper.updateSkuTotalAndPriceByList(goodsSkuList);
             //保存and更新spu表
-            saveGoodsSkuAndGoodsSpec(request.getGoodsSkuSpecValueList(), updateSpu,skuStockRedisList);
+            if (request.getGoodsSkuSpecValueList() != null || request.getGoodsSkuSpecValueList().size() != 0) {
+                saveGoodsSkuAndGoodsSpec(request.getGoodsSkuSpecValueList(), updateSpu, skuStockRedisList);
+            }
             //处理商品的展示图
             //先把之前的对应照片删除，再保存
-            goodsImageMapper.deleteByMainId(goodsSpu.getId());
+            goodsImageMapper.deleteByMainNo(goodsSpu.getSpuNo());
             //批量保存商品图片
-            List<String> images = request.getImagesList();
-            GoodsImage image = null;
-            List<GoodsImage> imageList = new ArrayList<GoodsImage>();
-            for (String img : images) {
-                image = new GoodsImage();
-                image.setImageType(1);
-                image.setImageUrl(img);
-                image.setMainId(goodsSpu.getId());
-                imageList.add(image);
-            }
-            if (imageList.size() > 0) {
-                goodsImageMapper.insertBatchImages(imageList);
-            }
+            addSpuPic(request, updateSpu);
             Result result = new Result();
             result.setStatus(HttpConstants.SUCCESS);
             result.setMsg("商品编辑成功");
@@ -265,8 +244,10 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
 
             //将spu库存和sku库存更新到redis中
             goodsRedisService.addCountBySpuNO(goodsSpu.getSpuNo(), minus);
-            for(SkuStockRedis skuStockRedis : skuStockRedisList) {
-                goodsRedisService.addCountBySkuNO(skuStockRedis.getSkuNo(),skuStockRedis.getMinus());
+            if(skuStockRedisList!=null||skuStockRedisList.size()!=0) {
+                for (SkuStockRedis skuStockRedis : skuStockRedisList) {
+                    goodsRedisService.addCountBySkuNO(skuStockRedis.getSkuNo(), skuStockRedis.getMinus());
+                }
             }
             return result;
         } catch (Exception e) {
@@ -293,11 +274,17 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             response.setGoodsPrice(goodsSpu.getHighPrice());
             GoodsImage goodsImage = new GoodsImage();
             goodsImage.setImageType(1);
-            goodsImage.setMainId(goodsSpu.getId());
-            List<String> imageList = goodsImageMapper.selectByRecode(goodsImage);
+            goodsImage.setMainNo(goodsSpu.getSpuNo());
+            String goodsPicUrlList = goodsImageMapper.selectByRecode(goodsImage);
+            List<String> imageList = JSON.parseArray(goodsPicUrlList,String.class);
             Map<String, Object> result = new HashMap<String, Object>();
+            Set<SkuInfoQuery> goodsSkuSpecSet = getAllSpecSkuInfoBySpuNo(goodsSpu.getSpuNo());
+            //规格图片
+            List<String> specPicList = querySpecPic(id);
             result.put("goodsDetail", response);
             result.put("imagesList", imageList);
+            result.put("goodsSkuSpecSet",goodsSkuSpecSet);
+            result.put("specPicList",specPicList);
             return Result.ok(result);
         } catch (Exception e) {
             LOGGER.error(">>>>>>商品后台管理，查询商品详情异常：", e);
@@ -321,15 +308,17 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             //获取当前登陆的用户所在的商户
             Operator operator = PermissionInfoUtil.getCurrentLogginUser();
             GoodsQuery goodsQuery = new GoodsQuery();
+
             if (CommonConstants.goolsSoldOutStatus.equals(query.getGoodsStatus())) {
                 goodsQuery.setSoldOut(true);
             }
+            //增加商品状态查询条件
             goodsQuery.setStatusRange(CommonConstants.goolsSoldOutStatus.equals(query.getGoodsStatus()) ? null : query.getGoodsStatus());
             goodsQuery.setShopId(operator.getShopInfo().getId());
             goodsQuery.setGoodsName(query.getGoodsName());
+
             DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-
+            //添加时间查询条件
             if (StringUtils.isNotBlank(query.getStartUpdate())) {
                 LocalDate startUpdate = LocalDate.parse(query.getStartUpdate(), f);
                 LocalDateTime.of(startUpdate, LocalTime.MIN);
@@ -344,21 +333,29 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             Iterator<GoodsResult> goodsResultsIterator = goodsResults.iterator();
             while (goodsResultsIterator.hasNext()) {
                 GoodsResult goodsResult = goodsResultsIterator.next();
+                //处理价格格式
                 if (goodsResult.getLowPrice().equals(goodsResult.getHighPrice())) {
                     goodsResult.setPrice(goodsResult.getLowPrice() + "");
                 } else {
                     goodsResult.setPrice(goodsResult.getHighPrice() + "-" + goodsResult.getLowPrice());
                 }
-
+                //处理商品分类格式
                 if (!StringUtils.isEmpty(goodsResult.getParentName())) {
                     goodsResult.setCategoryName(goodsResult.getParentName() + "-" + goodsResult.getCategoryName());
                 }
-
+                //根据时间查询，不查询待上架和删除
                 if (StringUtils.isNotBlank(query.getStartUpdate()) || StringUtils.isNotBlank(query.getEndUpdate())) {
                     if (goodsResult.getGoodsStatus() == (byte) CommonConstants.goodsShelfStatus ||
                             goodsResult.getGoodsStatus() == (byte) CommonConstants.goodsDeleteShelfStatus) {
                         goodsResultsIterator.remove();
                     }
+                }
+                //处理图片列表图片
+                if(goodsResult.getImageUrl()!=null || goodsResult.getImageUrl() !="") {
+                    String imageUrls = goodsResult.getImageUrl();
+                    List<String> imageUrlList = JSON.parseArray(imageUrls, String.class);
+                    String imageUrl = imageUrlList.get(0);
+                    goodsResult.setImageUrl(imageUrl);
                 }
             }
             Map<String, Object> data = new HashMap<String, Object>();
@@ -375,6 +372,7 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
 
     /**
      * 商品的1上架/2下架/3删除操作
+     *
      * @param request
      * @return
      */
@@ -391,13 +389,13 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             Operator operator = PermissionInfoUtil.getCurrentLogginUser();
 
             // 更新spu
-            GoodsSpu updateSpu = updateSpu(request,operator,result);
+            GoodsSpu updateSpu = updateSpu(request, operator, result);
 
             // 更新sku
-            updateSku(request,updateSpu);
+            updateSku(request, updateSpu);
 
             // 更新缓存
-            updateRedisSpu(request,goodsSpu,operator,result);
+            updateRedisSpu(request, goodsSpu, operator, result);
 
             result.setStatus(HttpConstants.SUCCESS);
             result.setData(null);
@@ -409,49 +407,51 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
     }
 
     /**
-     *
      * 修改Spu
-     * @param request 修改请求
+     *
+     * @param request  修改请求
      * @param operator 操作人
-     * @param result 返回结果
+     * @param result   返回结果
      */
-    private GoodsSpu updateSpu(GoodsSpuRequest request,Operator operator,Result result){
+    private GoodsSpu updateSpu(GoodsSpuRequest request, Operator operator, Result result) {
         GoodsSpu updateSpu = new GoodsSpu();
         updateSpu.setId(request.getGoodsId());
         updateSpu.setGoodsStatus(request.getGoodsStatus());
         updateSpu.setOperatorId(operator.getId());
         updateSpu.setGmtUpdate(new Date());
         // 修改Spu时间
-        upateSpuTimeAndIsSell(updateSpu,updateSpu.getGoodsStatus(),result);
+        upateSpuTimeAndIsSell(updateSpu, updateSpu.getGoodsStatus(), result);
         goodsSpuMapper.updateByPrimaryKeySelective(updateSpu);
-        return  updateSpu;
+        return updateSpu;
     }
 
     /**
-     *  修改Redis缓存信息
+     * 修改Redis缓存信息
+     *
      * @param request
      * @param goodsSpu
      * @param operator
      * @param result
      */
-    private void updateRedisSpu(GoodsSpuRequest request,GoodsSpu goodsSpu,Operator operator,Result result){
+    private void updateRedisSpu(GoodsSpuRequest request, GoodsSpu goodsSpu, Operator operator, Result result) {
         GoodsSpu redisGoods = new GoodsSpu();
         BeanUtils.copyProperties(goodsSpu, redisGoods);
         redisGoods.setOperatorId(operator.getId());
         redisGoods.setGoodsStatus(request.getGoodsStatus());
         // 修改Spu时间
-        upateSpuTimeAndIsSell(redisGoods,redisGoods.getGoodsStatus(),result);
+        upateSpuTimeAndIsSell(redisGoods, redisGoods.getGoodsStatus(), result);
         //操作完商品状态存入redis中
         updateGoodsRedis(redisGoods);
     }
 
 
     /**
-     *  修改sku
+     * 修改sku
+     *
      * @param request
      * @param updateSpu
      */
-    private void updateSku(GoodsSpuRequest request,GoodsSpu updateSpu){
+    private void updateSku(GoodsSpuRequest request, GoodsSpu updateSpu) {
         List<GoodsSku> skuList = new ArrayList<GoodsSku>();
         GoodsSku updateSku = new GoodsSku();
         //遍历GoodsSku，更新商品sku状态
@@ -467,12 +467,13 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
     }
 
     /**
-     *  根据修改状态更改Spu时间
+     * 根据修改状态更改Spu时间
+     *
      * @param updateSpu
      * @param goodsStatus
      * @param result
      */
-    private  void upateSpuTimeAndIsSell(GoodsSpu updateSpu,Byte goodsStatus,Result result){
+    private void upateSpuTimeAndIsSell(GoodsSpu updateSpu, Byte goodsStatus, Result result) {
         Boolean isSell;
         if (goodsStatus == (byte) CommonConstants.goodsOnShelfStatus) {
             //上架
@@ -492,7 +493,6 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             result.setMsg("商品删除成功");
         }
     }
-
 
 
     @Override
@@ -579,11 +579,13 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
 
     /**
      * 将商品相关信息放入redis中
+     *
      * @param redisGoods
      */
     private void updateGoodsRedis(GoodsSpu redisGoods) {
         try {
             Long goodsId = redisGoods.getId();
+            String spuNo = redisGoods.getSpuNo();
             byte goodsStatus = redisGoods.getGoodsStatus();
             String key = redisParam.getGoodsSpuBaseInfoKey().replaceAll("_", ":") + ":" + goodsId;
             if (goodsStatus == (byte) CommonConstants.goodsDeleteShelfStatus) {
@@ -597,9 +599,10 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
                 redisInfo.setSkuIds(new HashSet<>(skuIds));
                 //上架，保存到redis中
                 GoodsImage goodsImage = new GoodsImage();
-                goodsImage.setMainId(goodsId);
+                goodsImage.setMainNo(spuNo);
                 goodsImage.setImageType(1);
-                List<String> imageList = goodsImageMapper.selectByRecode(goodsImage);
+                String goodsPicUrlList = goodsImageMapper.selectByRecode(goodsImage);
+                List<String> imageList = JSON.parseArray(goodsPicUrlList,String.class);
                 redisInfo.setImagesList(new HashSet<>(imageList));
                 jedisCluster.set(key, JSON.toJSONString(redisInfo));
             }
@@ -619,15 +622,23 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
     public void saveGoodsSkuAndGoodsSpec(List<GoodsSkuSpecValueRequest> goodsSkuSpecValueRequestsList, GoodsSpu spu, List<SkuStockRedis> skuStockRedisList) {
         List<GoodsSku> goodsSkuList = new ArrayList<>();
         List<GoodsSkuSpecValue> goodsSkuSpecValues = new ArrayList<>();
+        List<GoodsImage> imageList = new ArrayList<>();
         for (GoodsSkuSpecValueRequest goodsSkuSpecValueRequest : goodsSkuSpecValueRequestsList) {
             //商品规格记录
             GoodsSku sku = new GoodsSku();
+            //规格图片
+            GoodsImage goodsImage = new GoodsImage();
             SkuStockRedis skuStockRedis = new SkuStockRedis();
             String skuNo = NumberPrefix.SKU_NO_PREFIX + SnowflakeId.getId();
             if (goodsSkuSpecValueRequest.getSkuNo() == null || goodsSkuSpecValueRequest.getSkuNo() == "") {
                 sku.setSkuNo(skuNo);
+                goodsImage.setMainNo(skuNo);
+                sku.setGmtCreate(new Date());
             } else {
                 sku.setSkuNo(goodsSkuSpecValueRequest.getSkuNo());
+                goodsImage.setMainNo(goodsSkuSpecValueRequest.getSkuNo());
+                //创建时间  注释掉会报错
+                // sku.setGmtCreate(new Date());
             }
             sku.setSkuName(spu.getGoodsName());
             sku.setCostPrice(goodsSkuSpecValueRequest.getGoodsSkuPrice());
@@ -639,10 +650,14 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
             sku.setShowWeight(0);
             sku.setSkuStatus((byte) CommonConstants.goodsShelfStatus);
             sku.setIsSell(false);
-            sku.setSoldoutCount(0);
-            sku.setGmtCreate(new Date());
             sku.setGmtUpdate(new Date());
             goodsSkuList.add(sku);
+
+            goodsImage.setImageType(4);
+            goodsImage.setImageUrl(goodsSkuSpecValueRequest.getSpcPic());
+            goodsImage.setCreateTime(new Date());
+            imageList.add(goodsImage);
+
 
             /**
              * 整理出sku增加的库存数
@@ -656,7 +671,7 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
                 skuNewTotalStock = goodsSkuSpecValueRequest.getGoodsSkuTotalStock();
             }
             /**之前的剩余sku旧库存*/
-            if(goodsSkuSpecValueRequest.getSkuOldTotalStock()!=null) {
+            if (goodsSkuSpecValueRequest.getSkuOldTotalStock() != null) {
                 skuOldTotalStock = goodsSkuSpecValueRequest.getSkuOldTotalStock();
             }
             //剩余库存差值
@@ -688,14 +703,13 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
         //保存sku
         goodsSkuMapper.insertGoodsSkuByList(goodsSkuList);
         goodsSkuSpecValueMapper.insertGoodsSkuSpecValueByList(goodsSkuSpecValues);
+        goodsImageMapper.insertBatchImages(imageList);
     }
-
-
 
 
     @Override
     public Set<SkuInfoQuery> getAllSpecSkuInfoBySpuNo(String key) {
-        return goodsRedisService.getAllSpecSkuInfoBySpuNo(RedisParam.hashKey(redisParam.getKeyGoodsskuAll(),RedisParam.HASH)+key);
+        return goodsRedisService.getAllSpecSkuInfoBySpuNo(RedisParam.hashKey(redisParam.getKeyGoodsskuAll(), RedisParam.HASH) + key);
     }
 
     /**
@@ -739,4 +753,81 @@ public class GoodsSpuServiceImpl implements GoodsSpuService {
         }
         return goodsSkuList;
     }
+
+
+    /**
+     * 保存商品spu规格名
+     */
+    private void addGoodsSpuSpec(GoodsSpuRequest request, GoodsSpu spu) {
+        List<GoodsSpuSpec> goodsSpuSpecList = new ArrayList<>();
+        for (Long specId : request.getSpecId()) {
+            GoodsSpuSpec goodsSpuSpec = new GoodsSpuSpec();
+            goodsSpuSpec.setSpecId(specId);
+            //注意spu插入是否有返回spuId
+            goodsSpuSpec.setSpuId(spu.getId());
+            goodsSpuSpec.setGmtCreate(new Date());
+            goodsSpuSpec.setGmtUpdate(new Date());
+            goodsSpuSpecList.add(goodsSpuSpec);
+        }
+        goodsSpuSpecMapper.insertByList(goodsSpuSpecList);
+    }
+
+    //批量保存商品图片
+    private void addSpuPic(GoodsSpuRequest request, GoodsSpu spu) {
+        List<String> images = request.getImagesList();
+        String imagesList = JSON.toJSONString(images);
+        GoodsImage image = new GoodsImage();
+            image.setImageType(1);
+            image.setImageUrl(imagesList);
+            image.setMainNo(spu.getSpuNo());
+            goodsImageMapper.insertSelective(image);
+
+    }
+
+
+    /**
+     * 得出商品最高价，最低价
+     */
+    private Map<String, Object> workOut(GoodsSpuRequest request) {
+        List<GoodsSkuSpecValueRequest> goodsSkuSpecValueList = request.getGoodsSkuSpecValueList();
+        //最低价
+        BigDecimal lowPrice = new BigDecimal(goodsSkuSpecValueList.stream().mapToDouble(object ->
+                object.getGoodsSkuPrice().doubleValue()
+        ).min().getAsDouble());
+
+        //最高价
+        BigDecimal highPrice = new BigDecimal(goodsSkuSpecValueList.stream().mapToDouble(object ->
+                object.getGoodsSkuPrice().doubleValue()
+        ).max().getAsDouble());
+
+        //所有sku库存之和
+       /* Integer spuTotalStock = Long.valueOf(goodsSkuSpecValueList.stream().mapToInt(object ->
+                object.getGoodsSkuTotalStock()
+        ).sum()).intValue();*/
+       int spuTotalStock = 0;
+       for(GoodsSkuSpecValueRequest goodsSkuSpecValueRequest : goodsSkuSpecValueList){
+           spuTotalStock += goodsSkuSpecValueRequest.getGoodsSkuTotalStock();
+       }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("lowPrice", lowPrice);
+        map.put("highPrice", highPrice);
+        map.put("spuTotalStock", spuTotalStock);
+        return map;
+    }
+
+
+    /**
+     *查出商品规格图片
+     */
+    private List<String> querySpecPic(Long spuId){
+        List<GoodsSku> skuIdList = goodsSkuMapper.selectByspuId(spuId);
+        List<String> skuNoList = new ArrayList<>();
+        for(GoodsSku goodsSku : skuIdList){
+            skuNoList.add(goodsSku.getSkuNo());
+        }
+        List<String> specPicList =  goodsImageMapper.queryUrlBySkuNo(skuNoList);
+        return specPicList;
+    }
+
 }

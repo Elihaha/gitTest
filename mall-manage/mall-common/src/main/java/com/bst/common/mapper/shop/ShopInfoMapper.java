@@ -35,4 +35,6 @@ public interface ShopInfoMapper {
     ShopInfo selectShopInfoByPermissionId(Integer permissionId);
 
     List<ShopInfo> queryPage(QueryShop query);
+
+    List<ShopInfo> selectAllInfo();
 }

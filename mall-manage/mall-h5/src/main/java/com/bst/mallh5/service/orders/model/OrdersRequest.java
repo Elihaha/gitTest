@@ -6,15 +6,16 @@ package com.bst.mallh5.service.orders.model;
  **/
 public class OrdersRequest {
 
-    private long goodsSkuId ;
+    private String goodsSkuNo ;
     private  int count;
+    private ShippingAddressRequest shippingAddressRequest;
 
-    public long getGoodsSkuId() {
-        return goodsSkuId;
+    public String getGoodsSkuNo() {
+        return goodsSkuNo;
     }
 
-    public void setGoodsSkuId(long goodsSkuId) {
-        this.goodsSkuId = goodsSkuId;
+    public void setGoodsSkuNo(String goodsSkuNo) {
+        this.goodsSkuNo = goodsSkuNo;
     }
 
     public int getCount() {
@@ -32,6 +33,5 @@ public class OrdersRequest {
     public void setShippingAddressRequest(ShippingAddressRequest shippingAddressRequest) {
         this.shippingAddressRequest = shippingAddressRequest;
     }
-
-    private ShippingAddressRequest shippingAddressRequest;
 }
+

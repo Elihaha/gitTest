@@ -27,6 +27,8 @@ public class OrdersPageQuery {
     private String startUpdate;
     @ApiModelProperty(value = "结束时间")
     private String endUpdate;
+    @ApiModelProperty(value="退款状态")
+    private Byte refund;
 
     public Integer getPageSizeKey() {
         return PageSizeKey;
@@ -76,41 +78,27 @@ public class OrdersPageQuery {
         this.telephone = telephone;
     }
 
-    public String getstartUpdate() {
+    public String getStartUpdate() {
         return startUpdate;
     }
 
-    public void setstartUpdate(String startUpdate) {
+    public void setStartUpdate(String startUpdate) {
         this.startUpdate = startUpdate;
     }
 
-    public String getendUpdate() {
+    public String getEndUpdate() {
         return endUpdate;
     }
 
-    public void setendUpdate(String endUpdate) {
+    public void setEndUpdate(String endUpdate) {
         this.endUpdate = endUpdate;
     }
 
+    public Byte getRefund() {
+        return refund;
+    }
 
-  /*
-    @ApiModelProperty(value = "页数大小")
-    private String goodsName;
-    @ApiModelProperty(value = "页数大小")
-    private int goodsCount;
-    @ApiModelProperty(value = "页数大小")
-    private int totalAmount;
-
-
-    @ApiModelProperty(value = "页数大小")
-    private Date createTime;
-    @ApiModelProperty(value = "页数大小")
-    private Date payTime;
-    @ApiModelProperty(value = "页数大小")
-    private Date deliveryTime;//发货时间
-    @ApiModelProperty(value = "页数大小")
-    private Date lastUpdate;*/
-
-    public OrdersPageQuery() {
+    public void setRefund(Byte refund) {
+        this.refund = refund;
     }
 }
